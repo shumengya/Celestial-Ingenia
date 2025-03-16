@@ -1,20 +1,20 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
-public class PlayerBase : MonoBehaviour
+public class PlayerBase : MonoBehaviour, IPointerClickHandler
 {
-    public ClickResponder clickResponder;
     private HealthBar playerHealthBar;
     public float damageAmount = 1f;
     private float timer = 0f;
 
+    // 控制是否可以被点击的开关
+    public bool canBeClicked = true;
+    public bool isSelected = false;
+
     void Start()
     {
-        clickResponder.OnClicked += OnObjectClicked;
         playerHealthBar = GetComponentInChildren<HealthBar>();
     }
-
 
     void Update()
     {
@@ -32,14 +32,17 @@ public class PlayerBase : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+
+
+    // 实现 IPointerClickHandler 接口的方法
+    public void OnPointerClick(PointerEventData eventData)
     {
-        // 当有物体与基地发生碰撞时，在控制台输出信息
-        Debug.Log("发生了碰撞!");
+        if (canBeClicked)
+        {
+            Debug.Log("该建筑被选中:" + eventData);
+            isSelected = true;
+        }
     }
 
-    void OnObjectClicked()
-    {
-        Debug.Log("这个物体被点击了");
-    }
+
 }
