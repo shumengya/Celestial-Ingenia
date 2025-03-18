@@ -65,15 +65,15 @@ public class Bullet: MonoBehaviour
         {
             otherTeam = 0;
         }
-
+        //Debug.Log("发生碰撞！");
         // 避免同队伍子弹造成伤害
         if (team != otherTeam)
         {
-            // 假设碰撞对象有一个 Health 脚本
-            HealthBar targetHealth = other.GetComponent<HealthBar>();
+            HealthBar targetHealth = other.GetComponentInChildren<HealthBar>();
             if (targetHealth != null)
             {
                 targetHealth.TakeDamage(damage);
+                
             }
 
             // 生成碰撞效果

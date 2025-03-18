@@ -20,6 +20,7 @@ public class AttackRange : MonoBehaviour
     {
         // 动态同步碰撞器范围
         GetComponent<CircleCollider2D>().radius = attackRange;
+        //Debug.Log($"当前检测到敌人数量: {detectedEnemies.Count}");
     }
 
     private void OnTriggerEnter2D(Collider2D other)

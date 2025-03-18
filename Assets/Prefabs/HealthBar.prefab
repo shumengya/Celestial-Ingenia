@@ -165,6 +165,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2149115960998302963}
   - component: {fileID: 8426354680209871503}
+  - component: {fileID: 2870813972189741492}
   m_Layer: 0
   m_Name: HealthBar
   m_TagString: Untagged
@@ -203,6 +204,20 @@ MonoBehaviour:
   healthBarImage: {fileID: 1056111405830558887}
   text: {fileID: 8684596812305770445}
   maxHealth: 100
+--- !u!114 &2870813972189741492
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5230019283439312350}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae079c7de7c0aa6449b10f728ec9d015, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lockRotation: 1
+  faceCamera: 1
 --- !u!1 &5532505969791518219
 GameObject:
   m_ObjectHideFlags: 0
