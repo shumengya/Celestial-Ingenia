@@ -67,7 +67,7 @@ public class Bullet: MonoBehaviour
         }
         //Debug.Log("发生碰撞！");
         // 避免同队伍子弹造成伤害
-        if (team != otherTeam)
+        if (team != otherTeam && other is BoxCollider2D)
         {
             HealthBar targetHealth = other.GetComponentInChildren<HealthBar>();
             if (targetHealth != null)
