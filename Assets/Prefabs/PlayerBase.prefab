@@ -52,6 +52,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageAmount: 1
+  smyName: "\u5927\u672C\u8425"
+  smyType: "\u5EFA\u7B51"
+  smyDescription: "\u73A9\u5BB6\u7684\u6838\u5FC3\u4E2D\u7684\u6838\u5FC3"
   canBeClicked: 1
   isSelected: 0
 --- !u!50 &3887739220172174841
@@ -193,6 +196,7 @@ MonoBehaviour:
   bulletPrefab: {fileID: 7471882503357086665, guid: e49ab366a1b6dfd429d3338d6174cba8, type: 3}
   BulletsParent: {fileID: 0}
   fireRate: 1
+  angleDeviation: 5
   attackRange: {fileID: 7373550343825771865}
 --- !u!212 &6308687237443896166
 SpriteRenderer:

@@ -6,11 +6,14 @@ public class RemoteAttack : MonoBehaviour
     public GameObject bulletPrefab;
     public Transform BulletsParent;
     public float fireRate = 1f;
+    public float angleDeviation = 10f; // 可设置的角度偏差
     private float lastFireTime;
 
     [Header("Dependencies")]
     [SerializeField] // 强制序列化字段
     private AttackRange attackRange;
+
+    private GameObject currentTarget; // 当前攻击目标
 
     private void Start()
     {
@@ -23,43 +26,44 @@ public class RemoteAttack : MonoBehaviour
 
     private void Update()
     {
-        // 检查是否达到射击间隔时间
-        if (Time.time - lastFireTime >= fireRate)
+        // 检查当前目标是否还存在
+        if (currentTarget == null || !attackRange.DetectedEnemies.Contains(currentTarget))
         {
-            // 缓存检测到的敌人列表，避免多次访问
-            var detectedEnemies = attackRange.DetectedEnemies;
-            if (detectedEnemies.Count > 0)
-            {
-                ShootAtTarget(GetNearestEnemy().transform.position);
-                lastFireTime = Time.time;
-            }
+            // 当前目标不存在或者不在攻击范围内，选择新的目标
+            currentTarget = GetFirstEnemyInRange();
+        }
+
+        // 检查是否达到射击间隔时间且有目标
+        if (Time.time - lastFireTime >= fireRate && currentTarget != null)
+        {
+            ShootAtTarget(currentTarget.transform.position);
+            lastFireTime = Time.time;
         }
     }
 
-    private GameObject GetNearestEnemy()
+    private GameObject GetFirstEnemyInRange()
     {
-        GameObject nearest = null;
-        float minDistance = Mathf.Infinity;
-
-        // 遍历检测到的敌人列表，找到距离最近的敌人
+        // 遍历检测到的敌人列表，找到第一个有效的敌人
         foreach (GameObject enemy in attackRange.DetectedEnemies)
         {
-            if (enemy == null) continue; // 防止敌人被销毁后残留引用
-
-            float distance = Vector2.Distance(transform.position, enemy.transform.position);
-            if (distance < minDistance)
+            if (enemy != null)
             {
-                minDistance = distance;
-                nearest = enemy;
+                return enemy;
             }
         }
-        return nearest;
+        return null;
     }
 
     private void ShootAtTarget(Vector2 targetPosition)
     {
         // 计算射击方向
         Vector2 direction = (targetPosition - (Vector2)transform.position).normalized;
+
+        // 计算随机角度偏差
+        float randomDeviation = Random.Range(-angleDeviation, angleDeviation);
+        Quaternion rotation = Quaternion.Euler(0, 0, randomDeviation);
+        direction = rotation * direction;
+
         // 实例化子弹并将其作为 BulletsParent 的子对象
         GameObject bullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity, BulletsParent);
         // 设置子弹的朝向

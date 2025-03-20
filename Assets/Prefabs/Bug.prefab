@@ -232,6 +232,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isHideHealthBar: 0
+  smyName: "\u866B\u5B50"
+  smyType: "\u5355\u4F4D"
+  smyDescription: "\u8FD9\u662F\u4E00\u53EA\u866B\u5B50"
 --- !u!114 &-8023957107305222649
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -311,7 +314,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f25b9477f5c07c94a921fdc12a92d3b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyTag: Player
+  targetTag: Player
+  meleeDamage: 2
+  attackAngle: 60
+  attackRate: 1
+  selfDestructAfterAttack: 0
   detectedEnemies: []
 --- !u!1 &7624264805519211050
 GameObject:

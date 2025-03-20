@@ -8,6 +8,7 @@ public class GameOverDetectionManager : MonoBehaviour
     public Transform buildingParent;
     // 存储PlayerBase对象的名称
     public string playerBaseName = "PlayerBase";
+    public GameOverPanel gameOverPanelScript; // 引用 GameOverPanel 脚本
 
     void Start()
     {
@@ -53,6 +54,21 @@ public class GameOverDetectionManager : MonoBehaviour
     void GameOver()
     {
         // 在这里实现游戏结束的逻辑，例如显示游戏结束弹窗、保存游戏数据等
-        Debug.Log("Game Over!");
+        Debug.Log("游戏结束!");
+        // 调用 GameOverPanel 脚本的 ShowGameOverPopup 函数
+        if (gameOverPanelScript != null)
+        {
+            Debug.Log("调用弹窗");
+            gameOverPanelScript.ShowGameOverPopup();
+
+            PlayerConfig.Instance.woodNum = 0;
+            PlayerConfig.Instance.stoneNum = 0;
+            PlayerConfig.Instance.ironNum = 0;
+            PlayerConfig.Instance.copperNum = 0;
+            PlayerConfig.Instance.playerName = "树萌芽";
+        }
+
+        // 暂停游戏
+        Time.timeScale = 0f;
     }
 }

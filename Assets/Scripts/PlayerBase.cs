@@ -6,6 +6,9 @@ public class PlayerBase : MonoBehaviour, IPointerClickHandler
     private HealthBar playerHealthBar;
     public float damageAmount = 1f;
     private float timer = 0f;
+    public string smyName = "大本营";
+    public string smyType = "建筑";
+    public string smyDescription = "玩家的核心中的核心";
 
     // 控制是否可以被点击的开关
     public bool canBeClicked = true;

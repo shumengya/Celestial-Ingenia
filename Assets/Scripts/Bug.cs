@@ -6,6 +6,9 @@ public class Bug : MonoBehaviour
 {
     private HealthBar healthBar;
     public bool isHideHealthBar = false;
+    public string smyName = "虫子";
+    public string smyType = "单位";
+    public string smyDescription = "这是一只虫子";
 
     void Start()
     {
