@@ -69,6 +69,7 @@
     <Compile Include="Assets\Scripts\EnemySpawnerPoint.cs" />
     <Compile Include="Assets\Scripts\Bullet_Num_Text.cs" />
     <Compile Include="Assets\Scripts\MeleeAttackDetection.cs" />
+    <Compile Include="Assets\BuildingSelectionPanel.cs" />
     <Compile Include="Assets\Scripts\Bug.cs" />
     <Compile Include="Assets\Scripts\SceneLoader.cs" />
     <Compile Include="Assets\Scripts\TimberMill.cs" />
@@ -78,12 +79,12 @@
     <Compile Include="Assets\Scripts\GameOverDetectionManager.cs" />
     <Compile Include="Assets\Scripts\PlayerBase.cs" />
     <Compile Include="Assets\Scripts\FPS_Show_Text.cs" />
-    <Compile Include="Assets\BuildingPlacePanel.cs" />
     <Compile Include="Assets\Scripts\ClickResponder.cs" />
     <Compile Include="Assets\Scripts\Bullet.cs" />
     <Compile Include="Assets\Scripts\RemoteAttack.cs" />
     <Compile Include="Assets\Scripts\GameOverPanel.cs" />
     <Compile Include="Assets\Scripts\EnemyMovement.cs" />
+    <Compile Include="Assets\GameUI.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
