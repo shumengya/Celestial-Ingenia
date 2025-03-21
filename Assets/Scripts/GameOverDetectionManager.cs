@@ -8,6 +8,7 @@ public class GameOverDetectionManager : MonoBehaviour
     public Transform buildingParent;
     // 存储PlayerBase对象的名称
     public string playerBaseName = "PlayerBase";
+    public string playerBaseName2 = "PlayerBase(Clone)";
     public GameOverPanel gameOverPanelScript; // 引用 GameOverPanel 脚本
 
     void Start()
@@ -41,7 +42,7 @@ public class GameOverDetectionManager : MonoBehaviour
             // 获取当前子对象
             Transform child = buildingParent.GetChild(i);
             // 检查子对象的名称是否与PlayerBase名称匹配
-            if (child.name == playerBaseName)
+            if (child.name == playerBaseName || child.name == playerBaseName2)
             {
                 // 如果匹配，说明PlayerBase对象存在，返回true
                 return true;

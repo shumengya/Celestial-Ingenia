@@ -48,6 +48,7 @@ GameObject:
   - component: {fileID: -6398907494249494123}
   - component: {fileID: -8023957107305222649}
   - component: {fileID: 4209771224522739694}
+  - component: {fileID: 4245293096907812214}
   m_Layer: 8
   m_Name: Bug
   m_TagString: Enemy
@@ -298,6 +299,27 @@ MonoBehaviour:
   moveSpeed: 1
   rotationSpeed: 200
   playerTag: Player
+--- !u!95 &4245293096907812214
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6833990181786656188}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 2c128d716a3eff948921f176ce155806, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &7624264805519211050
 GameObject:
   m_ObjectHideFlags: 0
