@@ -26,6 +26,7 @@ public class PlayerConfig : MonoBehaviour
         // 检查单例实例是否已经存在
         if (Instance == null)
         {
+            
             // 如果不存在，将当前实例设为单例实例
             Instance = this;
             // 确保该对象在场景切换时不会被销毁

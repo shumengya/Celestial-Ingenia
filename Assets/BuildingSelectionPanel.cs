@@ -6,10 +6,12 @@ public class BuildingSelectionPanel : MonoBehaviour
     public Button PlayerBase;
     public Button TimberMill;
     public Button StoneQuarry;
+    public Button IronFactory;
 
     public GameObject playerBasePrefab;
     public GameObject timberMillPrefab;
     public GameObject stoneQuarryPrefab;
+    public GameObject IronFactoryPrefab;
 
     public Transform buildingParent;
     public CanvasGroup canvasGroup; // 新增：通过Canvas Group控制显示
@@ -28,6 +30,7 @@ public class BuildingSelectionPanel : MonoBehaviour
         PlayerBase.onClick.AddListener(() => OnBuildingButtonClick(playerBasePrefab));
         TimberMill.onClick.AddListener(() => OnBuildingButtonClick(timberMillPrefab));
         StoneQuarry.onClick.AddListener(() => OnBuildingButtonClick(stoneQuarryPrefab));
+        IronFactory.onClick.AddListener(() => OnBuildingButtonClick(IronFactoryPrefab));
         isPlacingBuilding = false;
     }
 

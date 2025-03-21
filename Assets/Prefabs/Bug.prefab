@@ -41,14 +41,13 @@ GameObject:
   m_Component:
   - component: {fileID: 2990396928597777979}
   - component: {fileID: 9061400720713692002}
-  - component: {fileID: 6737396509927694639}
+  - component: {fileID: -6536483327805223326}
   - component: {fileID: 1265585178089389054}
   - component: {fileID: 8496748830914052559}
   - component: {fileID: 9120478773228671751}
-  - component: {fileID: -8023957107305222649}
   - component: {fileID: -6398907494249494123}
+  - component: {fileID: -8023957107305222649}
   - component: {fileID: 4209771224522739694}
-  - component: {fileID: -6536483327805223326}
   m_Layer: 8
   m_Name: Bug
   m_TagString: Enemy
@@ -126,27 +125,24 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!95 &6737396509927694639
-Animator:
-  serializedVersion: 5
+--- !u!114 &-6536483327805223326
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6833990181786656188}
   m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 2c128d716a3eff948921f176ce155806, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f25b9477f5c07c94a921fdc12a92d3b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetTag: Player
+  meleeDamage: 2
+  attackAngle: 60
+  attackRate: 1
+  enableSelfDestruct: 0
+  detectedEnemies: []
 --- !u!61 &1265585178089389054
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -235,23 +231,6 @@ MonoBehaviour:
   smyName: "\u866B\u5B50"
   smyType: "\u5355\u4F4D"
   smyDescription: "\u8FD9\u662F\u4E00\u53EA\u866B\u5B50"
---- !u!114 &-8023957107305222649
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6833990181786656188}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 81afb5cfc53e3894eb15a6176c2011c4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  attackRange: 5
-  enemyTag: Player
-  rangeColor: {r: 1, g: 0, b: 0, a: 0.2}
-  showAttackRange: 0
-  detectedEnemies: []
 --- !u!58 &-6398907494249494123
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -287,6 +266,23 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 5
+--- !u!114 &-8023957107305222649
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6833990181786656188}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81afb5cfc53e3894eb15a6176c2011c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackRange: 5
+  enemyTag: Player
+  rangeColor: {r: 1, g: 0, b: 0, a: 0.2}
+  showAttackRange: 0
+  detectedEnemies: []
 --- !u!114 &4209771224522739694
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -302,24 +298,6 @@ MonoBehaviour:
   moveSpeed: 1
   rotationSpeed: 200
   playerTag: Player
---- !u!114 &-6536483327805223326
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6833990181786656188}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f25b9477f5c07c94a921fdc12a92d3b6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  targetTag: Player
-  meleeDamage: 2
-  attackAngle: 60
-  attackRate: 1
-  selfDestructAfterAttack: 0
-  detectedEnemies: []
 --- !u!1 &7624264805519211050
 GameObject:
   m_ObjectHideFlags: 0

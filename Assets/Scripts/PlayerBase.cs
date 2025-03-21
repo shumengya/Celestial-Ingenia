@@ -33,7 +33,7 @@ public class PlayerBase : MonoBehaviour, IPointerClickHandler
             }
             timer = 0f;
         }
-
+       
         if (playerHealthBar.IsDead())
         {
             Destroy(gameObject);
