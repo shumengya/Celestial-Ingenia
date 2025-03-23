@@ -3,12 +3,12 @@ using UnityEngine.UI;
 
 public class Enemy_Num_Text : MonoBehaviour
 {
-    public string enemysParentName = "Enemys"; // Enemys ¶ÔÏóµÄÃû³Æ
-    public Text enemyNumText; // ÓÃÓÚÏÔÊ¾µĞÈËÊıÁ¿µÄ Text ×é¼ş
+    public string enemysParentName = "Enemys"; // Enemys å¯¹è±¡çš„åç§°
+    public Text enemyNumText; // ç”¨äºæ˜¾ç¤ºæ•Œäººæ•°é‡çš„ Text ç»„ä»¶
 
     void Start()
     {
-        // È·±£ enemyNumText ÒÑÕıÈ·¸³Öµ
+        // ç¡®ä¿ enemyNumText å·²æ­£ç¡®èµ‹å€¼
         if (enemyNumText == null)
         {
             enemyNumText = GetComponent<Text>();
@@ -17,19 +17,19 @@ public class Enemy_Num_Text : MonoBehaviour
 
     void Update()
     {
-        // ²éÕÒ Enemys ¶ÔÏó
+        // æŸ¥æ‰¾ Enemys å¯¹è±¡
         GameObject enemysParent = GameObject.Find(enemysParentName);
         if (enemysParent != null)
         {
-            // »ñÈ¡ Enemys ¶ÔÏóÏÂµÄ×Ó¶ÔÏóÊıÁ¿
+            // è·å– Enemys å¯¹è±¡ä¸‹çš„å­å¯¹è±¡æ•°é‡
             int enemyCount = enemysParent.transform.childCount;
-            // ¸üĞÂÎÄ±¾ÏÔÊ¾
-            enemyNumText.text = "µĞÈËÊıÁ¿: " + enemyCount.ToString();
+            // æ›´æ–°æ–‡æœ¬æ˜¾ç¤º
+            enemyNumText.text = "æ•Œäººæ•°é‡: " + enemyCount.ToString();
         }
         else
         {
-            // Èç¹ûÕÒ²»µ½ Enemys ¶ÔÏó£¬ÏÔÊ¾´íÎóĞÅÏ¢
-            enemyNumText.text = "Î´ÕÒµ½ Enemys ¶ÔÏó";
+            // å¦‚æœæ‰¾ä¸åˆ° Enemys å¯¹è±¡ï¼Œæ˜¾ç¤ºé”™è¯¯ä¿¡æ¯
+            enemyNumText.text = "æœªæ‰¾åˆ° Enemys å¯¹è±¡";
         }
     }
 }

@@ -6,11 +6,11 @@ public class TimberMill : MonoBehaviour, IPointerClickHandler
     private HealthBar buildingHealthBar;
     public float damageAmount = 1f;
     private float timer = 0f;
-    public string smyName = "·¥Ä¾³¡";
-    public string smyType = "½¨Öş";
-    public string smyDescription = "·¥·¥·¥·¥Ä¾¹¤";
+    public string smyName = "ä¼æœ¨åœº";
+    public string smyType = "å»ºç­‘";
+    public string smyDescription = "ä¼ä¼ä¼ä¼æœ¨å·¥";
 
-    // ¿ØÖÆÊÇ·ñ¿ÉÒÔ±»µã»÷µÄ¿ª¹Ø
+    // æ§åˆ¶æ˜¯å¦å¯ä»¥è¢«ç‚¹å‡»çš„å¼€å…³
     public bool canBeClicked = true;
     public bool isSelected = false;
 
@@ -21,17 +21,17 @@ public class TimberMill : MonoBehaviour, IPointerClickHandler
 
     void Update()
     {
-        // ÀÛ¼Ó¼ÆÊ±Æ÷
+        // ç´¯åŠ è®¡æ—¶å™¨
         timer += Time.deltaTime;
 
-        // µ±¼ÆÊ±Æ÷´ïµ½ 1 ÃëÊ±
+        // å½“è®¡æ—¶å™¨è¾¾åˆ° 1 ç§’æ—¶
         if (timer >= 1f)
         {
             if (buildingHealthBar != null)
             {
                 buildingHealthBar.TakeDamage(damageAmount);
             }
-            //Ã¿ÃëÔö¼ÓÒ»¸öÄ¾²Ä
+            //æ¯ç§’å¢åŠ ä¸€ä¸ªæœ¨æ
             PlayerConfig.Instance.woodNum += 1;
             timer = 0f;
         }
@@ -45,12 +45,12 @@ public class TimberMill : MonoBehaviour, IPointerClickHandler
 
 
 
-    // ÊµÏÖ IPointerClickHandler ½Ó¿ÚµÄ·½·¨
+    // å®ç° IPointerClickHandler æ¥å£çš„æ–¹æ³•
     public void OnPointerClick(PointerEventData eventData)
     {
         if (canBeClicked)
         {
-            Debug.Log("¸Ã½¨Öş±»Ñ¡ÖĞ:" + eventData);
+            Debug.Log("è¯¥å»ºç­‘è¢«é€‰ä¸­:" + eventData);
             isSelected = true;
         }
     }

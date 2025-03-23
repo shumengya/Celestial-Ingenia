@@ -5,7 +5,7 @@ public class GameUI : MonoBehaviour
 {
     public Button BuildStructuresBtn;
     public Button TrainUnitsBtn;
-    public BuildingSelectionPanel buildingSelectionPanel; // ÒıÓÃ½¨ÔìÃæ°å
+    public BuildingSelectionPanel buildingSelectionPanel; // å¼•ç”¨å»ºé€ é¢æ¿
 
     private bool isBuildingPanelOpen = false;
 
@@ -17,19 +17,19 @@ public class GameUI : MonoBehaviour
 
     void Update()
     {
-        // ¿É¸ù¾İĞèÇóÌí¼ÓÆäËû¸üĞÂÂß¼­
+        // å¯æ ¹æ®éœ€æ±‚æ·»åŠ å…¶ä»–æ›´æ–°é€»è¾‘
     }
 
     public void OnBuildStructuresBtnClick()
     {
         if (isBuildingPanelOpen)
         {
-            // ¹Ø±Õ½¨ÔìÃæ°å
+            // å…³é—­å»ºé€ é¢æ¿
             buildingSelectionPanel.HidePanel();
         }
         else
         {
-            // ´ò¿ª½¨ÔìÃæ°å
+            // æ‰“å¼€å»ºé€ é¢æ¿
             buildingSelectionPanel.ShowPanel();
         }
         isBuildingPanelOpen = !isBuildingPanelOpen;
@@ -37,6 +37,6 @@ public class GameUI : MonoBehaviour
 
     public void OnTrainUnitsBtnClick()
     {
-        // ¿ÉÌí¼ÓÑµÁ·µ¥Î»°´Å¥µã»÷ºóµÄÂß¼­
+        // å¯æ·»åŠ è®­ç»ƒå•ä½æŒ‰é’®ç‚¹å‡»åçš„é€»è¾‘
     }
 }

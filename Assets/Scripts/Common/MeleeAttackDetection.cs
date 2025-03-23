@@ -4,16 +4,16 @@ using System.Collections.Generic;
 public class MeleeAttackDetection : MonoBehaviour
 {
     [Header("Detection Settings")]
-    public string targetTag = "Player"; // ºÏ²¢ºóµÄÄ¿±ê±êÇ©
+    public string targetTag = "Player"; // åˆå¹¶åçš„ç›®æ ‡æ ‡ç­¾
     public int meleeDamage = 3;
-    public float attackAngle = 60f; // ÕıÇ°·½¹¥»÷½Ç¶È·¶Î§
-    public float attackRate = 1f; // ¹¥»÷¼ä¸ôÊ±¼ä£¨Ãë£©
-    public bool enableSelfDestruct; // ÊÇ·ñÆôÓÃ×Ô»Ù¹¦ÄÜ
+    public float attackAngle = 60f; // æ­£å‰æ–¹æ”»å‡»è§’åº¦èŒƒå›´
+    public float attackRate = 1f; // æ”»å‡»é—´éš”æ—¶é—´ï¼ˆç§’ï¼‰
+    public bool enableSelfDestruct; // æ˜¯å¦å¯ç”¨è‡ªæ¯åŠŸèƒ½
 
     private float attackTimer = 0f;
     public List<GameObject> detectedEnemies = new List<GameObject>();
 
-    // Í¨¹ıÊôĞÔ±©Â¶µĞÈËÁĞ±í£¨Ö»¶Á£©
+    // é€šè¿‡å±æ€§æš´éœ²æ•Œäººåˆ—è¡¨ï¼ˆåªè¯»ï¼‰
     public List<GameObject> DetectedEnemies => detectedEnemies;
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -56,7 +56,7 @@ public class MeleeAttackDetection : MonoBehaviour
                     if (targetHealthBar != null)
                     {
                         targetHealthBar.TakeDamage(meleeDamage);
-                        Debug.Log("½üÕ½¹¥»÷£¬¶ÔÄ¿±ê " + target.name + " Ôì³É " + meleeDamage + " µãÉËº¦");
+                        Debug.Log("è¿‘æˆ˜æ”»å‡»ï¼Œå¯¹ç›®æ ‡ " + target.name + " é€ æˆ " + meleeDamage + " ç‚¹ä¼¤å®³");
 
                         if(enableSelfDestruct == true)
                         {

@@ -12,7 +12,7 @@ public class Bullet_Num_Text : MonoBehaviour
 
     void Start()
     {
-        // È·±£ bulletNumText ÒÑÕıÈ·¸³Öµ
+        // ç¡®ä¿ bulletNumText å·²æ­£ç¡®èµ‹å€¼
         if (bulletNumText == null)
         {
             bulletNumText = GetComponent<Text>();
@@ -21,22 +21,22 @@ public class Bullet_Num_Text : MonoBehaviour
 
     void Update()
     {
-        // Í³¼ÆÍæ¼Ò×Óµ¯ÊıÁ¿
+        // ç»Ÿè®¡ç©å®¶å­å¼¹æ•°é‡
         if (PlayerBullets != null)
         {
             playerBulletNum = PlayerBullets.transform.childCount;
         }
 
-        // Í³¼ÆµĞÈË×Óµ¯ÊıÁ¿
+        // ç»Ÿè®¡æ•Œäººå­å¼¹æ•°é‡
         if (EnemyBullets != null)
         {
             enemyBulletNum = EnemyBullets.transform.childCount;
         }
 
-        // ¸üĞÂÎÄ±¾ÏÔÊ¾
+        // æ›´æ–°æ–‡æœ¬æ˜¾ç¤º
         if (bulletNumText != null)
         {
-            bulletNumText.text = "×Óµ¯ÊıÁ¿:"+ (enemyBulletNum + playerBulletNum).ToString();
+            bulletNumText.text = "å­å¼¹æ•°é‡:"+ (enemyBulletNum + playerBulletNum).ToString();
         }
     }
 }

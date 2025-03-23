@@ -14,7 +14,7 @@ public class BuildingSelectionPanel : MonoBehaviour
     public GameObject IronFactoryPrefab;
 
     public Transform buildingParent;
-    public CanvasGroup canvasGroup; // ĞÂÔö£ºÍ¨¹ıCanvas Group¿ØÖÆÏÔÊ¾
+    public CanvasGroup canvasGroup; // æ–°å¢ï¼šé€šè¿‡Canvas Groupæ§åˆ¶æ˜¾ç¤º
 
     private GameObject selectedBuildingPrefab;
     private GameObject previewBuilding;
@@ -22,7 +22,7 @@ public class BuildingSelectionPanel : MonoBehaviour
 
     void Start()
     {
-        // ³õÊ¼»¯Ê±Òş²ØÃæ°å£¨Í¸Ã÷¶ÈÉèÎª0£¬½ûÓÃ½»»¥£©
+        // åˆå§‹åŒ–æ—¶éšè—é¢æ¿ï¼ˆé€æ˜åº¦è®¾ä¸º0ï¼Œç¦ç”¨äº¤äº’ï¼‰
         canvasGroup.alpha = 0;
         canvasGroup.interactable = false;
         canvasGroup.blocksRaycasts = false;
@@ -42,7 +42,7 @@ public class BuildingSelectionPanel : MonoBehaviour
             return;
         }
         selectedBuildingPrefab = buildingPrefab;
-        HidePanel(); // Òş²ØÃæ°å
+        HidePanel(); // éšè—é¢æ¿
         isPlacingBuilding = true;
         CreatePreviewBuilding();
     }
@@ -98,7 +98,7 @@ public class BuildingSelectionPanel : MonoBehaviour
         Instantiate(selectedBuildingPrefab, previewBuilding.transform.position, Quaternion.identity, buildingParent);
         Destroy(previewBuilding);
         isPlacingBuilding = false;
-        // ·ÅÖÃºó±£³ÖÃæ°åÒş²Ø
+        // æ”¾ç½®åä¿æŒé¢æ¿éšè—
     }
 
     void CancelBuildingPlacement()
@@ -107,11 +107,11 @@ public class BuildingSelectionPanel : MonoBehaviour
         {
             Destroy(previewBuilding);
         }
-        ShowPanel(); // È¡Ïû·ÅÖÃÊ±ÏÔÊ¾Ãæ°å
+        ShowPanel(); // å–æ¶ˆæ”¾ç½®æ—¶æ˜¾ç¤ºé¢æ¿
         isPlacingBuilding = false;
     }
 
-    // ĞÂÔö£ºÍ¨¹ıCanvas Group¿ØÖÆÏÔÊ¾Òş²Ø
+    // æ–°å¢ï¼šé€šè¿‡Canvas Groupæ§åˆ¶æ˜¾ç¤ºéšè—
     public void ShowPanel()
     {
         canvasGroup.alpha = 1;

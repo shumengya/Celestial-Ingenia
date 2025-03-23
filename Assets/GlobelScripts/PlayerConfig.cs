@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 
 public class PlayerConfig : MonoBehaviour
 {
-    // µ¥ÀıÊµÀı
+    // å•ä¾‹å®ä¾‹
     public static PlayerConfig Instance;
 
     public string playerName = "";
@@ -23,34 +23,34 @@ public class PlayerConfig : MonoBehaviour
 
     void Awake()
     {
-        // ¼ì²éµ¥ÀıÊµÀıÊÇ·ñÒÑ¾­´æÔÚ
+        // æ£€æŸ¥å•ä¾‹å®ä¾‹æ˜¯å¦å·²ç»å­˜åœ¨
         if (Instance == null)
         {
             
-            // Èç¹û²»´æÔÚ£¬½«µ±Ç°ÊµÀıÉèÎªµ¥ÀıÊµÀı
+            // å¦‚æœä¸å­˜åœ¨ï¼Œå°†å½“å‰å®ä¾‹è®¾ä¸ºå•ä¾‹å®ä¾‹
             Instance = this;
-            // È·±£¸Ã¶ÔÏóÔÚ³¡¾°ÇĞ»»Ê±²»»á±»Ïú»Ù
+            // ç¡®ä¿è¯¥å¯¹è±¡åœ¨åœºæ™¯åˆ‡æ¢æ—¶ä¸ä¼šè¢«é”€æ¯
             DontDestroyOnLoad(gameObject);
         }
         else
         {
-            // Èç¹ûÒÑ¾­´æÔÚ£¬Ïú»Ùµ±Ç°¶ÔÏó
+            // å¦‚æœå·²ç»å­˜åœ¨ï¼Œé”€æ¯å½“å‰å¯¹è±¡
             Destroy(gameObject);
         }
 
-        // ×¢²á³¡¾°¼ÓÔØÍê³ÉµÄÊÂ¼ş
+        // æ³¨å†Œåœºæ™¯åŠ è½½å®Œæˆçš„äº‹ä»¶
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        // ÔÚ³¡¾°¼ÓÔØÍê³ÉºóÖØĞÂ»ñÈ¡ÎÄ±¾×é¼şÒıÓÃ
+        // åœ¨åœºæ™¯åŠ è½½å®Œæˆåé‡æ–°è·å–æ–‡æœ¬ç»„ä»¶å¼•ç”¨
         FindTextComponents();
     }
 
     void FindTextComponents()
     {
-        // ¼ÙÉèÕâĞ© Text ×é¼şÔÚ³¡¾°ÖĞ¿ÉÒÔÍ¨¹ıÃû³ÆÕÒµ½
+        // å‡è®¾è¿™äº› Text ç»„ä»¶åœ¨åœºæ™¯ä¸­å¯ä»¥é€šè¿‡åç§°æ‰¾åˆ°
         woodText = GameObject.Find("Wood_Text")?.GetComponent<Text>();
         stoneText = GameObject.Find("Stone_Text")?.GetComponent<Text>();
         ironText = GameObject.Find("Iron_Ore_Text")?.GetComponent<Text>();
@@ -60,25 +60,25 @@ public class PlayerConfig : MonoBehaviour
     void Start()
     {
 
-        // Ê×´Î¼ÓÔØ³¡¾°Ê±»ñÈ¡ÎÄ±¾×é¼şÒıÓÃ
+        // é¦–æ¬¡åŠ è½½åœºæ™¯æ—¶è·å–æ–‡æœ¬ç»„ä»¶å¼•ç”¨
         FindTextComponents();
     }
 
     void Update()
     {
-        // ÀÛ¼Ó¼ÆÊ±Æ÷
+        // ç´¯åŠ è®¡æ—¶å™¨
         timer += Time.deltaTime;
 
-        // µ±¼ÆÊ±Æ÷´ïµ½¸üĞÂ¼ä¸ôÊ±
+        // å½“è®¡æ—¶å™¨è¾¾åˆ°æ›´æ–°é—´éš”æ—¶
         if (timer >= updateInterval)
         {
-            // ¸üĞÂÎÄ±¾ÏÔÊ¾
-            if (woodText != null) woodText.text = "Ä¾²Ä: " + woodNum.ToString();
-            if (stoneText != null) stoneText.text = "Ê¯Í·: " + stoneNum.ToString();
-            if (ironText != null) ironText.text = "Ìú¿ó: " + ironNum.ToString();
-            if (copperText != null) copperText.text = "Í­¿ó: " + copperNum.ToString();
+            // æ›´æ–°æ–‡æœ¬æ˜¾ç¤º
+            if (woodText != null) woodText.text = "æœ¨æ: " + woodNum.ToString();
+            if (stoneText != null) stoneText.text = "çŸ³å¤´: " + stoneNum.ToString();
+            if (ironText != null) ironText.text = "é“çŸ¿: " + ironNum.ToString();
+            if (copperText != null) copperText.text = "é“œçŸ¿: " + copperNum.ToString();
 
-            // ÖØÖÃ¼ÆÊ±Æ÷
+            // é‡ç½®è®¡æ—¶å™¨
             timer = 0f;
         }
     }

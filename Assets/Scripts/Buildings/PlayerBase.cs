@@ -6,11 +6,11 @@ public class PlayerBase : MonoBehaviour, IPointerClickHandler
     private HealthBar playerHealthBar;
     public float damageAmount = 1f;
     private float timer = 0f;
-    public string smyName = "´ó±¾Óª";
-    public string smyType = "½¨Öş";
-    public string smyDescription = "Íæ¼ÒµÄºËĞÄÖĞµÄºËĞÄ";
+    public string smyName = "å¤§æœ¬è¥";
+    public string smyType = "å»ºç­‘";
+    public string smyDescription = "ç©å®¶çš„æ ¸å¿ƒä¸­çš„æ ¸å¿ƒ";
 
-    // ¿ØÖÆÊÇ·ñ¿ÉÒÔ±»µã»÷µÄ¿ª¹Ø
+    // æ§åˆ¶æ˜¯å¦å¯ä»¥è¢«ç‚¹å‡»çš„å¼€å…³
     public bool canBeClicked = true;
     public bool isSelected = false;
 
@@ -21,10 +21,10 @@ public class PlayerBase : MonoBehaviour, IPointerClickHandler
 
     void Update()
     {
-        // ÀÛ¼Ó¼ÆÊ±Æ÷
+        // ç´¯åŠ è®¡æ—¶å™¨
         timer += Time.deltaTime;
 
-        // µ±¼ÆÊ±Æ÷´ïµ½ 1 ÃëÊ±
+        // å½“è®¡æ—¶å™¨è¾¾åˆ° 1 ç§’æ—¶
         if (timer >= 1f)
         {
             if (playerHealthBar != null)
@@ -42,12 +42,12 @@ public class PlayerBase : MonoBehaviour, IPointerClickHandler
 
 
 
-    // ÊµÏÖ IPointerClickHandler ½Ó¿ÚµÄ·½·¨
+    // å®ç° IPointerClickHandler æ¥å£çš„æ–¹æ³•
     public void OnPointerClick(PointerEventData eventData)
     {
         if (canBeClicked)
         {
-            Debug.Log("¸Ã½¨Öş±»Ñ¡ÖĞ:" + eventData);
+            Debug.Log("è¯¥å»ºç­‘è¢«é€‰ä¸­:" + eventData);
             isSelected = true;
         }
     }

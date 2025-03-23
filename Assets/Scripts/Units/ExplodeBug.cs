@@ -6,14 +6,14 @@ public class ExplodeBug : MonoBehaviour
 {
     private HealthBar healthBar;
     public bool isHideHealthBar = false;
-    public string smyName = "³æ×Ó";
-    public string smyType = "µ¥Î»";
-    public string smyDescription = "ÕâÊÇÒ»Ö»³æ×Ó";
+    public string smyName = "è™«å­";
+    public string smyType = "å•ä½";
+    public string smyDescription = "è¿™æ˜¯ä¸€åªè™«å­";
 
     void Start()
     {
         healthBar = GetComponentInChildren<HealthBar>();
-        // ¸ù¾İ isHideHealthBar µÄ³õÊ¼ÖµÉèÖÃÑªÁ¿ÌõµÄÏÔÊ¾×´Ì¬
+        // æ ¹æ® isHideHealthBar çš„åˆå§‹å€¼è®¾ç½®è¡€é‡æ¡çš„æ˜¾ç¤ºçŠ¶æ€
         SetHealthBarVisibility();
     }
 
@@ -23,7 +23,7 @@ public class ExplodeBug : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        // ¶¯Ì¬¼ì²éÊÇ·ñĞèÒªÒş²ØÑªÁ¿Ìõ
+        // åŠ¨æ€æ£€æŸ¥æ˜¯å¦éœ€è¦éšè—è¡€é‡æ¡
         //SetHealthBarVisibility();
     }
 
@@ -31,7 +31,7 @@ public class ExplodeBug : MonoBehaviour
     {
         if (healthBar != null)
         {
-            // ¸ù¾İ isHideHealthBar µÄÖµÉèÖÃÑªÁ¿Ìõ¶ÔÏóµÄ¼¤»î×´Ì¬
+            // æ ¹æ® isHideHealthBar çš„å€¼è®¾ç½®è¡€é‡æ¡å¯¹è±¡çš„æ¿€æ´»çŠ¶æ€
             healthBar.gameObject.SetActive(!isHideHealthBar);
         }
     }

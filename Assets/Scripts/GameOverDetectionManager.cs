@@ -3,17 +3,17 @@ using System.Collections;
 
 public class GameOverDetectionManager : MonoBehaviour
 {
-    // ¶¨ÒåÒ»¸öÊ±¼ä¼ä¸ô£¬ÓÃÓÚÉèÖÃ¼ì²âµÄÊ±¼ä¼ä¸ô£¬ÕâÀïÉèÖÃÎª1Ãë
+    // å®šä¹‰ä¸€ä¸ªæ—¶é—´é—´éš”ï¼Œç”¨äºè®¾ç½®æ£€æµ‹çš„æ—¶é—´é—´éš”ï¼Œè¿™é‡Œè®¾ç½®ä¸º1ç§’
     public float detectionInterval = 1f;
     public Transform buildingParent;
-    // ´æ´¢PlayerBase¶ÔÏóµÄÃû³Æ
+    // å­˜å‚¨PlayerBaseå¯¹è±¡çš„åç§°
     public string playerBaseName = "PlayerBase";
     public string playerBaseName2 = "PlayerBase(Clone)";
-    public GameOverPanel gameOverPanelScript; // ÒıÓÃ GameOverPanel ½Å±¾
+    public GameOverPanel gameOverPanelScript; // å¼•ç”¨ GameOverPanel è„šæœ¬
 
     void Start()
     {
-        // Æô¶¯Ò»¸öĞ­³Ì£¬¿ªÊ¼½øĞĞ¶¨Ê±¼ì²â
+        // å¯åŠ¨ä¸€ä¸ªåç¨‹ï¼Œå¼€å§‹è¿›è¡Œå®šæ—¶æ£€æµ‹
         StartCoroutine(CheckForGameOver());
     }
 
@@ -21,55 +21,55 @@ public class GameOverDetectionManager : MonoBehaviour
     {
         while (true)
         {
-            // µ÷ÓÃIsPlayerBaseExists·½·¨£¬¼ì²éPlayerBase¶ÔÏóÊÇ·ñ´æÔÚ
+            // è°ƒç”¨IsPlayerBaseExistsæ–¹æ³•ï¼Œæ£€æŸ¥PlayerBaseå¯¹è±¡æ˜¯å¦å­˜åœ¨
             if (!IsPlayerBaseExists())
             {
-                // Èç¹ûPlayerBase¶ÔÏó²»´æÔÚ£¬µ÷ÓÃGameOver·½·¨´¥·¢ÓÎÏ·½áÊøÂß¼­
+                // å¦‚æœPlayerBaseå¯¹è±¡ä¸å­˜åœ¨ï¼Œè°ƒç”¨GameOveræ–¹æ³•è§¦å‘æ¸¸æˆç»“æŸé€»è¾‘
                 GameOver();
-                // Ìø³öÑ­»·£¬Í£Ö¹¼ì²â
+                // è·³å‡ºå¾ªç¯ï¼Œåœæ­¢æ£€æµ‹
                 break;
             }
-            // µÈ´ıÖ¸¶¨µÄÊ±¼ä¼ä¸ôºóÔÙ´Î½øĞĞ¼ì²â
+            // ç­‰å¾…æŒ‡å®šçš„æ—¶é—´é—´éš”åå†æ¬¡è¿›è¡Œæ£€æµ‹
             yield return new WaitForSeconds(detectionInterval);
         }
     }
 
     bool IsPlayerBaseExists()
     {
-        // ±éÀúBullets¸¸¶ÔÏóÏÂµÄËùÓĞ×Ó¶ÔÏó
+        // éå†Bulletsçˆ¶å¯¹è±¡ä¸‹çš„æ‰€æœ‰å­å¯¹è±¡
         for (int i = 0; i < buildingParent.childCount; i++)
         {
-            // »ñÈ¡µ±Ç°×Ó¶ÔÏó
+            // è·å–å½“å‰å­å¯¹è±¡
             Transform child = buildingParent.GetChild(i);
-            // ¼ì²é×Ó¶ÔÏóµÄÃû³ÆÊÇ·ñÓëPlayerBaseÃû³ÆÆ¥Åä
+            // æ£€æŸ¥å­å¯¹è±¡çš„åç§°æ˜¯å¦ä¸PlayerBaseåç§°åŒ¹é…
             if (child.name == playerBaseName || child.name == playerBaseName2)
             {
-                // Èç¹ûÆ¥Åä£¬ËµÃ÷PlayerBase¶ÔÏó´æÔÚ£¬·µ»Øtrue
+                // å¦‚æœåŒ¹é…ï¼Œè¯´æ˜PlayerBaseå¯¹è±¡å­˜åœ¨ï¼Œè¿”å›true
                 return true;
             }
         }
-        // Èç¹û±éÀúÍêËùÓĞ×Ó¶ÔÏó¶¼Ã»ÓĞÕÒµ½Æ¥ÅäµÄÃû³Æ£¬ËµÃ÷PlayerBase¶ÔÏó²»´æÔÚ£¬·µ»Øfalse
+        // å¦‚æœéå†å®Œæ‰€æœ‰å­å¯¹è±¡éƒ½æ²¡æœ‰æ‰¾åˆ°åŒ¹é…çš„åç§°ï¼Œè¯´æ˜PlayerBaseå¯¹è±¡ä¸å­˜åœ¨ï¼Œè¿”å›false
         return false;
     }
 
     void GameOver()
     {
-        // ÔÚÕâÀïÊµÏÖÓÎÏ·½áÊøµÄÂß¼­£¬ÀıÈçÏÔÊ¾ÓÎÏ·½áÊøµ¯´°¡¢±£´æÓÎÏ·Êı¾İµÈ
-        Debug.Log("ÓÎÏ·½áÊø!");
-        // µ÷ÓÃ GameOverPanel ½Å±¾µÄ ShowGameOverPopup º¯Êı
+        // åœ¨è¿™é‡Œå®ç°æ¸¸æˆç»“æŸçš„é€»è¾‘ï¼Œä¾‹å¦‚æ˜¾ç¤ºæ¸¸æˆç»“æŸå¼¹çª—ã€ä¿å­˜æ¸¸æˆæ•°æ®ç­‰
+        Debug.Log("æ¸¸æˆç»“æŸ!");
+        // è°ƒç”¨ GameOverPanel è„šæœ¬çš„ ShowGameOverPopup å‡½æ•°
         if (gameOverPanelScript != null)
         {
-            Debug.Log("µ÷ÓÃµ¯´°");
+            Debug.Log("è°ƒç”¨å¼¹çª—");
             gameOverPanelScript.ShowGameOverPopup();
 
             PlayerConfig.Instance.woodNum = 0;
             PlayerConfig.Instance.stoneNum = 0;
             PlayerConfig.Instance.ironNum = 0;
             PlayerConfig.Instance.copperNum = 0;
-            PlayerConfig.Instance.playerName = "Ê÷ÃÈÑ¿";
+            PlayerConfig.Instance.playerName = "æ ‘èŒèŠ½";
         }
 
-        // ÔİÍ£ÓÎÏ·
+        // æš‚åœæ¸¸æˆ
         Time.timeScale = 0f;
     }
 }

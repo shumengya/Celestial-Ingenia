@@ -6,11 +6,11 @@ public class IronFactory : MonoBehaviour, IPointerClickHandler
     private HealthBar IronFactorHealthBar;
     public float damageAmount = -1f;
     private float oneTimer = 0f;
-    public string smyName = "Ìú¿ó³§";
-    public string smyType = "½¨Öş";
-    public string smyDescription = "Éú²úÌúµÄ¿ó³¡";
+    public string smyName = "é“çŸ¿å‚";
+    public string smyType = "å»ºç­‘";
+    public string smyDescription = "ç”Ÿäº§é“çš„çŸ¿åœº";
 
-    // ¿ØÖÆÊÇ·ñ¿ÉÒÔ±»µã»÷µÄ¿ª¹Ø
+    // æ§åˆ¶æ˜¯å¦å¯ä»¥è¢«ç‚¹å‡»çš„å¼€å…³
     public bool canBeClicked = true;
     public bool isSelected = false;
 
@@ -21,9 +21,9 @@ public class IronFactory : MonoBehaviour, IPointerClickHandler
 
     void Update()
     {
-        // Ò»Ãë¼ÆÊ±Æ÷
+        // ä¸€ç§’è®¡æ—¶å™¨
         oneTimer += Time.deltaTime;
-        // µ±¼ÆÊ±Æ÷´ïµ½ 1 ÃëÊ±
+        // å½“è®¡æ—¶å™¨è¾¾åˆ° 1 ç§’æ—¶
         if (oneTimer >= 1f)
         {
             if (IronFactorHealthBar != null)
@@ -44,12 +44,12 @@ public class IronFactory : MonoBehaviour, IPointerClickHandler
 
 
 
-    // ÊµÏÖ IPointerClickHandler ½Ó¿ÚµÄ·½·¨
+    // å®ç° IPointerClickHandler æ¥å£çš„æ–¹æ³•
     public void OnPointerClick(PointerEventData eventData)
     {
         if (canBeClicked)
         {
-            Debug.Log("¸Ã½¨Öş±»Ñ¡ÖĞ:" + eventData);
+            Debug.Log("è¯¥å»ºç­‘è¢«é€‰ä¸­:" + eventData);
             isSelected = true;
         }
     }

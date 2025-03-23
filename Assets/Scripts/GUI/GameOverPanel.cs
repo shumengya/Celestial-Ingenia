@@ -4,65 +4,65 @@ using UnityEngine.SceneManagement;
 
 public class GameOverPanel : MonoBehaviour
 {
-    public GameObject gameOverPanel; // ÓÎÏ·½áÊøµ¯´°Panel
+    public GameObject gameOverPanel; // æ¸¸æˆç»“æŸå¼¹çª—Panel
     public Button BackToMainSceneBtn;
-    public Button PlayAgainBtn; // ½¨Òé½«±äÁ¿Ãû¸ÄÎª QuitGameBtn ¸üÖ±¹Û
+    public Button PlayAgainBtn; // å»ºè®®å°†å˜é‡åæ”¹ä¸º QuitGameBtn æ›´ç›´è§‚
 
     void Start()
     {
-        // ÓÎÏ·¿ªÊ¼Ê±Òş²Øµ¯´°
+        // æ¸¸æˆå¼€å§‹æ—¶éšè—å¼¹çª—
         gameOverPanel.SetActive(false);
 
-        // °ó¶¨°´Å¥µã»÷ÊÂ¼ş
+        // ç»‘å®šæŒ‰é’®ç‚¹å‡»äº‹ä»¶
         if (BackToMainSceneBtn != null)
         {
             BackToMainSceneBtn.onClick.AddListener(LoadMainMenuScene);
         }
         else
         {
-            Debug.LogError("BackToMainSceneBtn Î´¸³Öµ£¡");
+            Debug.LogError("BackToMainSceneBtn æœªèµ‹å€¼ï¼");
         }
 
         if (PlayAgainBtn != null)
         {
-            // ĞŞ¸Ä°´Å¥¼àÌıÊÂ¼şÎªÍË³öÓÎÏ·
+            // ä¿®æ”¹æŒ‰é’®ç›‘å¬äº‹ä»¶ä¸ºé€€å‡ºæ¸¸æˆ
             PlayAgainBtn.onClick.AddListener(QuitGame);
-            // ½¨ÒéĞŞ¸Ä°´Å¥ÎÄ×Ö£¨Èç¹ûĞè¸ÄUIÎÄ±¾£¬¿ÉÔÚ´ËÌí¼Ó£©
-            // PlayAgainBtn.GetComponentInChildren<Text>().text = "ÍË³öÓÎÏ·";
+            // å»ºè®®ä¿®æ”¹æŒ‰é’®æ–‡å­—ï¼ˆå¦‚æœéœ€æ”¹UIæ–‡æœ¬ï¼Œå¯åœ¨æ­¤æ·»åŠ ï¼‰
+            // PlayAgainBtn.GetComponentInChildren<Text>().text = "é€€å‡ºæ¸¸æˆ";
         }
         else
         {
-            Debug.LogError("PlayAgainBtn Î´¸³Öµ£¡");
+            Debug.LogError("PlayAgainBtn æœªèµ‹å€¼ï¼");
         }
     }
 
     public void ShowGameOverPopup()
     {
-        // ÏÔÊ¾ÓÎÏ·½áÊøµ¯´°
+        // æ˜¾ç¤ºæ¸¸æˆç»“æŸå¼¹çª—
         gameOverPanel.SetActive(true);
     }
 
-    // É¾³ıÔ­À´µÄ RestartGame ·½·¨
+    // åˆ é™¤åŸæ¥çš„ RestartGame æ–¹æ³•
     // private void RestartGame() { ... }
 
-    // ĞÂÔöÍË³öÓÎÏ··½·¨
+    // æ–°å¢é€€å‡ºæ¸¸æˆæ–¹æ³•
     private void QuitGame()
     {
-        Debug.Log("ÍË³öÓÎÏ·");
+        Debug.Log("é€€å‡ºæ¸¸æˆ");
 
-        // ÔÚ±à¼­Æ÷ÖĞÍ£Ö¹ÔËĞĞ£¨½öÓÃÓÚ²âÊÔ£©
+        // åœ¨ç¼–è¾‘å™¨ä¸­åœæ­¢è¿è¡Œï¼ˆä»…ç”¨äºæµ‹è¯•ï¼‰
 #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
 #else
-            Application.Quit(); // ÔÚ´ò°üºóµÄ°æ±¾ÖĞÍË³ö
+            Application.Quit(); // åœ¨æ‰“åŒ…åçš„ç‰ˆæœ¬ä¸­é€€å‡º
 #endif
     }
 
-    // ·µ»ØÖ÷²Ëµ¥³¡¾°
+    // è¿”å›ä¸»èœå•åœºæ™¯
     private void LoadMainMenuScene()
     {
-        Debug.Log("·µ»ØÖ÷²Ëµ¥");
-        // ¼ÓÔØÃûÎª "MainMenu" µÄ³¡¾°
+        Debug.Log("è¿”å›ä¸»èœå•");
+        // åŠ è½½åä¸º "MainMenu" çš„åœºæ™¯
         SceneManager.LoadScene("MainMenu");
     }
 }

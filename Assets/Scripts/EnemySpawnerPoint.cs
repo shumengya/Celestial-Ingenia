@@ -2,35 +2,35 @@ using UnityEngine;
 
 public class EnemySpawnerPoint : MonoBehaviour
 {
-    // µĞÈËÔ¤ÖÆÌå
+    // æ•Œäººé¢„åˆ¶ä½“
     public GameObject enemyPrefab;
-    // Éú³É¼ä¸ôÊ±¼ä£¨Ãë£©
+    // ç”Ÿæˆé—´éš”æ—¶é—´ï¼ˆç§’ï¼‰
     public float spawnInterval = 1f;
     public Transform EnemysParent;
-    // ÉÏ´ÎÉú³ÉµÄÊ±¼ä
+    // ä¸Šæ¬¡ç”Ÿæˆçš„æ—¶é—´
     private float lastSpawnTime;
 
     private void Start()
     {
-        // ³õÊ¼»¯ÉÏ´ÎÉú³ÉÊ±¼ä
+        // åˆå§‹åŒ–ä¸Šæ¬¡ç”Ÿæˆæ—¶é—´
         lastSpawnTime = Time.time;
     }
 
     private void Update()
     {
-        // ¼ì²éÊÇ·ñ´ïµ½Éú³É¼ä¸ôÊ±¼ä
+        // æ£€æŸ¥æ˜¯å¦è¾¾åˆ°ç”Ÿæˆé—´éš”æ—¶é—´
         if (Time.time - lastSpawnTime >= spawnInterval)
         {
-            // µ÷ÓÃÉú³ÉµĞÈËµÄ·½·¨
+            // è°ƒç”¨ç”Ÿæˆæ•Œäººçš„æ–¹æ³•
             SpawnEnemy();
-            // ¸üĞÂÉÏ´ÎÉú³ÉÊ±¼ä
+            // æ›´æ–°ä¸Šæ¬¡ç”Ÿæˆæ—¶é—´
             lastSpawnTime = Time.time;
         }
     }
 
     private void SpawnEnemy()
     {
-        // ÔÚµ±Ç°ÓÎÏ·¶ÔÏó£¨µĞÈËÉú³Éµã£©µÄÎ»ÖÃºÍĞı×ªÏÂÊµÀı»¯µĞÈËÔ¤ÖÆÌå
+        // åœ¨å½“å‰æ¸¸æˆå¯¹è±¡ï¼ˆæ•Œäººç”Ÿæˆç‚¹ï¼‰çš„ä½ç½®å’Œæ—‹è½¬ä¸‹å®ä¾‹åŒ–æ•Œäººé¢„åˆ¶ä½“
         Instantiate(enemyPrefab, transform.position, transform.rotation,EnemysParent);
     }
 }

@@ -28,7 +28,7 @@ public class HealthBar : MonoBehaviour
     private void UpdateHealthBar()
     {
         healthBarImage.fillAmount = currentHealth / maxHealth;
-        // ¸üĞÂ Text ×é¼şµÄÎÄ±¾ÄÚÈİ£¬°´ÕÕ "µ±Ç°ÉúÃüÖµ/×î´óÉúÃüÖµ" µÄ¸ñÊ½ÏÔÊ¾
+        // æ›´æ–° Text ç»„ä»¶çš„æ–‡æœ¬å†…å®¹ï¼ŒæŒ‰ç…§ "å½“å‰ç”Ÿå‘½å€¼/æœ€å¤§ç”Ÿå‘½å€¼" çš„æ ¼å¼æ˜¾ç¤º
         text.text = Mathf.FloorToInt(currentHealth) + "/" + Mathf.FloorToInt(maxHealth);
     }
 

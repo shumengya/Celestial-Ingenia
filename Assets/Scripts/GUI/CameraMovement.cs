@@ -2,13 +2,13 @@ using UnityEngine;
 
 public class CameraMovement : MonoBehaviour
 {
-    // ÉãÏñ»úÒÆ¶¯µÄËÙ¶È
+    // æ‘„åƒæœºç§»åŠ¨çš„é€Ÿåº¦
     public float moveSpeed = 5f;
 
-    // Ïà»úËõ·ÅµÄËÙ¶È
+    // ç›¸æœºç¼©æ”¾çš„é€Ÿåº¦
     public float zoomSpeed = 5f;
 
-    // Ïà»ú×îĞ¡ºÍ×î´óµÄËõ·Å·¶Î§£¨¶ÔÓÚÍ¸ÊÓÏà»úÊÇÊÓÒ°£¬¶ÔÓÚÕı½»Ïà»úÊÇÕı½»´óĞ¡£©
+    // ç›¸æœºæœ€å°å’Œæœ€å¤§çš„ç¼©æ”¾èŒƒå›´ï¼ˆå¯¹äºé€è§†ç›¸æœºæ˜¯è§†é‡ï¼Œå¯¹äºæ­£äº¤ç›¸æœºæ˜¯æ­£äº¤å¤§å°ï¼‰
     public float minZoom = 10f;
     public float maxZoom = 60f;
 
@@ -16,39 +16,39 @@ public class CameraMovement : MonoBehaviour
 
     void Start()
     {
-        // »ñÈ¡Ö÷Ïà»ú×é¼ş
+        // è·å–ä¸»ç›¸æœºç»„ä»¶
         mainCamera = GetComponent<Camera>();
     }
 
     void Update()
     {
-        // »ñÈ¡Ë®Æ½ºÍ´¹Ö±ÊäÈë
+        // è·å–æ°´å¹³å’Œå‚ç›´è¾“å…¥
         float horizontalInput = Input.GetAxis("Horizontal");
         float verticalInput = Input.GetAxis("Vertical");
 
-        // ¸ù¾İÊäÈë¼ÆËãÒÆ¶¯·½Ïò
+        // æ ¹æ®è¾“å…¥è®¡ç®—ç§»åŠ¨æ–¹å‘
         Vector3 movement = new Vector3(horizontalInput, verticalInput, 0f);
 
-        // ¸ù¾İÒÆ¶¯·½ÏòºÍËÙ¶È¸üĞÂÉãÏñ»úµÄÎ»ÖÃ
+        // æ ¹æ®ç§»åŠ¨æ–¹å‘å’Œé€Ÿåº¦æ›´æ–°æ‘„åƒæœºçš„ä½ç½®
         transform.Translate(movement * moveSpeed * Time.deltaTime);
 
-        // »ñÈ¡Êó±ê¹öÂÖµÄÊäÈë
+        // è·å–é¼ æ ‡æ»šè½®çš„è¾“å…¥
         float scrollInput = Input.GetAxis("Mouse ScrollWheel");
 
         if (scrollInput != 0f)
         {
             if (mainCamera.orthographic)
             {
-                // Õı½»Ïà»úµÄËõ·Å´¦Àí
+                // æ­£äº¤ç›¸æœºçš„ç¼©æ”¾å¤„ç†
                 mainCamera.orthographicSize -= scrollInput * zoomSpeed;
-                // ÏŞÖÆÕı½»´óĞ¡ÔÚ×îĞ¡ºÍ×î´óËõ·Å·¶Î§Ö®¼ä
+                // é™åˆ¶æ­£äº¤å¤§å°åœ¨æœ€å°å’Œæœ€å¤§ç¼©æ”¾èŒƒå›´ä¹‹é—´
                 mainCamera.orthographicSize = Mathf.Clamp(mainCamera.orthographicSize, minZoom, maxZoom);
             }
             else
             {
-                // Í¸ÊÓÏà»úµÄËõ·Å´¦Àí
+                // é€è§†ç›¸æœºçš„ç¼©æ”¾å¤„ç†
                 mainCamera.fieldOfView -= scrollInput * zoomSpeed;
-                // ÏŞÖÆÊÓÒ°ÔÚ×îĞ¡ºÍ×î´óËõ·Å·¶Î§Ö®¼ä
+                // é™åˆ¶è§†é‡åœ¨æœ€å°å’Œæœ€å¤§ç¼©æ”¾èŒƒå›´ä¹‹é—´
                 mainCamera.fieldOfView = Mathf.Clamp(mainCamera.fieldOfView, minZoom, maxZoom);
             }
         }

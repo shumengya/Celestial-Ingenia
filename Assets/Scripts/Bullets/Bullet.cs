@@ -2,21 +2,21 @@ using UnityEngine;
 
 public class Bullet: MonoBehaviour
 {
-    // ×Óµ¯ÒÆ¶¯ËÙ¶È
+    // å­å¼¹ç§»åŠ¨é€Ÿåº¦
     public float speed = 10f;
-    // ×Óµ¯¹¥»÷ÉËº¦
+    // å­å¼¹æ”»å‡»ä¼¤å®³
     public int damage = 10;
-    // ×î´ó´æ»îÊ±¼ä
+    // æœ€å¤§å­˜æ´»æ—¶é—´
     public float maxLifetime = 2f;
-    // ×î´óÒÆ¶¯¾àÀë
+    // æœ€å¤§ç§»åŠ¨è·ç¦»
     public float maxDistance = 20f;
-    // ×Óµ¯ËùÊô¶ÓÎé£¬0 ±íÊ¾Íæ¼Ò£¬1 ±íÊ¾µĞÈË
+    // å­å¼¹æ‰€å±é˜Ÿä¼ï¼Œ0 è¡¨ç¤ºç©å®¶ï¼Œ1 è¡¨ç¤ºæ•Œäºº
     public int team = 0;
-    // ÊÇ·ñÆôÓÃ×î´ó´æ»îÊ±¼äÏŞÖÆ
+    // æ˜¯å¦å¯ç”¨æœ€å¤§å­˜æ´»æ—¶é—´é™åˆ¶
     public bool useLifetimeLimit = true;
-    // ÊÇ·ñÆôÓÃ×î´óÒÆ¶¯¾àÀëÏŞÖÆ
+    // æ˜¯å¦å¯ç”¨æœ€å¤§ç§»åŠ¨è·ç¦»é™åˆ¶
     public bool useDistanceLimit = true;
-    // ×Óµ¯Åö×²ºóµÄĞ§¹ûÔ¤ÖÆÌå
+    // å­å¼¹ç¢°æ’åçš„æ•ˆæœé¢„åˆ¶ä½“
     public GameObject impactEffect;
 
     private Vector2 startPosition;
@@ -29,7 +29,7 @@ public class Bullet: MonoBehaviour
 
     void Update()
     {
-        // ×Óµ¯ÒÆ¶¯
+        // å­å¼¹ç§»åŠ¨
         transform.Translate(Vector2.right * speed * Time.deltaTime);
 
         if (useLifetimeLimit)
@@ -53,7 +53,7 @@ public class Bullet: MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        // ¼ì²éÅö×²¶ÔÏóµÄ¶ÓÎé±êÇ©
+        // æ£€æŸ¥ç¢°æ’å¯¹è±¡çš„é˜Ÿä¼æ ‡ç­¾
         int otherTeam = 0;
 
 
@@ -65,8 +65,8 @@ public class Bullet: MonoBehaviour
         {
             otherTeam = 0;
         }
-        //Debug.Log("·¢ÉúÅö×²£¡");
-        // ±ÜÃâÍ¬¶ÓÎé×Óµ¯Ôì³ÉÉËº¦
+        //Debug.Log("å‘ç”Ÿç¢°æ’ï¼");
+        // é¿å…åŒé˜Ÿä¼å­å¼¹é€ æˆä¼¤å®³
         if (team != otherTeam && other is BoxCollider2D)
         {
             HealthBar targetHealth = other.GetComponentInChildren<HealthBar>();
@@ -76,13 +76,13 @@ public class Bullet: MonoBehaviour
                 
             }
 
-            // Éú³ÉÅö×²Ğ§¹û
+            // ç”Ÿæˆç¢°æ’æ•ˆæœ
             if (impactEffect != null)
             {
                 Instantiate(impactEffect, transform.position, Quaternion.identity);
             }
 
-            // Ïú»Ù×Óµ¯
+            // é”€æ¯å­å¼¹
             DestroyBullet();
         }
     }

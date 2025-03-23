@@ -8,11 +8,11 @@ public class StoneQuary : MonoBehaviour, IPointerClickHandler
     private float oneSecondTimer = 0f;
     private float twoSecondTimer = 0f;
     private float threeSecondTimer = 0f;
-    public string smyName = "²ÉÊ¯³¡";
-    public string smyType = "½¨Öş";
-    public string smyDescription = "ÕıÔÚÍÚÊ¯Í·ÖĞ";
+    public string smyName = "é‡‡çŸ³åœº";
+    public string smyType = "å»ºç­‘";
+    public string smyDescription = "æ­£åœ¨æŒ–çŸ³å¤´ä¸­";
 
-    // ¿ØÖÆÊÇ·ñ¿ÉÒÔ±»µã»÷µÄ¿ª¹Ø
+    // æ§åˆ¶æ˜¯å¦å¯ä»¥è¢«ç‚¹å‡»çš„å¼€å…³
     public bool canBeClicked = true;
     public bool isSelected = false;
 
@@ -23,12 +23,12 @@ public class StoneQuary : MonoBehaviour, IPointerClickHandler
 
     void Update()
     {
-        // ÀÛ¼Ó¼ÆÊ±Æ÷
+        // ç´¯åŠ è®¡æ—¶å™¨
         oneSecondTimer += Time.deltaTime;
         twoSecondTimer += Time.deltaTime;
         threeSecondTimer += Time.deltaTime;
 
-        // µ± 1 Ãë¼ÆÊ±Æ÷´ïµ½ 1 ÃëÊ±
+        // å½“ 1 ç§’è®¡æ—¶å™¨è¾¾åˆ° 1 ç§’æ—¶
         if (oneSecondTimer >= 1f)
         {
             if (buildingHealthBar != null)
@@ -38,19 +38,19 @@ public class StoneQuary : MonoBehaviour, IPointerClickHandler
             oneSecondTimer = 0f;
         }
 
-        // µ± 2 Ãë¼ÆÊ±Æ÷´ïµ½ 2 ÃëÊ±
+        // å½“ 2 ç§’è®¡æ—¶å™¨è¾¾åˆ° 2 ç§’æ—¶
         if (twoSecondTimer >= 2f)
         {
-            // Ã¿ 2 ÃëÔö¼ÓÒ»¸öÊ¯Í·
+            // æ¯ 2 ç§’å¢åŠ ä¸€ä¸ªçŸ³å¤´
             PlayerConfig.Instance.stoneNum += 1;
             twoSecondTimer = 0f;
         }
 
-        // µ± 3 Ãë¼ÆÊ±Æ÷´ïµ½ 3 ÃëÊ±
+        // å½“ 3 ç§’è®¡æ—¶å™¨è¾¾åˆ° 3 ç§’æ—¶
         if (threeSecondTimer >= 3f)
         {
-            // ÕâÀï¿ÉÒÔÌí¼Ó 3 Ãë¼ÆÊ±ÒªÖ´ĞĞµÄÂß¼­
-            // Debug.Log("3 Ãë¼ÆÊ±´¥·¢");
+            // è¿™é‡Œå¯ä»¥æ·»åŠ  3 ç§’è®¡æ—¶è¦æ‰§è¡Œçš„é€»è¾‘
+            // Debug.Log("3 ç§’è®¡æ—¶è§¦å‘");
             threeSecondTimer = 0f;
         }
 
@@ -60,12 +60,12 @@ public class StoneQuary : MonoBehaviour, IPointerClickHandler
         }
     }
 
-    // ÊµÏÖ IPointerClickHandler ½Ó¿ÚµÄ·½·¨
+    // å®ç° IPointerClickHandler æ¥å£çš„æ–¹æ³•
     public void OnPointerClick(PointerEventData eventData)
     {
         if (canBeClicked)
         {
-            Debug.Log("¸Ã½¨Öş±»Ñ¡ÖĞ:" + eventData);
+            Debug.Log("è¯¥å»ºç­‘è¢«é€‰ä¸­:" + eventData);
             isSelected = true;
         }
     }

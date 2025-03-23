@@ -10,17 +10,17 @@ public class AttackRange : MonoBehaviour
     public bool showAttackRange = false;
 
     [Header("Debug")]
-    [SerializeField] // ĞòÁĞ»¯×Ö¶Î±ãÓÚµ÷ÊÔ
+    [SerializeField] // åºåˆ—åŒ–å­—æ®µä¾¿äºè°ƒè¯•
     private List<GameObject> detectedEnemies = new List<GameObject>();
 
-    // Í¨¹ıÊôĞÔ±©Â¶µĞÈËÁĞ±í£¨Ö»¶Á£©
+    // é€šè¿‡å±æ€§æš´éœ²æ•Œäººåˆ—è¡¨ï¼ˆåªè¯»ï¼‰
     public List<GameObject> DetectedEnemies => detectedEnemies;
 
     private void Update()
     {
-        // ¶¯Ì¬Í¬²½Åö×²Æ÷·¶Î§
+        // åŠ¨æ€åŒæ­¥ç¢°æ’å™¨èŒƒå›´
         GetComponent<CircleCollider2D>().radius = attackRange;
-        //Debug.Log($"µ±Ç°¼ì²âµ½µĞÈËÊıÁ¿: {detectedEnemies.Count}");
+        //Debug.Log($"å½“å‰æ£€æµ‹åˆ°æ•Œäººæ•°é‡: {detectedEnemies.Count}");
     }
 
     private void OnTriggerEnter2D(Collider2D other)

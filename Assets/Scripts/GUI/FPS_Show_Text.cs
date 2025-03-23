@@ -3,14 +3,14 @@ using UnityEngine.UI;
 
 public class FPS_Show_Text : MonoBehaviour
 {
-    public Text fpsText; // ÓÃÓÚÏÔÊ¾Ö¡ÂÊµÄ Text ×é¼ş
+    public Text fpsText; // ç”¨äºæ˜¾ç¤ºå¸§ç‡çš„ Text ç»„ä»¶
     private float deltaTime = 0.0f;
     private float timer = 0.0f;
     private const float updateInterval = 0.5f;
 
     void Start()
     {
-        // È·±£ fpsText ÒÑÕıÈ·¸³Öµ
+        // ç¡®ä¿ fpsText å·²æ­£ç¡®èµ‹å€¼
         if (fpsText == null)
         {
             fpsText = GetComponent<Text>();
@@ -19,24 +19,24 @@ public class FPS_Show_Text : MonoBehaviour
 
     void Update()
     {
-        // ¼ÆËãÃ¿Ö¡µÄÊ±¼ä¼ä¸ô
+        // è®¡ç®—æ¯å¸§çš„æ—¶é—´é—´éš”
         deltaTime += (Time.unscaledDeltaTime - deltaTime) * 0.1f;
-        // ÀÛ¼Ó¼ÆÊ±Æ÷
+        // ç´¯åŠ è®¡æ—¶å™¨
         timer += Time.unscaledDeltaTime;
 
-        // µ±¼ÆÊ±Æ÷´ïµ½¸üĞÂ¼ä¸ôÊ±
+        // å½“è®¡æ—¶å™¨è¾¾åˆ°æ›´æ–°é—´éš”æ—¶
         if (timer >= updateInterval)
         {
-            // ¼ÆËãÖ¡ÂÊ
+            // è®¡ç®—å¸§ç‡
             float fps = 1.0f / deltaTime;
 
-            // ¸üĞÂÎÄ±¾ÏÔÊ¾
+            // æ›´æ–°æ–‡æœ¬æ˜¾ç¤º
             if (fpsText != null)
             {
                 fpsText.text = string.Format("FPS: {0:0.}", fps);
             }
 
-            // ÖØÖÃ¼ÆÊ±Æ÷
+            // é‡ç½®è®¡æ—¶å™¨
             timer = 0;
         }
     }

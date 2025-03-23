@@ -6,18 +6,18 @@ public class RemoteAttack : MonoBehaviour
     public GameObject bulletPrefab;
     public Transform BulletsParent;
     public float fireRate = 1f;
-    public float angleDeviation = 10f; // ¿ÉÉèÖÃµÄ½Ç¶ÈÆ«²î
+    public float angleDeviation = 10f; // å¯è®¾ç½®çš„è§’åº¦åå·®
     private float lastFireTime;
 
     [Header("Dependencies")]
-    [SerializeField] // Ç¿ÖÆĞòÁĞ»¯×Ö¶Î
+    [SerializeField] // å¼ºåˆ¶åºåˆ—åŒ–å­—æ®µ
     private AttackRange attackRange;
 
-    private GameObject currentTarget; // µ±Ç°¹¥»÷Ä¿±ê
+    private GameObject currentTarget; // å½“å‰æ”»å‡»ç›®æ ‡
 
     private void Start()
     {
-        // ×Ô¶¯»ñÈ¡×é¼ş£¨Èç¹ûÎ´ÊÖ¶¯¸³Öµ£©
+        // è‡ªåŠ¨è·å–ç»„ä»¶ï¼ˆå¦‚æœæœªæ‰‹åŠ¨èµ‹å€¼ï¼‰
         if (attackRange == null)
         {
             attackRange = GetComponent<AttackRange>();
@@ -26,14 +26,14 @@ public class RemoteAttack : MonoBehaviour
 
     private void Update()
     {
-        // ¼ì²éµ±Ç°Ä¿±êÊÇ·ñ»¹´æÔÚ
+        // æ£€æŸ¥å½“å‰ç›®æ ‡æ˜¯å¦è¿˜å­˜åœ¨
         if (currentTarget == null || !attackRange.DetectedEnemies.Contains(currentTarget))
         {
-            // µ±Ç°Ä¿±ê²»´æÔÚ»òÕß²»ÔÚ¹¥»÷·¶Î§ÄÚ£¬Ñ¡ÔñĞÂµÄÄ¿±ê
+            // å½“å‰ç›®æ ‡ä¸å­˜åœ¨æˆ–è€…ä¸åœ¨æ”»å‡»èŒƒå›´å†…ï¼Œé€‰æ‹©æ–°çš„ç›®æ ‡
             currentTarget = GetFirstEnemyInRange();
         }
 
-        // ¼ì²éÊÇ·ñ´ïµ½Éä»÷¼ä¸ôÊ±¼äÇÒÓĞÄ¿±ê
+        // æ£€æŸ¥æ˜¯å¦è¾¾åˆ°å°„å‡»é—´éš”æ—¶é—´ä¸”æœ‰ç›®æ ‡
         if (Time.time - lastFireTime >= fireRate && currentTarget != null)
         {
             ShootAtTarget(currentTarget.transform.position);
@@ -43,7 +43,7 @@ public class RemoteAttack : MonoBehaviour
 
     private GameObject GetFirstEnemyInRange()
     {
-        // ±éÀú¼ì²âµ½µÄµĞÈËÁĞ±í£¬ÕÒµ½µÚÒ»¸öÓĞĞ§µÄµĞÈË
+        // éå†æ£€æµ‹åˆ°çš„æ•Œäººåˆ—è¡¨ï¼Œæ‰¾åˆ°ç¬¬ä¸€ä¸ªæœ‰æ•ˆçš„æ•Œäºº
         foreach (GameObject enemy in attackRange.DetectedEnemies)
         {
             if (enemy != null)
@@ -56,27 +56,27 @@ public class RemoteAttack : MonoBehaviour
 
     private void ShootAtTarget(Vector2 targetPosition)
     {
-        // ¼ÆËãÉä»÷·½Ïò
+        // è®¡ç®—å°„å‡»æ–¹å‘
         Vector2 direction = (targetPosition - (Vector2)transform.position).normalized;
 
-        // ¼ÆËãËæ»ú½Ç¶ÈÆ«²î
+        // è®¡ç®—éšæœºè§’åº¦åå·®
         float randomDeviation = Random.Range(-angleDeviation, angleDeviation);
         Quaternion rotation = Quaternion.Euler(0, 0, randomDeviation);
         direction = rotation * direction;
 
-        // ÊµÀı»¯×Óµ¯²¢½«Æä×÷Îª BulletsParent µÄ×Ó¶ÔÏó
+        // å®ä¾‹åŒ–å­å¼¹å¹¶å°†å…¶ä½œä¸º BulletsParent çš„å­å¯¹è±¡
         GameObject bullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity, BulletsParent);
-        // ÉèÖÃ×Óµ¯µÄ³¯Ïò
+        // è®¾ç½®å­å¼¹çš„æœå‘
         bullet.transform.right = direction;
 
-        // »ñÈ¡×Óµ¯½Å±¾²¢ÉèÖÃÍÅ¶ÓĞÅÏ¢
+        // è·å–å­å¼¹è„šæœ¬å¹¶è®¾ç½®å›¢é˜Ÿä¿¡æ¯
         if (bullet.TryGetComponent(out Bullet bulletScript))
         {
             bulletScript.team = 0;
         }
         else
         {
-            Debug.LogError($"×Óµ¯Ô¤ÖÆÌå {bullet.name} Ã»ÓĞÒ»¸ö½Å±¾ÎÄ¼ş.");
+            Debug.LogError($"å­å¼¹é¢„åˆ¶ä½“ {bullet.name} æ²¡æœ‰ä¸€ä¸ªè„šæœ¬æ–‡ä»¶.");
         }
     }
 }

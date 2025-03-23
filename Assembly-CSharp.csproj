@@ -65,32 +65,30 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\GUI\BuildingSelectionPanel.cs" />
-    <Compile Include="Assets\Scripts\HealthBarRotationLock.cs" />
+    <Compile Include="Assets\Scripts\Common\EnemyMovement.cs" />
     <Compile Include="Assets\Scripts\Buildings\PlayerBase.cs" />
-    <Compile Include="Assets\Scripts\HealthBar.cs" />
-    <Compile Include="Assets\Scripts\CameraMovement.cs" />
-    <Compile Include="Assets\Scripts\AsyncSceneLoader.cs" />
     <Compile Include="Assets\Scripts\GUI\Bullet_Num_Text.cs" />
     <Compile Include="Assets\Scripts\EnemySpawnerPoint.cs" />
     <Compile Include="Assets\Scripts\GUI\GameOverPanel.cs" />
-    <Compile Include="Assets\Scripts\MeleeAttackDetection.cs" />
+    <Compile Include="Assets\Scripts\GUI\CameraMovement.cs" />
+    <Compile Include="Assets\Scripts\Common\HealthBarRotationLock.cs" />
     <Compile Include="Assets\Scripts\Units\ExplodeBug.cs" />
     <Compile Include="Assets\Scripts\Bullets\Bullet.cs" />
-    <Compile Include="Assets\Scripts\SceneLoader.cs" />
     <Compile Include="Assets\Scripts\Buildings\StoneQuary.cs" />
     <Compile Include="Assets\GlobelScripts\PlayerConfig.cs" />
     <Compile Include="Assets\Scripts\Buildings\IronFactory.cs" />
     <Compile Include="Assets\Scripts\GUI\Enemy_Num_Text.cs" />
     <Compile Include="Assets\Scripts\Buildings\TimberMill.cs" />
+    <Compile Include="Assets\Scripts\Common\HealthBar.cs" />
+    <Compile Include="Assets\Scripts\Common\RemoteAttack.cs" />
     <Compile Include="Assets\Scripts\GameOverDetectionManager.cs" />
+    <Compile Include="Assets\Scripts\Common\MeleeAttackDetection.cs" />
     <Compile Include="Assets\Scripts\Units\JiaJiaBug.cs" />
     <Compile Include="Assets\Scripts\Units\Bug.cs" />
     <Compile Include="Assets\Scripts\GUI\FPS_Show_Text.cs" />
     <Compile Include="Assets\Scripts\ClickResponder.cs" />
     <Compile Include="Assets\Scripts\Common\AttackRange.cs" />
     <Compile Include="Assets\Scripts\GUI\GameUI.cs" />
-    <Compile Include="Assets\Scripts\RemoteAttack.cs" />
-    <Compile Include="Assets\Scripts\EnemyMovement.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

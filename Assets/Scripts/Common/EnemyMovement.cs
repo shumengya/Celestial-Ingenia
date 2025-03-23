@@ -2,56 +2,56 @@ using UnityEngine;
 
 public class EnemyMovement : MonoBehaviour
 {
-    public float moveSpeed = 3f; // µĞÈËµÄÒÆ¶¯ËÙ¶È
-    public float rotationSpeed = 200f; // µĞÈËµÄĞı×ªËÙ¶È
-    public string playerTag = "Player"; // Íæ¼ÒµÄ±êÇ©
+    public float moveSpeed = 3f; // æ•Œäººçš„ç§»åŠ¨é€Ÿåº¦
+    public float rotationSpeed = 200f; // æ•Œäººçš„æ—‹è½¬é€Ÿåº¦
+    public string playerTag = "Player"; // ç©å®¶çš„æ ‡ç­¾
 
-    private AttackRange attackRange; // ÒıÓÃ¹¥»÷·¶Î§½Å±¾
-    private Rigidbody2D rb; // µĞÈËµÄ¸ÕÌå×é¼ş
+    private AttackRange attackRange; // å¼•ç”¨æ”»å‡»èŒƒå›´è„šæœ¬
+    private Rigidbody2D rb; // æ•Œäººçš„åˆšä½“ç»„ä»¶
 
     void Start()
     {
-        // »ñÈ¡¹¥»÷·¶Î§½Å±¾
+        // è·å–æ”»å‡»èŒƒå›´è„šæœ¬
         attackRange = GetComponent<AttackRange>();
-        // »ñÈ¡¸ÕÌå×é¼ş
+        // è·å–åˆšä½“ç»„ä»¶
         rb = GetComponent<Rigidbody2D>();
     }
 
     void Update()
     {
-        // ¼ì²éÊÇ·ñ¼ì²âµ½Íæ¼Ò
+        // æ£€æŸ¥æ˜¯å¦æ£€æµ‹åˆ°ç©å®¶
         if (attackRange.DetectedEnemies.Count > 0)
         {
-            // ¼ÙÉèÖ»´¦ÀíµÚÒ»¸ö¼ì²âµ½µÄÍæ¼Ò
+            // å‡è®¾åªå¤„ç†ç¬¬ä¸€ä¸ªæ£€æµ‹åˆ°çš„ç©å®¶
             GameObject player = attackRange.DetectedEnemies[0];
             if (player != null)
             {
-                // ¼ÆËãµĞÈËµ½Íæ¼ÒµÄ·½Ïò
+                // è®¡ç®—æ•Œäººåˆ°ç©å®¶çš„æ–¹å‘
                 Vector2 direction = (player.transform.position - transform.position).normalized;
 
-                // ¼ÆËãÄ¿±ê½Ç¶È
+                // è®¡ç®—ç›®æ ‡è§’åº¦
                 float targetAngle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90f;
 
-                // Æ½»¬Ğı×ªµ½Ä¿±ê½Ç¶È
+                // å¹³æ»‘æ—‹è½¬åˆ°ç›®æ ‡è§’åº¦
                 float angle = Mathf.MoveTowardsAngle(transform.eulerAngles.z, targetAngle, rotationSpeed * Time.deltaTime);
                 transform.rotation = Quaternion.Euler(0f, 0f, angle);
 
-                // µ±Ğı×ª½Ó½üÄ¿±ê½Ç¶ÈÊ±¿ªÊ¼ÒÆ¶¯
+                // å½“æ—‹è½¬æ¥è¿‘ç›®æ ‡è§’åº¦æ—¶å¼€å§‹ç§»åŠ¨
                 if (Mathf.Abs(angle - targetAngle) < 5f)
                 {
-                    // ÒÆ¶¯µĞÈË
+                    // ç§»åŠ¨æ•Œäºº
                     rb.velocity = direction * moveSpeed;
                 }
                 else
                 {
-                    // Ğı×ªÊ±Í£Ö¹ÒÆ¶¯
+                    // æ—‹è½¬æ—¶åœæ­¢ç§»åŠ¨
                     rb.velocity = Vector2.zero;
                 }
             }
         }
         else
         {
-            // Èç¹ûÃ»ÓĞ¼ì²âµ½Íæ¼Ò£¬Í£Ö¹ÒÆ¶¯
+            // å¦‚æœæ²¡æœ‰æ£€æµ‹åˆ°ç©å®¶ï¼Œåœæ­¢ç§»åŠ¨
             rb.velocity = Vector2.zero;
         }
     }

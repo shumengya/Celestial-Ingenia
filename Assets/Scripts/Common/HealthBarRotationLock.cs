@@ -2,14 +2,14 @@ using UnityEngine;
 
 public class HealthBarRotationLock : MonoBehaviour
 {
-    // Ëø¶¨Ğı×ªµÄ·½Ê½£¨¿ÉÑ¡£º¹Ì¶¨½Ç¶È»òÃæÏòÉãÏñ»ú£©
+    // é”å®šæ—‹è½¬çš„æ–¹å¼ï¼ˆå¯é€‰ï¼šå›ºå®šè§’åº¦æˆ–é¢å‘æ‘„åƒæœºï¼‰
     public bool lockRotation = true;
-    public bool faceCamera = false; // ½ö3DÓÎÏ·ĞèÒª
+    public bool faceCamera = false; // ä»…3Dæ¸¸æˆéœ€è¦
     private Quaternion originalRotation;
 
     private void Start()
     {
-        // ¼ÇÂ¼³õÊ¼Ğı×ª
+        // è®°å½•åˆå§‹æ—‹è½¬
         originalRotation = transform.rotation;
     }
 
@@ -17,15 +17,15 @@ public class HealthBarRotationLock : MonoBehaviour
     {
         if (lockRotation)
         {
-            // Ç¿ÖÆËø¶¨ÑªÌõ×ÔÉíĞı×ª
+            // å¼ºåˆ¶é”å®šè¡€æ¡è‡ªèº«æ—‹è½¬
             if (faceCamera)
             {
-                // 3DÓÎÏ·£ºÈÃÑªÌõÊ¼ÖÕÃæÏòÉãÏñ»ú
+                // 3Dæ¸¸æˆï¼šè®©è¡€æ¡å§‹ç»ˆé¢å‘æ‘„åƒæœº
                 transform.rotation = Quaternion.LookRotation(transform.position - Camera.main.transform.position);
             }
             else
             {
-                // ±£³Ö³õÊ¼Ğı×ª
+                // ä¿æŒåˆå§‹æ—‹è½¬
                 transform.rotation = originalRotation;
             }
         }
