@@ -65,8 +65,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\GUI\BuildingSelectionPanel.cs" />
+    <Compile Include="Assets\BasicTurret.cs" />
     <Compile Include="Assets\Scripts\Common\EnemyMovement.cs" />
     <Compile Include="Assets\Scripts\Buildings\PlayerBase.cs" />
+    <Compile Include="Assets\BasicGunBarrel.cs" />
     <Compile Include="Assets\Scripts\GUI\Bullet_Num_Text.cs" />
     <Compile Include="Assets\Scripts\EnemySpawnerPoint.cs" />
     <Compile Include="Assets\Scripts\GUI\GameOverPanel.cs" />
@@ -89,6 +91,7 @@
     <Compile Include="Assets\Scripts\ClickResponder.cs" />
     <Compile Include="Assets\Scripts\Common\AttackRange.cs" />
     <Compile Include="Assets\Scripts\GUI\GameUI.cs" />
+    <Compile Include="Assets\ToastManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

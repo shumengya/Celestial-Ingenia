@@ -5,7 +5,7 @@ public class PlayerBase : MonoBehaviour, IPointerClickHandler
 {
     private HealthBar playerHealthBar;
     public float damageAmount = 1f;
-    private float timer = 0f;
+    private float oneTimer = 0f;
     public string smyName = "大本营";
     public string smyType = "建筑";
     public string smyDescription = "玩家的核心中的核心";
@@ -22,16 +22,16 @@ public class PlayerBase : MonoBehaviour, IPointerClickHandler
     void Update()
     {
         // 累加计时器
-        timer += Time.deltaTime;
+        oneTimer += Time.deltaTime;
 
         // 当计时器达到 1 秒时
-        if (timer >= 1f)
+        if (oneTimer >= 1f)
         {
             if (playerHealthBar != null)
             {
                 playerHealthBar.TakeDamage(damageAmount);
             }
-            timer = 0f;
+            oneTimer = 0f;
         }
        
         if (playerHealthBar.IsDead())

@@ -8,10 +8,10 @@ public class PlayerConfig : MonoBehaviour
     public static PlayerConfig Instance;
 
     public string playerName = "";
-    public int woodNum = 0;
-    public int stoneNum = 0;
-    public int ironNum = 0;
-    public int copperNum = 0;
+    public int woodNum = 50;
+    public int stoneNum = 50;
+    public int ironNum = 50;
+    public int copperNum = 50;
 
     public Text woodText;
     public Text stoneText;
