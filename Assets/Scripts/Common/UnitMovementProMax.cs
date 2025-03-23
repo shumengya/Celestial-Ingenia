@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class EnemyMovement : MonoBehaviour
+public class UnitMovementProMax : MonoBehaviour
 {
     public float moveSpeed = 3f; // 敌人的移动速度
     public float rotationSpeed = 200f; // 敌人的旋转速度

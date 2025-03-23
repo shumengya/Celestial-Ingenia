@@ -299,11 +299,15 @@ MonoBehaviour:
   moveSpeed: 1
   rotationSpeed: 400
   playerTag: Player
-  obstacleMask:
+  obstacleLayerMask:
     serializedVersion: 2
     m_Bits: 1024
-  rayDistance: 1
-  avoidForce: 2
+  obstacleDetectionRange: 1.5
+  avoidanceWeight: 2
+  numberOfRays: 8
+  rayAngleRange: 120
+  showDebugRays: 1
+  steeringFactor: 0.5
 --- !u!95 &-7573415813119957131
 Animator:
   serializedVersion: 5

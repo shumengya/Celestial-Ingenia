@@ -67,16 +67,17 @@
     <Compile Include="Assets\Scripts\GUI\BuildingSelectionPanel.cs" />
     <Compile Include="Assets\Scripts\Buildings\BasicGunBarrel.cs" />
     <Compile Include="Assets\Scripts\Buildings\BasicTurret.cs" />
-    <Compile Include="Assets\Scripts\Common\EnemyMovement.cs" />
     <Compile Include="Assets\Scripts\Buildings\PlayerBase.cs" />
     <Compile Include="Assets\Scripts\GUI\Bullet_Num_Text.cs" />
     <Compile Include="Assets\Scripts\GUI\WaveCountdown.cs" />
     <Compile Include="Assets\Scripts\GUI\GameOverPanel.cs" />
+    <Compile Include="Assets\Scripts\Common\UnitMovement.cs" />
     <Compile Include="Assets\Scripts\GUI\CameraMovement.cs" />
     <Compile Include="Assets\Scripts\Common\HealthBarRotationLock.cs" />
     <Compile Include="Assets\Scripts\Units\ExplodeBug.cs" />
     <Compile Include="Assets\Scripts\Bullets\Bullet.cs" />
     <Compile Include="Assets\Scripts\GameManager\EnemySpawnerPoint.cs" />
+    <Compile Include="Assets\Scripts\Common\UnitMovementPro.cs" />
     <Compile Include="Assets\Scripts\Buildings\StoneQuary.cs" />
     <Compile Include="Assets\GlobelScripts\PlayerConfig.cs" />
     <Compile Include="Assets\Scripts\Buildings\IronFactory.cs" />
@@ -92,6 +93,7 @@
     <Compile Include="Assets\Scripts\ClickResponder.cs" />
     <Compile Include="Assets\Scripts\Common\AttackRange.cs" />
     <Compile Include="Assets\Scripts\GUI\GameUI.cs" />
+    <Compile Include="Assets\Scripts\Common\UnitMovementProMax.cs" />
     <Compile Include="Assets\Scripts\GameManager\ToastManager.cs" />
     <Compile Include="Assets\Scripts\GUI\MainMenu.cs" />
   </ItemGroup>

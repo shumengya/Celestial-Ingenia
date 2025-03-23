@@ -41,14 +41,14 @@ GameObject:
   m_Component:
   - component: {fileID: 2990396928597777979}
   - component: {fileID: 9061400720713692002}
+  - component: {fileID: 4245293096907812214}
   - component: {fileID: -6536483327805223326}
   - component: {fileID: 1265585178089389054}
   - component: {fileID: 8496748830914052559}
   - component: {fileID: 9120478773228671751}
   - component: {fileID: -6398907494249494123}
   - component: {fileID: -8023957107305222649}
-  - component: {fileID: 4209771224522739694}
-  - component: {fileID: 4245293096907812214}
+  - component: {fileID: 1433321904065663254}
   m_Layer: 8
   m_Name: Bug
   m_TagString: Enemy
@@ -126,6 +126,27 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &4245293096907812214
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6833990181786656188}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 2c128d716a3eff948921f176ce155806, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &-6536483327805223326
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -284,7 +305,7 @@ MonoBehaviour:
   rangeColor: {r: 1, g: 0, b: 0, a: 0.2}
   showAttackRange: 0
   detectedEnemies: []
---- !u!114 &4209771224522739694
+--- !u!114 &1433321904065663254
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -296,30 +317,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7708f7c6e4665f43a78a77b4ab2e734, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 1
+  moveSpeed: 1.1
   rotationSpeed: 400
   playerTag: Player
---- !u!95 &4245293096907812214
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6833990181786656188}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 2c128d716a3eff948921f176ce155806, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
+  obstacleLayerMask:
+    serializedVersion: 2
+    m_Bits: 1024
+  obstacleDetectionRange: 1.5
+  avoidanceWeight: 2
+  numberOfRays: 8
+  rayAngleRange: 120
+  showDebugRays: 1
+  steeringFactor: 0.5
 --- !u!1 &7624264805519211050
 GameObject:
   m_ObjectHideFlags: 0

@@ -250,14 +250,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7708f7c6e4665f43a78a77b4ab2e734, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 1
+  moveSpeed: 0.7
   rotationSpeed: 400
   playerTag: Player
-  obstacleMask:
+  obstacleLayerMask:
     serializedVersion: 2
     m_Bits: 1024
-  rayDistance: 1
-  avoidForce: 2
+  obstacleDetectionRange: 1.5
+  avoidanceWeight: 2
+  numberOfRays: 8
+  rayAngleRange: 120
+  showDebugRays: 1
+  steeringFactor: 0.5
 --- !u!114 &-6536483327805223326
 MonoBehaviour:
   m_ObjectHideFlags: 0
