@@ -70,6 +70,7 @@
     <Compile Include="Assets\Scripts\Buildings\PlayerBase.cs" />
     <Compile Include="Assets\Scripts\GUI\Bullet_Num_Text.cs" />
     <Compile Include="Assets\Scripts\GUI\WaveCountdown.cs" />
+    <Compile Include="Assets\Scripts\Buildings\CopperSmeltingFactory.cs" />
     <Compile Include="Assets\Scripts\GUI\GameOverPanel.cs" />
     <Compile Include="Assets\Scripts\Common\UnitMovement.cs" />
     <Compile Include="Assets\Scripts\GUI\CameraMovement.cs" />

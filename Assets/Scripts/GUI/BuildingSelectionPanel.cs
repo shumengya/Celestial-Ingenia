@@ -4,18 +4,29 @@ using UnityEngine.UI;
 public class BuildingSelectionPanel : MonoBehaviour
 {
     //-----------------按钮注册-----------------------
+    [Header("建筑按钮")]
     public Button PlayerBase;
     public Button TimberMill;
     public Button StoneQuarry;
     public Button IronFactory;
+
     public Button BasicTurret;
+    public Button MissileTurret;
+    public Button FireFlameTurret;
+    public Button ArtilleryTurret;
+    public Button CopperSmeltingFactory;
 
     //-----------------建筑预制体注册-----------------------
+    [Header("建筑预制体")]
     public GameObject playerBasePrefab;
     public GameObject timberMillPrefab;
     public GameObject stoneQuarryPrefab;
     public GameObject IronFactoryPrefab;
     public GameObject basicTurretPrefab;
+    public GameObject missileTurretPrefab;
+    public GameObject fireFlameTurretPrefab;
+    public GameObject artilleryTurretPrefab;
+    public GameObject CopperSmeltingFactoryPrefab;
 
 
     public Transform buildingParent;
@@ -39,7 +50,12 @@ public class BuildingSelectionPanel : MonoBehaviour
         TimberMill.onClick.AddListener(() => OnBuildingButtonClick(timberMillPrefab));
         StoneQuarry.onClick.AddListener(() => OnBuildingButtonClick(stoneQuarryPrefab));
         IronFactory.onClick.AddListener(() => OnBuildingButtonClick(IronFactoryPrefab));
+
         BasicTurret.onClick.AddListener(() => OnBuildingButtonClick(basicTurretPrefab));
+        MissileTurret.onClick.AddListener(() => OnBuildingButtonClick(missileTurretPrefab));
+        FireFlameTurret.onClick.AddListener(() => OnBuildingButtonClick(fireFlameTurretPrefab));
+        ArtilleryTurret.onClick.AddListener(() => OnBuildingButtonClick(artilleryTurretPrefab));
+        CopperSmeltingFactory.onClick.AddListener(() => OnBuildingButtonClick(CopperSmeltingFactoryPrefab));
 
         isPlacingBuilding = false;
         isCollisionDetected = false; // 初始化碰撞标记
