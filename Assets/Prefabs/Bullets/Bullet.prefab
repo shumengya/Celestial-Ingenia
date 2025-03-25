@@ -176,7 +176,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
-  damage: 10
+  damage: 30
   maxLifetime: 2
   maxDistance: 20
   team: 0

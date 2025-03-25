@@ -55,8 +55,11 @@ MonoBehaviour:
   smyName: "\u5927\u672C\u8425"
   smyType: "\u5EFA\u7B51"
   smyDescription: "\u73A9\u5BB6\u7684\u6838\u5FC3\u4E2D\u7684\u6838\u5FC3"
-  canBeClicked: 1
+  canBeInteracted: 1
   isSelected: 0
+  canBeClicked: 1
+  selectedColor: {r: 0.8773585, g: 0.48420256, b: 0.5042601, a: 1}
+  normalColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!50 &3887739220172174841
 Rigidbody2D:
   serializedVersion: 4

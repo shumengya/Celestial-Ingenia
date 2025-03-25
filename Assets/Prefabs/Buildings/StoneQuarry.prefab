@@ -194,6 +194,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40d50a3b6a11d1b4ca6b7533f1b5a380, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damageAmount: 1
+  smyName: "\u91C7\u77F3\u573A"
+  smyType: "\u5EFA\u7B51"
+  smyDescription: "\u6B63\u5728\u6316\u77F3\u5934\u4E2D"
+  canBeClicked: 1
+  isSelected: 0
 --- !u!1001 &4451865733367231882
 PrefabInstance:
   m_ObjectHideFlags: 0
