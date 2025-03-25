@@ -28,7 +28,7 @@ public class MainMenu : MonoBehaviour
     {
         Debug.Log("游戏开始！");
         // 这里可以添加实际的游戏开始逻辑，例如加载游戏场景
-        SceneManager.LoadScene("MainGame");
+        SceneManager.LoadScene("Background Introduction");
     }
 
     // 退出游戏的方法
