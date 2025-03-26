@@ -69,6 +69,7 @@ public class UICyclerWithEventTrigger : MonoBehaviour
         else 
         {
             SceneManager.LoadScene("MainGame");
+            Time.timeScale = 1f;
         }
     }
 }
