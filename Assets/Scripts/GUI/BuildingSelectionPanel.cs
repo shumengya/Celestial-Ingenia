@@ -9,29 +9,31 @@ public class BuildingSelectionPanel : MonoBehaviour
     public Button TimberMill;
     public Button StoneQuarry;
     public Button IronFactory;
-
-    public Button BasicTurret;
-    public Button MissileTurret;
-    public Button FireFlameTurret;
-    public Button ArtilleryTurret;
     public Button CopperSmeltingFactory;
+
+    public Button Turret;
+    public Button Turret_Arrow;
+    public Button Turret_Fire_Gun;
+    public Button Turret_Multi_Arrow;
+
 
     //-----------------建筑预制体注册-----------------------
     [Header("建筑预制体")]
-    public GameObject playerBasePrefab;
-    public GameObject timberMillPrefab;
-    public GameObject stoneQuarryPrefab;
-    public GameObject IronFactoryPrefab;
-    public GameObject basicTurretPrefab;
-    public GameObject missileTurretPrefab;
-    public GameObject fireFlameTurretPrefab;
-    public GameObject artilleryTurretPrefab;
-    public GameObject CopperSmeltingFactoryPrefab;
+    public GameObject playerBasePrefab; //大本营
+    public GameObject timberMillPrefab; //伐木厂
+    public GameObject stoneQuarryPrefab; //采石场
+    public GameObject IronFactoryPrefab; //铁矿厂
+    public GameObject CopperSmeltingFactoryPrefab; //铜矿厂
+
+    public GameObject TurretPrefab; // 炮塔
+    public GameObject Turret_Arrow_Prefab; // 箭塔
+    public GameObject Turret_Fire_Gun_Prefab; // 火枪塔
+    public GameObject Turret_Multi_Arrow_Prefab; // 多重弩箭塔
+
 
 
     public Transform buildingParent;
-    public CanvasGroup canvasGroup; // 新增：通过Canvas Group控制显示
-
+    public CanvasGroup canvasGroup; 
     private GameObject selectedBuildingPrefab;
     private GameObject previewBuilding;
     private bool isPlacingBuilding;
@@ -50,12 +52,14 @@ public class BuildingSelectionPanel : MonoBehaviour
         TimberMill.onClick.AddListener(() => OnBuildingButtonClick(timberMillPrefab));
         StoneQuarry.onClick.AddListener(() => OnBuildingButtonClick(stoneQuarryPrefab));
         IronFactory.onClick.AddListener(() => OnBuildingButtonClick(IronFactoryPrefab));
-
-        BasicTurret.onClick.AddListener(() => OnBuildingButtonClick(basicTurretPrefab));
-        MissileTurret.onClick.AddListener(() => OnBuildingButtonClick(missileTurretPrefab));
-        FireFlameTurret.onClick.AddListener(() => OnBuildingButtonClick(fireFlameTurretPrefab));
-        ArtilleryTurret.onClick.AddListener(() => OnBuildingButtonClick(artilleryTurretPrefab));
         CopperSmeltingFactory.onClick.AddListener(() => OnBuildingButtonClick(CopperSmeltingFactoryPrefab));
+
+        //这些是各种炮塔
+        Turret.onClick.AddListener(() => OnBuildingButtonClick(TurretPrefab));
+        Turret_Arrow.onClick.AddListener(() => OnBuildingButtonClick(Turret_Arrow_Prefab));
+        Turret_Fire_Gun.onClick.AddListener(() => OnBuildingButtonClick(Turret_Fire_Gun_Prefab));
+        Turret_Multi_Arrow.onClick.AddListener(() => OnBuildingButtonClick(Turret_Multi_Arrow_Prefab));
+
 
         isPlacingBuilding = false;
         isCollisionDetected = false; // 初始化碰撞标记

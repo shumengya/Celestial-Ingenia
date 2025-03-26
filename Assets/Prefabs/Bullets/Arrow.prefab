@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1175672692391947009}
   - component: {fileID: 8952238886797103713}
-  - component: {fileID: 2919245999137606619}
   - component: {fileID: 5899589425318322177}
   - component: {fileID: 3013096227387586824}
+  - component: {fileID: -42347991817657610}
   m_Layer: 7
   m_Name: Arrow
   m_TagString: PlayerBullet
@@ -80,26 +80,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.7823249, y: 0.03894393}
   m_EdgeRadius: 0
---- !u!114 &2919245999137606619
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7471882503357086665}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 80b3f97d725fd4f49bbdabe514bd5bd6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 10
-  damage: 10
-  maxLifetime: 2
-  maxDistance: 20
-  team: 0
-  useLifetimeLimit: 1
-  useDistanceLimit: 1
-  impactEffect: {fileID: 0}
 --- !u!95 &5899589425318322177
 Animator:
   serializedVersion: 5
@@ -173,3 +153,23 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &-42347991817657610
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7471882503357086665}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80b3f97d725fd4f49bbdabe514bd5bd6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 10
+  damage: 10
+  maxLifetime: 2
+  maxDistance: 20
+  team: 0
+  useLifetimeLimit: 1
+  useDistanceLimit: 1
+  impactEffect: {fileID: 0}
