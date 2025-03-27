@@ -1,30 +1,25 @@
 using UnityEngine;
-using UnityEngine.EventSystems;
 
-public class BasicTurret : MonoBehaviour, IPointerClickHandler
+public class BasicTurret : BuildingBase
 {
-    private HealthBar playerHealthBar;
     public float damageAmount = 1f;
     private float oneTimer = 0f;
-    public string smyName = "基础炮塔";
-    public string smyType = "建筑";
-    public string smyDescription = "就是一个普普通通的发射炮弹的炮塔罢了";
 
-    // 控制是否可以被点击的开关
-    public bool canBeClicked = true;
-    public bool isSelected = false;
-
-    void Start()
+    protected override void Start()
     {
-        playerHealthBar = GetComponentInChildren<HealthBar>();
+        // 设置铁工厂特有的属性
+        smyName = "大本营";
+        smyType = "建筑";
+        smyDescription = "玩家的核心中的核心";
+        
+        // 调用基类的Start方法
+        base.Start();
     }
 
-    void Update()
+    protected override void Update()
     {
-        // 累加计时器
+        // 铁工厂特有的逻辑：每秒造成伤害
         oneTimer += Time.deltaTime;
-
-        // 当计时器达到 1 秒时
         if (oneTimer >= 1f)
         {
             if (playerHealthBar != null)
@@ -33,24 +28,8 @@ public class BasicTurret : MonoBehaviour, IPointerClickHandler
             }
             oneTimer = 0f;
         }
-       
-        if (playerHealthBar.IsDead())
-        {
-            Destroy(gameObject);
-        }
+
+        // 调用基类的Update方法处理通用逻辑
+        base.Update();
     }
-
-
-
-    // 实现 IPointerClickHandler 接口的方法
-    public void OnPointerClick(PointerEventData eventData)
-    {
-        if (canBeClicked)
-        {
-            Debug.Log("该建筑被选中:" + eventData);
-            isSelected = true;
-        }
-    }
-
-
-}
+}    

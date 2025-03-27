@@ -177,8 +177,11 @@ MonoBehaviour:
   smyName: "\u70AE\u5854"
   smyType: "\u5EFA\u7B51"
   smyDescription: "\u5C31\u662F\u4E00\u4E2A\u666E\u666E\u901A\u901A\u7684\u53D1\u5C04\u70AE\u5F39\u7684\u70AE\u5854\u7F62\u4E86"
-  canBeClicked: 1
+  canBeInteracted: 1
   isSelected: 0
+  canBeClicked: 1
+  selectedColor: {r: 1, g: 1, b: 1, a: 1}
+  normalColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1001 &4451865733367231882
 PrefabInstance:
   m_ObjectHideFlags: 0

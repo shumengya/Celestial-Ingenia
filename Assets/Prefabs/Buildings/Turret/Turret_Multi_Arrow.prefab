@@ -173,12 +173,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffdb519560eb2f247a6ce4f387cc5ab0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageAmount: 1
-  smyName: "\u591A\u91CD\u7BAD\u5854"
+  smyName: "\u5EFA\u7B51"
   smyType: "\u5EFA\u7B51"
-  smyDescription: "\u53D1\u5C04\u4E00\u5927\u5806\u5F13\u7BAD"
-  canBeClicked: 1
+  smyDescription: "\u57FA\u7840\u5EFA\u7B51"
+  canBeInteracted: 1
   isSelected: 0
+  canBeClicked: 1
+  selectedColor: {r: 1, g: 0, b: 0, a: 1}
+  normalColor: {r: 1, g: 1, b: 1, a: 1}
+  damageAmount: 1
 --- !u!1001 &4027496744363427717
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -89,6 +89,7 @@
     <Compile Include="Assets\GlobelScripts\PlayerConfig.cs" />
     <Compile Include="Assets\Scripts\Buildings\IronFactory.cs" />
     <Compile Include="Assets\Scripts\GUI\Enemy_Num_Text.cs" />
+    <Compile Include="Assets\Scripts\Buildings\BuildingBase.cs" />
     <Compile Include="Assets\Scripts\Buildings\TimberMill.cs" />
     <Compile Include="Assets\Scripts\Common\HealthBar.cs" />
     <Compile Include="Assets\Scripts\Bullets\FireBullet.cs" />

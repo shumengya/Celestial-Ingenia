@@ -1,59 +1,35 @@
 using UnityEngine;
-using UnityEngine.EventSystems;
 
-public class TimberMill : MonoBehaviour, IPointerClickHandler
+public class TimberMill : BuildingBase
 {
-    private HealthBar buildingHealthBar;
     public float damageAmount = 1f;
-    private float timer = 0f;
-    public string smyName = "伐木场";
-    public string smyType = "建筑";
-    public string smyDescription = "伐伐伐伐木工";
+    private float oneTimer = 0f;
 
-    // 控制是否可以被点击的开关
-    public bool canBeClicked = true;
-    public bool isSelected = false;
-
-    void Start()
+    protected override void Start()
     {
-        buildingHealthBar = GetComponentInChildren<HealthBar>();
+        // 设置铁工厂特有的属性
+        smyName = "大本营";
+        smyType = "建筑";
+        smyDescription = "玩家的核心中的核心";
+        
+        // 调用基类的Start方法
+        base.Start();
     }
 
-    void Update()
+    protected override void Update()
     {
-        // 累加计时器
-        timer += Time.deltaTime;
-
-        // 当计时器达到 1 秒时
-        if (timer >= 1f)
+        // 铁工厂特有的逻辑：每秒造成伤害
+        oneTimer += Time.deltaTime;
+        if (oneTimer >= 1f)
         {
-            if (buildingHealthBar != null)
+            if (playerHealthBar != null)
             {
-                buildingHealthBar.TakeDamage(damageAmount);
+                playerHealthBar.TakeDamage(damageAmount);
             }
-            //每秒增加一个木材
-            PlayerConfig.Instance.woodNum += 1;
-            timer = 0f;
+            oneTimer = 0f;
         }
 
-
-        if (buildingHealthBar.IsDead())
-        {
-            Destroy(gameObject);
-        }
+        // 调用基类的Update方法处理通用逻辑
+        base.Update();
     }
-
-
-
-    // 实现 IPointerClickHandler 接口的方法
-    public void OnPointerClick(PointerEventData eventData)
-    {
-        if (canBeClicked)
-        {
-            Debug.Log("该建筑被选中:" + eventData);
-            isSelected = true;
-        }
-    }
-
-
-}
+}    
