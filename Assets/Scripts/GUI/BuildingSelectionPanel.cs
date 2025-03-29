@@ -87,7 +87,26 @@ public class BuildingSelectionPanel : MonoBehaviour
             Debug.LogError("创建预览建筑时，所选建筑预制体为空！");
             return;
         }
+        
         previewBuilding = Instantiate(selectedBuildingPrefab);
+        
+        // 禁用预览建筑上的所有脚本组件，保留碰撞检测
+        BuildingBase buildingBase = previewBuilding.GetComponent<BuildingBase>();
+        if (buildingBase != null)
+        {
+            buildingBase.enabled = false;
+        }
+        
+        // 禁用可能影响功能的其他组件
+        MonoBehaviour[] scripts = previewBuilding.GetComponents<MonoBehaviour>();
+        foreach (MonoBehaviour script in scripts)
+        {
+            if (script != null && script != buildingBase)
+            {
+                script.enabled = false;
+            }
+        }
+        
         SpriteRenderer spriteRenderer = previewBuilding.GetComponent<SpriteRenderer>();
         if (spriteRenderer == null)
         {
@@ -96,6 +115,8 @@ public class BuildingSelectionPanel : MonoBehaviour
             isPlacingBuilding = false;
             return;
         }
+        
+        // 设置半透明预览效果
         spriteRenderer.color = new Color(1f, 1f, 1f, 0.5f);
     }
 
@@ -188,10 +209,19 @@ public class BuildingSelectionPanel : MonoBehaviour
             Debug.LogError("无法放置建筑。所选预制体或预览建筑为空！");
             return;
         }
-        Instantiate(selectedBuildingPrefab, previewBuilding.transform.position, Quaternion.identity, buildingParent);
+        
+        // 实例化实际建筑
+        GameObject newBuilding = Instantiate(selectedBuildingPrefab, previewBuilding.transform.position, Quaternion.identity, buildingParent);
+        
+        // 初始化建筑的建造状态
+        BuildingBase buildingBase = newBuilding.GetComponent<BuildingBase>();
+        if (buildingBase != null)
+        {
+            buildingBase.isUnderConstruction = true;
+        }
+        
         Destroy(previewBuilding);
         isPlacingBuilding = false;
-        // 放置后保持面板隐藏
     }
 
     void CancelBuildingPlacement()

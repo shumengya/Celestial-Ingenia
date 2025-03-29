@@ -2,24 +2,43 @@ using UnityEngine;
 
 public class BuildingBase : MonoBehaviour
 {
+    
+// 健康条相关
     protected HealthBar playerHealthBar;
+
+    // 建筑信息
+    [Header("建筑信息")]
     public string smyName = "建筑";
     public string smyType = "建筑";
     public string smyDescription = "基础建筑";
 
+    // 交互状态
+    [Header("交互状态")]
     public bool canBeInteracted = true;
     public bool isSelected = false;
     public bool canBeClicked = true;
 
-    // 添加选中状态视觉反馈
+    // 建造状态
+    [Header("建造状态")]
+    public bool isUnderConstruction = true;
+    public float constructionTime = 5f;
+    private float constructionTimeRemaining;
+    private float maxHealth = 0f; // 最大生命值
+
+    // 选中状态视觉反馈颜色
+    [Header("选中状态视觉反馈颜色")]
     public Color selectedColor = new Color(1f, 1f, 1f, 1f); // 选中时的颜色
     public Color normalColor = new Color(1f, 1f, 1f, 1f);   // 正常时的颜色
+
+    // 组件引用
+    [Header("组件引用")]
     protected SpriteRenderer spriteRenderer;
     protected BoxCollider2D boxCollider;
 
     protected virtual void Start()
     {
         playerHealthBar = GetComponentInChildren<HealthBar>();
+        maxHealth = playerHealthBar.GetMaxHealth();
         spriteRenderer = GetComponent<SpriteRenderer>();
         
         // 获取BoxCollider2D引用
@@ -32,12 +51,65 @@ public class BuildingBase : MonoBehaviour
             boxCollider.size = spriteRenderer.sprite.bounds.size;
         }
         
-        // 初始化颜色
-        UpdateVisualState();
+        // 初始化建造状态
+        if (isUnderConstruction)
+        {
+            constructionTimeRemaining = constructionTime;
+            canBeInteracted = false; // 建造期间不可交互
+            canBeClicked = false;    // 建造期间不可点击
+            
+            // 设置初始视觉效果 - 半透明
+            if (spriteRenderer != null)
+            {
+                Color startColor = normalColor;
+                startColor.a = 0.5f;
+                spriteRenderer.color = startColor;
+            }
+            
+            // 设置生命值为正常血量的一半
+            if (playerHealthBar != null)
+            {
+                playerHealthBar.SetMaxHealth(maxHealth);
+                playerHealthBar.SetHealth(maxHealth * 0.5f);
+            }
+        }
+        else
+        {
+            // 初始化颜色
+            UpdateVisualState();
+            
+            // 设置满血
+            if (playerHealthBar != null)
+            {
+                playerHealthBar.SetMaxHealth(maxHealth);
+                playerHealthBar.SetHealth(maxHealth);
+            }
+        }
     }
 
     protected virtual void Update()
     {
+        // 处理建造时间
+        if (isUnderConstruction)
+        {
+            constructionTimeRemaining -= Time.deltaTime;
+            
+            // 计算建造进度 (0-1)
+            float constructionProgress = 1f - (constructionTimeRemaining / constructionTime);
+            
+            // 更新建造中的视觉效果 - 只更新透明度
+            UpdateConstructionVisuals(constructionProgress);
+            
+            // 建造完成
+            if (constructionTimeRemaining <= 0)
+            {
+                CompleteConstruction();
+            }
+            
+            // 建造期间不执行其他操作
+            return;
+        }
+        
         // 检测玩家是否死亡
         if (playerHealthBar != null && playerHealthBar.IsDead())
         {
@@ -74,6 +146,38 @@ public class BuildingBase : MonoBehaviour
         }
     }
     
+    // 更新建造中的视觉效果 - 只更新透明度
+    protected virtual void UpdateConstructionVisuals(float progress)
+    {
+        if (spriteRenderer != null)
+        {
+            // 透明度从0.5到1.0渐变
+            float alpha = 0.5f + (progress * 0.5f);
+            Color progressColor = normalColor;
+            progressColor.a = alpha;
+            spriteRenderer.color = progressColor;
+        }
+    }
+    
+    // 完成建造
+    protected virtual void CompleteConstruction()
+    {
+        isUnderConstruction = false;
+        canBeInteracted = true;
+        canBeClicked = true;
+        
+        // 设置满生命值
+        if (playerHealthBar != null)
+        {
+            playerHealthBar.SetHealth(maxHealth);
+        }
+        
+        // 恢复正常颜色
+        UpdateVisualState();
+        
+        Debug.Log($"建筑 {smyName} 建造完成！");
+    }
+    
     // 处理点击事件
     protected virtual void HandleClick()
     {
@@ -93,14 +197,45 @@ public class BuildingBase : MonoBehaviour
     {
         if (spriteRenderer != null)
         {
-            spriteRenderer.color = isSelected ? selectedColor : normalColor;
+            if (isUnderConstruction)
+            {
+                // 在建造过程中保持透明效果
+                Color buildingColor = normalColor;
+                float constructionProgress = 1f - (constructionTimeRemaining / constructionTime);
+                buildingColor.a = 0.5f + (constructionProgress * 0.5f);
+                spriteRenderer.color = buildingColor;
+            }
+            else
+            {
+                spriteRenderer.color = isSelected ? selectedColor : normalColor;
+            }
         }
     }
     
     // 公开方法：外部代码可调用来选择或取消选择
     public virtual void SetSelected(bool selected)
     {
-        isSelected = selected;
-        UpdateVisualState();
+        if (!isUnderConstruction)
+        {
+            isSelected = selected;
+            UpdateVisualState();
+        }
     }
+    
+    // 获取建造进度
+    public float GetConstructionProgress()
+    {
+        if (!isUnderConstruction)
+            return 1f;
+            
+        return 1f - (constructionTimeRemaining / constructionTime);
+    }
+    
+    // 检查建筑是否可交互
+    public bool IsInteractable()
+    {
+        return canBeInteracted && !isUnderConstruction;
+    }
+
+
 }
