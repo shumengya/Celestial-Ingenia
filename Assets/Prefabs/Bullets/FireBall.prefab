@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 8952238886797103713}
   - component: {fileID: 3013096227387586824}
   - component: {fileID: 2356074304562429711}
-  - component: {fileID: 7071248788789213004}
   m_Layer: 7
   m_Name: FireBall
   m_TagString: PlayerBullet
@@ -152,44 +151,9 @@ MonoBehaviour:
   maxDistance: 20
   team: 0
   impactEffect: {fileID: 0}
-  explosionRadius: 0.1
+  explosionRadius: 0.5
   explosionDamage: 0
   explosionEffect: {fileID: 0}
   explosionLayerMask:
     serializedVersion: 2
     m_Bits: 256
---- !u!58 &7071248788789213004
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7471882503357086665}
-  m_Enabled: 0
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.1078818, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.8647027

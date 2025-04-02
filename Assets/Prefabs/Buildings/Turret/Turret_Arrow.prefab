@@ -30,7 +30,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.4, y: 0.4, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2313449260290105721}
@@ -78,7 +78,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 06d047776b6065741986606eb3a86988, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 26e4e937336d1a847b5846f0e80fc13b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -148,18 +148,18 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.0053837746, y: 0.02371566}
+  m_Offset: {x: -0.013783336, y: -0.20727387}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.35, y: 0.32}
+    oldSize: {x: 2, y: 2}
     newSize: {x: 0.53, y: 0.68}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.32553026, y: 0.2515057}
+  m_Size: {x: 1.5350754, y: 1.150265}
   m_EdgeRadius: 0
 --- !u!114 &1279885504458830361
 MonoBehaviour:
@@ -202,19 +202,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2149115960998302963, guid: c08dc2bae669408458273fbfc2be9eac, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.001
+      value: 0.002
       objectReference: {fileID: 0}
     - target: {fileID: 2149115960998302963, guid: c08dc2bae669408458273fbfc2be9eac, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.001
+      value: 0.0015
       objectReference: {fileID: 0}
     - target: {fileID: 2149115960998302963, guid: c08dc2bae669408458273fbfc2be9eac, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.1
+      value: -0.14
       objectReference: {fileID: 0}
     - target: {fileID: 2149115960998302963, guid: c08dc2bae669408458273fbfc2be9eac, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.34
+      value: -0.86
       objectReference: {fileID: 0}
     - target: {fileID: 2149115960998302963, guid: c08dc2bae669408458273fbfc2be9eac, type: 3}
       propertyPath: m_LocalPosition.z
@@ -330,6 +330,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Barrel_Arrow
       objectReference: {fileID: 0}
+    - target: {fileID: 713801321371660513, guid: 4afe508394ec6dd4e8424d5decf486ca, type: 3}
+      propertyPath: m_Radius
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1098494550892632959, guid: 4afe508394ec6dd4e8424d5decf486ca, type: 3}
+      propertyPath: circleCollider
+      value: 
+      objectReference: {fileID: 7829577091878368874}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -338,5 +346,10 @@ PrefabInstance:
 --- !u!4 &7010957687093248223 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 289423046224184916, guid: 4afe508394ec6dd4e8424d5decf486ca, type: 3}
+  m_PrefabInstance: {fileID: 7300282652370519691}
+  m_PrefabAsset: {fileID: 0}
+--- !u!58 &7829577091878368874 stripped
+CircleCollider2D:
+  m_CorrespondingSourceObject: {fileID: 713801321371660513, guid: 4afe508394ec6dd4e8424d5decf486ca, type: 3}
   m_PrefabInstance: {fileID: 7300282652370519691}
   m_PrefabAsset: {fileID: 0}
