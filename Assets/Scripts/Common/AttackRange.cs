@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 public class AttackRange : MonoBehaviour
 {
-    [Header("Detection Settings")]
+    [Header("检测设置")]
     public float attackRange = 5f;
     public string enemyTag = "Enemy";
     public Color rangeColor = new Color(1f, 0f, 0f, 0.2f);

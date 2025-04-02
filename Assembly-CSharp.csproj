@@ -59,7 +59,7 @@
     <UnityVersion>2022.3.51f1c1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Analyzer Include="C:\Users\BigTang\.vscode\extensions\visualstudiotoolsforunity.vstuc-1.1.0\Analyzers\Microsoft.Unity.Analyzers.dll" />
+    <Analyzer Include="C:\Users\BigTang\.vscode\extensions\visualstudiotoolsforunity.vstuc-1.1.1\Analyzers\Microsoft.Unity.Analyzers.dll" />
     <Analyzer Include="D:\Unity_Versions\2022.3.51f1c1\Editor\Data\Tools\Unity.SourceGenerators\Unity.SourceGenerators.dll" />
     <Analyzer Include="D:\Unity_Versions\2022.3.51f1c1\Editor\Data\Tools\Unity.SourceGenerators\Unity.Properties.SourceGenerator.dll" />
   </ItemGroup>
@@ -78,10 +78,12 @@
     <Compile Include="Assets\Scripts\Common\UnitMovement.cs" />
     <Compile Include="Assets\Scripts\GUI\CameraMovement.cs" />
     <Compile Include="Assets\Scripts\Bullets\FireBall.cs" />
+    <Compile Include="Assets\Scripts\Effects\DestroyAfterTime.cs" />
     <Compile Include="Assets\Scripts\GUI\UICycler.cs" />
     <Compile Include="Assets\Scripts\Common\HealthBarRotationLock.cs" />
     <Compile Include="Assets\Scripts\Units\ExplodeBug.cs" />
     <Compile Include="Assets\Scripts\Bullets\Bullet.cs" />
+    <Compile Include="Assets\Scripts\Common\AttackModes\NormalAttackMode.cs" />
     <Compile Include="Assets\Scripts\GameManager\EnemySpawnerPoint.cs" />
     <Compile Include="Assets\Scripts\Common\UnitMovementPro.cs" />
     <Compile Include="Assets\Scripts\Bullets\FireLighting.cs" />
@@ -97,14 +99,18 @@
     <Compile Include="Assets\Scripts\Common\MeleeAttackDetection.cs" />
     <Compile Include="Assets\Scripts\GameManager\GameOverDetectionManager.cs" />
     <Compile Include="Assets\Scripts\Units\JiaJiaBug.cs" />
+    <Compile Include="Assets\Scripts\Bullets\BulletBase.cs" />
     <Compile Include="Assets\Scripts\Units\Bug.cs" />
+    <Compile Include="Assets\Scripts\Common\AttackModes\AttackModeBase.cs" />
+    <Compile Include="Assets\Scripts\Common\AttackModes\KatyushaAttackMode.cs" />
     <Compile Include="Assets\Scripts\GUI\FPS_Show_Text.cs" />
-    <Compile Include="Assets\Scripts\ClickResponder.cs" />
     <Compile Include="Assets\Scripts\Common\AttackRange.cs" />
     <Compile Include="Assets\Scripts\GUI\GameUI.cs" />
     <Compile Include="Assets\Scripts\Common\UnitMovementProMax.cs" />
+    <Compile Include="Assets\Scripts\Common\AttackModes\ShotgunAttackMode.cs" />
     <Compile Include="Assets\Scripts\GameManager\ToastManager.cs" />
     <Compile Include="Assets\Scripts\GUI\MainMenu.cs" />
+    <Compile Include="Assets\Scripts\Common\AttackModes\GatlingAttackMode.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

@@ -2,16 +2,15 @@ using UnityEngine;
 
 public class RemoteAttack : MonoBehaviour
 {
-    [Header("Attack Settings")]
+    [Header("攻击设置")]
     public GameObject bulletPrefab;
     public Transform BulletsParent;
-    public float fireRate = 1f;
-    public float angleDeviation = 10f; // 可设置的角度偏差
-    private float lastFireTime;
-
-    [Header("Dependencies")]
-    [SerializeField] // 强制序列化字段
+    
+    [Header("依赖组件")]
+    [SerializeField]
     private AttackRange attackRange;
+    [SerializeField]
+    private AttackModeBase attackMode; // 当前使用的攻击模式
 
     private GameObject currentTarget; // 当前攻击目标
 
@@ -22,10 +21,26 @@ public class RemoteAttack : MonoBehaviour
         {
             attackRange = GetComponent<AttackRange>();
         }
+        
+        // 初始化攻击模式
+        if (attackMode != null)
+        {
+            attackMode.Initialize(this, BulletsParent);
+        }
+        else
+        {
+            Debug.LogError("没有设置攻击模式组件!");
+        }
     }
 
     private void Update()
     {
+        // 更新攻击模式状态
+        if (attackMode != null)
+        {
+            attackMode.UpdateAttackState();
+        }
+        
         // 检查当前目标是否还存在
         if (currentTarget == null || !attackRange.DetectedEnemies.Contains(currentTarget))
         {
@@ -33,11 +48,10 @@ public class RemoteAttack : MonoBehaviour
             currentTarget = GetFirstEnemyInRange();
         }
 
-        // 检查是否达到射击间隔时间且有目标
-        if (Time.time - lastFireTime >= fireRate && currentTarget != null)
+        // 检查是否可以攻击且有目标
+        if (attackMode != null && attackMode.CanAttack() && currentTarget != null)
         {
-            ShootAtTarget(currentTarget.transform.position);
-            lastFireTime = Time.time;
+            attackMode.Attack(currentTarget.transform.position);
         }
     }
 
@@ -53,30 +67,14 @@ public class RemoteAttack : MonoBehaviour
         }
         return null;
     }
-
-    private void ShootAtTarget(Vector2 targetPosition)
+    
+    // 允许在运行时切换攻击模式
+    public void SetAttackMode(AttackModeBase newMode)
     {
-        // 计算射击方向
-        Vector2 direction = (targetPosition - (Vector2)transform.position).normalized;
-
-        // 计算随机角度偏差
-        float randomDeviation = Random.Range(-angleDeviation, angleDeviation);
-        Quaternion rotation = Quaternion.Euler(0, 0, randomDeviation);
-        direction = rotation * direction;
-
-        // 实例化子弹并将其作为 BulletsParent 的子对象
-        GameObject bullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity, BulletsParent);
-        // 设置子弹的朝向
-        bullet.transform.right = direction;
-
-        // 获取子弹脚本并设置团队信息
-        if (bullet.TryGetComponent(out Bullet bulletScript))
+        if (newMode != null)
         {
-            bulletScript.team = 0;
-        }
-        else
-        {
-            Debug.LogError($"子弹预制体 {bullet.name} 没有一个脚本文件.");
+            attackMode = newMode;
+            attackMode.Initialize(this, BulletsParent);
         }
     }
 }
