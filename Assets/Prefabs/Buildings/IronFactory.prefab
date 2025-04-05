@@ -49,12 +49,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b6983e1e8820f842a7e3e2379fb7133, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageAmount: 1
   smyName: "\u94C1\u77FF\u5382"
   smyType: "\u5EFA\u7B51"
   smyDescription: "\u751F\u4EA7\u94C1\u7684\u77FF\u573A"
-  canBeClicked: 1
+  canBeInteracted: 1
   isSelected: 0
+  canBeClicked: 1
+  isUnderConstruction: 1
+  constructionTime: 5
+  selectedColor: {r: 1, g: 1, b: 1, a: 1}
+  normalColor: {r: 1, g: 1, b: 1, a: 1}
+  damageAmount: 1
 --- !u!50 &3887739220172174841
 Rigidbody2D:
   serializedVersion: 4
@@ -167,7 +172,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: -1740648522, guid: e3da91dfba1508f4d98b1a1fcaeea6c3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

@@ -28,7 +28,12 @@ public class BuildingBase : MonoBehaviour
     // 选中状态视觉反馈颜色
     [Header("选中状态视觉反馈颜色")]
     public Color selectedColor = new Color(1f, 1f, 1f, 1f); // 选中时的颜色
-    public Color normalColor = new Color(1f, 1f, 1f, 1f);   // 正常时的颜色
+
+    // 新增：动态获取初始颜色
+    private Color originalColor;
+    private Color normalColor = new Color(1f, 1f, 1f, 1f);   // 正常时的颜色
+
+
 
     // 组件引用
     [Header("组件引用")]
@@ -50,6 +55,10 @@ public class BuildingBase : MonoBehaviour
             // 可以调整BoxCollider2D以匹配Sprite
             //boxCollider.size = spriteRenderer.sprite.bounds.size;
         }
+
+        // 获取初始颜色
+        originalColor = spriteRenderer.color;
+        normalColor = originalColor;  // 将normalColor设为初始颜色
         
         // 初始化建造状态
         if (isUnderConstruction)
@@ -200,17 +209,18 @@ public class BuildingBase : MonoBehaviour
             if (isUnderConstruction)
             {
                 // 在建造过程中保持透明效果
-                Color buildingColor = normalColor;
+                Color buildingColor = originalColor;  // 使用原始颜色
                 float constructionProgress = 1f - (constructionTimeRemaining / constructionTime);
                 buildingColor.a = 0.5f + (constructionProgress * 0.5f);
                 spriteRenderer.color = buildingColor;
             }
             else
             {
-                spriteRenderer.color = isSelected ? selectedColor : normalColor;
+                spriteRenderer.color = isSelected ? selectedColor : originalColor;  // 直接使用原始颜色
             }
         }
     }
+    
     
     // 公开方法：外部代码可调用来选择或取消选择
     public virtual void SetSelected(bool selected)
