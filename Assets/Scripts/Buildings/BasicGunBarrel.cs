@@ -5,6 +5,7 @@ using UnityEngine;
 public class BasicGunBarrel : MonoBehaviour
 {
     [SerializeField] // 强制序列化字段
+    [Header("依赖设置")]
     private AttackRange attackRange;
 
     [Header("炮塔旋转设置")]

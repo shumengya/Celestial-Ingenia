@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1175672692391947009}
   - component: {fileID: 8952238886797103713}
   - component: {fileID: 3013096227387586824}
-  - component: {fileID: 6509694379431974030}
+  - component: {fileID: 4008154283410768412}
   m_Layer: 7
   m_Name: LongArrow
   m_TagString: PlayerBullet
@@ -131,7 +131,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &6509694379431974030
+--- !u!114 &4008154283410768412
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -140,14 +140,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 7471882503357086665}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 80b3f97d725fd4f49bbdabe514bd5bd6, type: 3}
+  m_Script: {fileID: 11500000, guid: 58a2c3fcfc6f6684ebdfe8f32dfc254b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
-  damage: 10
-  maxLifetime: 2
-  maxDistance: 20
-  team: 0
+  damage: 20
   useLifetimeLimit: 1
-  useDistanceLimit: 1
+  useDistanceLimit: 0
+  maxLifetime: 5
+  maxDistance: 40
+  team: 0
   impactEffect: {fileID: 0}
+  maxPierceCount: 7

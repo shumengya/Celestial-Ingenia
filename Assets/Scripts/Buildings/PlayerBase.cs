@@ -22,10 +22,6 @@ public class PlayerBase : BuildingBase
         oneTimer += Time.deltaTime;
         if (oneTimer >= 1f)
         {
-            if (playerHealthBar != null)
-            {
-                playerHealthBar.TakeDamage(damageAmount);
-            }
             oneTimer = 0f;
         }
 

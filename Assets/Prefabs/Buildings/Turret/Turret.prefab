@@ -29,12 +29,12 @@ Transform:
   m_GameObject: {fileID: 9068081681723721744}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalPosition: {x: 0.4134, y: -0.5308, z: 0}
+  m_LocalScale: {x: 0.4, y: 0.4, z: 1}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 2313449260290105721}
-  - {fileID: 6591700079059766759}
+  - {fileID: 6507192622445061209}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &6308687237443896166
@@ -78,7 +78,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 06d047776b6065741986606eb3a86988, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 26e4e937336d1a847b5846f0e80fc13b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -148,18 +148,18 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.0053837746, y: 0.02371566}
+  m_Offset: {x: 0.008603454, y: -0.1930882}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.35, y: 0.32}
+    oldSize: {x: 2, y: 2}
     newSize: {x: 0.53, y: 0.68}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.32553026, y: 0.2515057}
+  m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
 --- !u!114 &1279885504458830361
 MonoBehaviour:
@@ -173,15 +173,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffdb519560eb2f247a6ce4f387cc5ab0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageAmount: 1
   smyName: "\u70AE\u5854"
   smyType: "\u5EFA\u7B51"
-  smyDescription: "\u5C31\u662F\u4E00\u4E2A\u666E\u666E\u901A\u901A\u7684\u53D1\u5C04\u70AE\u5F39\u7684\u70AE\u5854\u7F62\u4E86"
+  smyDescription: "\u53D1\u5C04\u4F1A\u7206\u70B8\u7684\u70AE\u5F39"
   canBeInteracted: 1
   isSelected: 0
   canBeClicked: 1
-  selectedColor: {r: 1, g: 1, b: 1, a: 1}
+  isUnderConstruction: 1
+  constructionTime: 5
+  selectedColor: {r: 1, g: 0, b: 0, a: 1}
   normalColor: {r: 1, g: 1, b: 1, a: 1}
+  damageAmount: 1
 --- !u!1001 &4451865733367231882
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -200,19 +202,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2149115960998302963, guid: c08dc2bae669408458273fbfc2be9eac, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.001
+      value: 0.002
       objectReference: {fileID: 0}
     - target: {fileID: 2149115960998302963, guid: c08dc2bae669408458273fbfc2be9eac, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.001
+      value: 0.0015
       objectReference: {fileID: 0}
     - target: {fileID: 2149115960998302963, guid: c08dc2bae669408458273fbfc2be9eac, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.1
+      value: -0.15
       objectReference: {fileID: 0}
     - target: {fileID: 2149115960998302963, guid: c08dc2bae669408458273fbfc2be9eac, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.34
+      value: -0.89
       objectReference: {fileID: 0}
     - target: {fileID: 2149115960998302963, guid: c08dc2bae669408458273fbfc2be9eac, type: 3}
       propertyPath: m_LocalPosition.z
@@ -276,7 +278,7 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2149115960998302963, guid: c08dc2bae669408458273fbfc2be9eac, type: 3}
   m_PrefabInstance: {fileID: 4451865733367231882}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &6881026298333137843
+--- !u!1001 &6794257885168689677
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -324,21 +326,57 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 596979990973916631, guid: 1e59e52eca590944bb4ef30d682845ed, type: 3}
-      propertyPath: bulletPrefab
-      value: 
-      objectReference: {fileID: 7471882503357086665, guid: 6e1a069193f04b3468cf716379e8c2a0, type: 3}
     - target: {fileID: 675054691897528969, guid: 1e59e52eca590944bb4ef30d682845ed, type: 3}
       propertyPath: m_Name
-      value: BasicGunBarrel
+      value: Barrel_Turret
       objectReference: {fileID: 0}
+    - target: {fileID: 713801321371660513, guid: 1e59e52eca590944bb4ef30d682845ed, type: 3}
+      propertyPath: m_Radius
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 713801321371660513, guid: 1e59e52eca590944bb4ef30d682845ed, type: 3}
+      propertyPath: m_Offset.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1098494550892632959, guid: 1e59e52eca590944bb4ef30d682845ed, type: 3}
+      propertyPath: attackRange
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1098494550892632959, guid: 1e59e52eca590944bb4ef30d682845ed, type: 3}
+      propertyPath: circleCollider
+      value: 
+      objectReference: {fileID: 6317955482572002028}
+    - target: {fileID: 1098494550892632959, guid: 1e59e52eca590944bb4ef30d682845ed, type: 3}
+      propertyPath: showAttackRange
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5794097340634860184, guid: 1e59e52eca590944bb4ef30d682845ed, type: 3}
+      propertyPath: gunBarrel
+      value: 
+      objectReference: {fileID: 3639804489766452745}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1e59e52eca590944bb4ef30d682845ed, type: 3}
---- !u!4 &6591700079059766759 stripped
+--- !u!114 &3639804489766452745 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7838835567499860996, guid: 1e59e52eca590944bb4ef30d682845ed, type: 3}
+  m_PrefabInstance: {fileID: 6794257885168689677}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d1e5c1aac294ef4aac4b9ed96b60caa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!58 &6317955482572002028 stripped
+CircleCollider2D:
+  m_CorrespondingSourceObject: {fileID: 713801321371660513, guid: 1e59e52eca590944bb4ef30d682845ed, type: 3}
+  m_PrefabInstance: {fileID: 6794257885168689677}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &6507192622445061209 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 289423046224184916, guid: 1e59e52eca590944bb4ef30d682845ed, type: 3}
-  m_PrefabInstance: {fileID: 6881026298333137843}
+  m_PrefabInstance: {fileID: 6794257885168689677}
   m_PrefabAsset: {fileID: 0}

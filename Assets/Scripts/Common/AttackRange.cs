@@ -3,11 +3,8 @@ using System.Collections.Generic;
 
 public class AttackRange : MonoBehaviour
 {
-    [Header("Detection Settings")]
-    public float attackRange = 5f;
+    [Header("检测设置")]
     public string enemyTag = "Enemy";
-    public Color rangeColor = new Color(1f, 0f, 0f, 0.2f);
-    public bool showAttackRange = false;
 
     [Header("Debug")]
     [SerializeField] // 序列化字段便于调试
@@ -16,37 +13,36 @@ public class AttackRange : MonoBehaviour
     // 通过属性暴露敌人列表（只读）
     public List<GameObject> DetectedEnemies => detectedEnemies;
 
-    private void Update()
+    [Header("依赖组件")]
+    public CircleCollider2D circleCollider;
+
+    private void Awake()
     {
-        // 动态同步碰撞器范围
-        GetComponent<CircleCollider2D>().radius = attackRange;
-        //Debug.Log($"当前检测到敌人数量: {detectedEnemies.Count}");
+        if (circleCollider == null)
+        {
+            circleCollider = GetComponent<CircleCollider2D>();
+        }
     }
 
+    //这个才是真正的检测范围 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag(enemyTag) && !detectedEnemies.Contains(other.gameObject))
-        {
-            detectedEnemies.Add(other.gameObject);
+        if (other is BoxCollider2D){
+            if (other.CompareTag(enemyTag) && !detectedEnemies.Contains(other.gameObject))
+            {
+                detectedEnemies.Add(other.gameObject);
+            }
         }
-
 
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (other.CompareTag(enemyTag) && detectedEnemies.Contains(other.gameObject))
-        {
-            detectedEnemies.Remove(other.gameObject);
-        }
-    }
-
-    private void OnDrawGizmosSelected()
-    {
-        if (showAttackRange)
-        {
-            Gizmos.color = rangeColor;
-            Gizmos.DrawWireSphere(transform.position, attackRange);
+        if (other is BoxCollider2D){
+            if (other.CompareTag(enemyTag) && detectedEnemies.Contains(other.gameObject))
+            {
+                detectedEnemies.Remove(other.gameObject);
+            }
         }
     }
 }

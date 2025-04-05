@@ -48,7 +48,7 @@ public class BuildingBase : MonoBehaviour
         if (boxCollider != null && spriteRenderer != null)
         {
             // 可以调整BoxCollider2D以匹配Sprite
-            boxCollider.size = spriteRenderer.sprite.bounds.size;
+            //boxCollider.size = spriteRenderer.sprite.bounds.size;
         }
         
         // 初始化建造状态
