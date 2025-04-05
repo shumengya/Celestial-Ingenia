@@ -182,7 +182,6 @@ MonoBehaviour:
   isUnderConstruction: 1
   constructionTime: 5
   selectedColor: {r: 1, g: 0, b: 0, a: 1}
-  normalColor: {r: 1, g: 1, b: 1, a: 1}
   damageAmount: 1
 --- !u!1001 &4451865733367231882
 PrefabInstance:
@@ -349,6 +348,10 @@ PrefabInstance:
     - target: {fileID: 3963192822597698592, guid: bdd4217512d93e94788ccded7973a9a6, type: 3}
       propertyPath: angleDeviation
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4510462268903864914, guid: bdd4217512d93e94788ccded7973a9a6, type: 3}
+      propertyPath: m_SortingOrder
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

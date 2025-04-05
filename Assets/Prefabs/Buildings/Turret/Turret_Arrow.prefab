@@ -182,7 +182,6 @@ MonoBehaviour:
   isUnderConstruction: 1
   constructionTime: 5
   selectedColor: {r: 1, g: 0, b: 0, a: 1}
-  normalColor: {r: 1, g: 1, b: 1, a: 1}
   damageAmount: 1
 --- !u!1001 &4451865733367231882
 PrefabInstance:
@@ -342,6 +341,10 @@ PrefabInstance:
       propertyPath: circleCollider
       value: 
       objectReference: {fileID: 7829577091878368874}
+    - target: {fileID: 4510462268903864914, guid: 4afe508394ec6dd4e8424d5decf486ca, type: 3}
+      propertyPath: m_SortingOrder
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

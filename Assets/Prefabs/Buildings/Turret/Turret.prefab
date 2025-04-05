@@ -182,7 +182,6 @@ MonoBehaviour:
   isUnderConstruction: 1
   constructionTime: 5
   selectedColor: {r: 1, g: 0, b: 0, a: 1}
-  normalColor: {r: 1, g: 1, b: 1, a: 1}
   damageAmount: 1
 --- !u!1001 &4451865733367231882
 PrefabInstance:
@@ -349,6 +348,10 @@ PrefabInstance:
     - target: {fileID: 1098494550892632959, guid: 1e59e52eca590944bb4ef30d682845ed, type: 3}
       propertyPath: showAttackRange
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4510462268903864914, guid: 1e59e52eca590944bb4ef30d682845ed, type: 3}
+      propertyPath: m_SortingOrder
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5794097340634860184, guid: 1e59e52eca590944bb4ef30d682845ed, type: 3}
       propertyPath: gunBarrel

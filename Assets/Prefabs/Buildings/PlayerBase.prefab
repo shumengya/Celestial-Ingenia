@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5699572039314229684}
+  - component: {fileID: 1864812465031103105}
   - component: {fileID: 6308687237443896166}
   - component: {fileID: 5932926795331495975}
   - component: {fileID: 3887739220172174841}
@@ -40,6 +41,27 @@ Transform:
   - {fileID: 2313449260290105721}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &1864812465031103105
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9068081681723721744}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 8964e829f2d3a6744b37b02a8075c284, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!212 &6308687237443896166
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -113,7 +135,6 @@ MonoBehaviour:
   isUnderConstruction: 1
   constructionTime: 5
   selectedColor: {r: 1, g: 0, b: 0.059405804, a: 1}
-  normalColor: {r: 1, g: 1, b: 1, a: 1}
   damageAmount: 1
 --- !u!50 &3887739220172174841
 Rigidbody2D:

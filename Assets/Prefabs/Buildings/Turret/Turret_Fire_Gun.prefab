@@ -182,7 +182,6 @@ MonoBehaviour:
   isUnderConstruction: 1
   constructionTime: 5
   selectedColor: {r: 1, g: 0, b: 0, a: 1}
-  normalColor: {r: 1, g: 1, b: 1, a: 1}
   damageAmount: 1
 --- !u!1001 &2628343001118029038
 PrefabInstance:
@@ -244,6 +243,10 @@ PrefabInstance:
       propertyPath: circleCollider
       value: 
       objectReference: {fileID: 3287115963988296719}
+    - target: {fileID: 4510462268903864914, guid: b70d9ea42a94daf418773d57f08ab3a1, type: 3}
+      propertyPath: m_SortingOrder
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 7458930045661690175, guid: b70d9ea42a94daf418773d57f08ab3a1, type: 3}
       propertyPath: gunBarrel
       value: 
