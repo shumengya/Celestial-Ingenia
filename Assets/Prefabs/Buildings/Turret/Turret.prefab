@@ -31,7 +31,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.4134, y: -0.5308, z: 0}
   m_LocalScale: {x: 0.4, y: 0.4, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 2313449260290105721}
   - {fileID: 6507192622445061209}
@@ -159,7 +159,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.5284418, y: 1.1606832}
+  m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
 --- !u!114 &1279885504458830361
 MonoBehaviour:
@@ -350,11 +350,26 @@ PrefabInstance:
       propertyPath: showAttackRange
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5794097340634860184, guid: 1e59e52eca590944bb4ef30d682845ed, type: 3}
+      propertyPath: gunBarrel
+      value: 
+      objectReference: {fileID: 3639804489766452745}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1e59e52eca590944bb4ef30d682845ed, type: 3}
+--- !u!114 &3639804489766452745 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7838835567499860996, guid: 1e59e52eca590944bb4ef30d682845ed, type: 3}
+  m_PrefabInstance: {fileID: 6794257885168689677}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d1e5c1aac294ef4aac4b9ed96b60caa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!58 &6317955482572002028 stripped
 CircleCollider2D:
   m_CorrespondingSourceObject: {fileID: 713801321371660513, guid: 1e59e52eca590944bb4ef30d682845ed, type: 3}

@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2990396928597777979}
+  - component: {fileID: -7573415813119957131}
   - component: {fileID: 9061400720713692002}
   - component: {fileID: -6536483327805223326}
   - component: {fileID: 4238576026494546930}
@@ -17,7 +18,7 @@ GameObject:
   - component: {fileID: -6398907494249494123}
   - component: {fileID: -8023957107305222649}
   - component: {fileID: 4209771224522739694}
-  - component: {fileID: -7573415813119957131}
+  - component: {fileID: 392830312361457289}
   m_Layer: 8
   m_Name: JiaJiaBug
   m_TagString: Enemy
@@ -41,6 +42,27 @@ Transform:
   - {fileID: 2109469950132783879}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &-7573415813119957131
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6833990181786656188}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: bfd089042d5943f4191aa9c706371ab8, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!212 &9061400720713692002
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -233,7 +255,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 5
+  m_Radius: 3
 --- !u!114 &-8023957107305222649
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -246,11 +268,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81afb5cfc53e3894eb15a6176c2011c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackRange: 5
   enemyTag: Player
-  rangeColor: {r: 1, g: 0, b: 0, a: 0.2}
-  showAttackRange: 0
   detectedEnemies: []
+  circleCollider: {fileID: 0}
 --- !u!114 &4209771224522739694
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -275,27 +295,22 @@ MonoBehaviour:
   rayAngleRange: 120
   showDebugRays: 1
   steeringFactor: 0.5
---- !u!95 &-7573415813119957131
-Animator:
-  serializedVersion: 5
+--- !u!114 &392830312361457289
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6833990181786656188}
   m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: bfd089042d5943f4191aa9c706371ab8, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d02a3e7644e9b474096b2954ecddbbdd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  seekPlayerBaseWhenIdle: 1
+  playerBaseName: PlayerBase
+  playerBaseName2: PlayerBase(Clone)
+  playerBaseSearchInterval: 2
 --- !u!1001 &42052103151788020
 PrefabInstance:
   m_ObjectHideFlags: 0

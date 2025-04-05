@@ -17,7 +17,7 @@ public class ShotgunAttackMode : AttackModeBase
     public override void Attack(Vector2 targetPosition)
     {
         // 计算基础射击方向
-        Vector2 baseDirection = (targetPosition - (Vector2)transform.position).normalized;
+        Vector2 baseDirection = GetFiringDirection(targetPosition);
         
         // 计算每颗子弹之间的角度间隔
         float angleStep = spreadAngle / (bulletCount - 1);

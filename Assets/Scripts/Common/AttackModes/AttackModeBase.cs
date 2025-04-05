@@ -19,6 +19,24 @@ public abstract class AttackModeBase : MonoBehaviour
     public abstract void Attack(Vector2 targetPosition); // 执行攻击
     public abstract void UpdateAttackState(); // 更新攻击状态
     
+    // 获取发射方向
+    protected Vector2 GetFiringDirection(Vector2 targetPosition)
+    {
+        // 检查是否有炮管组件
+        BasicGunBarrel gunBarrel = GetComponent<BasicGunBarrel>();
+        if (gunBarrel != null)
+        {
+            // 使用炮管的当前朝向作为发射方向
+            float angle = gunBarrel.transform.eulerAngles.z - 270f; // 调整为正确的角度
+            return new Vector2(Mathf.Cos(angle * Mathf.Deg2Rad), Mathf.Sin(angle * Mathf.Deg2Rad));
+        }
+        else
+        {
+            // 默认行为：朝向目标方向
+            return ((Vector3)targetPosition - transform.position).normalized;
+        }
+    }
+    
     // 用于生成子弹的通用方法
     protected GameObject CreateBullet(Vector2 position, Vector2 direction)
     {

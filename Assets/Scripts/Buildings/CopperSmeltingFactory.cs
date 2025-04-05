@@ -18,14 +18,9 @@ public class CopperSmeltingFactory : BuildingBase
 
     protected override void Update()
     {
-        // 铁工厂特有的逻辑：每秒造成伤害
         oneTimer += Time.deltaTime;
         if (oneTimer >= 1f)
         {
-            if (playerHealthBar != null)
-            {
-                playerHealthBar.TakeDamage(damageAmount);
-            }
             oneTimer = 0f;
         }
 

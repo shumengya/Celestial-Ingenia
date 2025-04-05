@@ -36,7 +36,7 @@ public class KatyushaAttackMode : AttackModeBase
             Vector2 rocketTarget = targetPosition + randomOffset;
             
             // 计算射击方向
-            Vector2 direction = (rocketTarget - (Vector2)transform.position).normalized;
+            Vector2 direction = GetFiringDirection(targetPosition);
             
             // 添加随机角度偏差
             float randomDeviation = Random.Range(-angleDeviation, angleDeviation);

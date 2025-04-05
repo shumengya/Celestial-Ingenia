@@ -95,6 +95,7 @@
     <Compile Include="Assets\Scripts\Buildings\TimberMill.cs" />
     <Compile Include="Assets\Scripts\Common\HealthBar.cs" />
     <Compile Include="Assets\Scripts\Bullets\FireBullet.cs" />
+    <Compile Include="Assets\Scripts\Common\PlayerBaseSeeker.cs" />
     <Compile Include="Assets\Scripts\Common\RemoteAttack.cs" />
     <Compile Include="Assets\Scripts\Common\MeleeAttackDetection.cs" />
     <Compile Include="Assets\Scripts\GameManager\GameOverDetectionManager.cs" />

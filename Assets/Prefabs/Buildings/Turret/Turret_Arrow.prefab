@@ -31,7 +31,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.4, y: 0.4, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 2313449260290105721}
   - {fileID: 7010957687093248223}
@@ -159,7 +159,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.5350754, y: 1.150265}
+  m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
 --- !u!114 &1279885504458830361
 MonoBehaviour:
@@ -286,6 +286,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5699572039314229684}
     m_Modifications:
+    - target: {fileID: 221888812797485685, guid: 4afe508394ec6dd4e8424d5decf486ca, type: 3}
+      propertyPath: gunBarrel
+      value: 
+      objectReference: {fileID: 686503236353071759}
     - target: {fileID: 289423046224184916, guid: 4afe508394ec6dd4e8424d5decf486ca, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -343,6 +347,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4afe508394ec6dd4e8424d5decf486ca, type: 3}
+--- !u!114 &686503236353071759 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7838835567499860996, guid: 4afe508394ec6dd4e8424d5decf486ca, type: 3}
+  m_PrefabInstance: {fileID: 7300282652370519691}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d1e5c1aac294ef4aac4b9ed96b60caa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &7010957687093248223 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 289423046224184916, guid: 4afe508394ec6dd4e8424d5decf486ca, type: 3}
