@@ -66,10 +66,6 @@ public class FireBall : BulletBase
         {
             // 实例化爆炸效果并保存引用
             GameObject explosion = Instantiate(explosionEffect, position, Quaternion.identity);
-            // 根据explosionRadius缩放爆炸效果
-            // 假设原始预制体设计的半径为1.0
-            float scaleFactor = explosionRadius;
-            explosion.transform.localScale = new Vector3(scaleFactor, scaleFactor, scaleFactor);
             // 可以根据需要添加销毁爆炸效果的逻辑，例如：
             Destroy(explosion, 0.5f);
         }

@@ -8,7 +8,7 @@ public class MainMenu : MonoBehaviour
 {
     public Button startGameBtn;
     public Button exitGamebtn;
-
+    public SceneTransition transitionPrefab; // 在 Inspector 中绑定预制体
     void Start()
     {
 
@@ -22,7 +22,10 @@ public class MainMenu : MonoBehaviour
     void StartGame()
     {
         Debug.Log("游戏开始！");
-        SceneManager.LoadScene("BackgroundIntroduction");
+        // 实例化过渡预制体（作为 GUI Canvas 的子节点）
+        SceneTransition transition = Instantiate(transitionPrefab, GameObject.Find("GUI").transform);// 指定父节点为已有 Canvas);
+        transition.FadeToScene("BackgroundIntroduction"); // 触发过渡动画
+        //SceneManager.LoadScene("BackgroundIntroduction");
     }
 
     // 退出游戏的方法

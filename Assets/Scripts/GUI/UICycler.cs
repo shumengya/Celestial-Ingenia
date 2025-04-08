@@ -11,6 +11,7 @@ public class UICycler : MonoBehaviour
     public List<Image> images;
     // 存储所有 Text 元素的列表
     public List<Text> texts;
+    public SceneTransition transitionPrefab; // 在 Inspector 中绑定预制体
     // 存储原始文本内容
     private List<string> originalTexts = new List<string>();
     // 当前激活的 Image 索引
@@ -238,7 +239,9 @@ public class UICycler : MonoBehaviour
         {
             // 翻到最后一页，使用场景切换动画跳转到 MainGame 场景
             Debug.Log("正在加载 MainGame 场景...");
-            SceneManager.LoadScene("MainGame");
+            SceneTransition transition = Instantiate(transitionPrefab, GameObject.Find("GUI").transform);// 指定父节点为已有 Canvas);
+            transition.FadeToScene("MainGame"); // 触发过渡动画
+            //SceneManager.LoadScene("MainGame");
             Time.timeScale = 1f;
         }
         else

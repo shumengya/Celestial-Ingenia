@@ -19,8 +19,8 @@ TagManager:
   - PlayerBullet
   - Enemy
   - EnemyBullet
-  - Obstacles
-  - 
+  - Obstacle
+  - Ground
   - 
   - 
   - 
