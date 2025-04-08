@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Enemy
   - PlayerBullet
+  - SceneTransition
+  - UICycler
   layers:
   - Default
   - TransparentFX

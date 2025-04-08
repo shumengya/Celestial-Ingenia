@@ -33,7 +33,10 @@ public class UICycler : MonoBehaviour
     {
         // 保存所有文本的原始内容
         SaveOriginalTexts();
-        DontDestroyOnLoad(gameObject);
+       // DontDestroyOnLoad(gameObject);
+        
+        // 给对象添加标签，以便在场景切换时能够被识别和清理
+        //gameObject.tag = "UICycler";
     }
 
     void SaveOriginalTexts()
@@ -233,10 +236,8 @@ public class UICycler : MonoBehaviour
         int nextIndex = (clickedIndex + 1) % images.Count;
         if (nextIndex == 0)
         {
-            // 翻到最后一页，跳转到 MainGame 场景
-            Debug.Log("Loading MainGame scene");
-            // 在加载新场景前销毁自身
-            Destroy(gameObject);
+            // 翻到最后一页，使用场景切换动画跳转到 MainGame 场景
+            Debug.Log("正在加载 MainGame 场景...");
             SceneManager.LoadScene("MainGame");
             Time.timeScale = 1f;
         }
@@ -244,28 +245,8 @@ public class UICycler : MonoBehaviour
         {
             currentImageIndex = nextIndex;
             
-            // 直接切换到下一张图片
-            for (int i = 0; i < images.Count; i++)
-            {
-                CanvasGroup canvasGroup = images[i].GetComponent<CanvasGroup>();
-                if (canvasGroup == null)
-                {
-                    canvasGroup = images[i].gameObject.AddComponent<CanvasGroup>();
-                }
-                
-                if (i == currentImageIndex)
-                {
-                    // 显示当前图片
-                    canvasGroup.alpha = 1f;
-                    canvasGroup.blocksRaycasts = true;
-                }
-                else
-                {
-                    // 隐藏其他图片
-                    canvasGroup.alpha = 0f;
-                    canvasGroup.blocksRaycasts = false;
-                }
-            }
+            // 启动图片切换动画
+            StartCoroutine(FadeImages(clickedIndex, nextIndex));
             
             // 显示下一个文本并启动打字机效果
             if (texts.Count > 0)
@@ -278,6 +259,39 @@ public class UICycler : MonoBehaviour
                 }
             }
         }
+    }
+
+    // 图片淡入淡出动画协程
+    IEnumerator FadeImages(int currentIndex, int nextIndex)
+    {
+        CanvasGroup currentCanvasGroup = images[currentIndex].GetComponent<CanvasGroup>();
+        CanvasGroup nextCanvasGroup = images[nextIndex].GetComponent<CanvasGroup>();
+        
+        if (currentCanvasGroup == null || nextCanvasGroup == null)
+        {
+            yield break;
+        }
+        
+        float elapsedTime = 0f;
+        
+        while (elapsedTime < transitionTime)
+        {
+            elapsedTime += Time.deltaTime;
+            float t = elapsedTime / transitionTime;
+            
+            // 当前图片淡出
+            currentCanvasGroup.alpha = Mathf.Lerp(1f, 0f, t);
+            // 下一张图片淡入
+            nextCanvasGroup.alpha = Mathf.Lerp(0f, 1f, t);
+            
+            yield return null;
+        }
+        
+        // 确保最终状态正确
+        currentCanvasGroup.alpha = 0f;
+        currentCanvasGroup.blocksRaycasts = false;
+        nextCanvasGroup.alpha = 1f;
+        nextCanvasGroup.blocksRaycasts = true;
     }
 
     // 打字机效果协程

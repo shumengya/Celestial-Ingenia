@@ -6,30 +6,23 @@ using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour
 {
-
     public Button startGameBtn;
     public Button exitGamebtn;
 
     void Start()
     {
+
         // 为开始游戏按钮添加点击事件
         startGameBtn.onClick.AddListener(StartGame);
         // 为退出游戏按钮添加点击事件
         exitGamebtn.onClick.AddListener(ExitGame);
     }
 
-    void Update()
-    {
-        
-    }
-
     // 开始游戏的方法
     void StartGame()
     {
         Debug.Log("游戏开始！");
-        // 这里可以添加实际的游戏开始逻辑，例如加载游戏场景
         SceneManager.LoadScene("BackgroundIntroduction");
-        Time.timeScale = 1;
     }
 
     // 退出游戏的方法
