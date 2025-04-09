@@ -21,6 +21,7 @@ public class IronFactory : BuildingBase
         oneTimer += Time.deltaTime;
         if (oneTimer >= 1f)
         {
+            PlayerConfig.Instance.ironNum += 1;
             oneTimer = 0f;
         }
 

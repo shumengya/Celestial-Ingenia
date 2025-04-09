@@ -178,8 +178,8 @@ MonoBehaviour:
   speed: 10
   damage: 30
   useLifetimeLimit: 1
-  useDistanceLimit: 1
-  maxLifetime: 2
+  useDistanceLimit: 0
+  maxLifetime: 5
   maxDistance: 20
   team: 0
   impactEffect: {fileID: 0}

@@ -22,6 +22,7 @@ public class TimberMill : BuildingBase
         oneTimer += Time.deltaTime;
         if (oneTimer >= 1f)
         {
+            PlayerConfig.Instance.woodNum += 1;
             oneTimer = 0f;
         }
 

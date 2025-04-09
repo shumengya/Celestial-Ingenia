@@ -484,6 +484,7 @@ GameObject:
   - component: {fileID: 146335218}
   - component: {fileID: 146335220}
   - component: {fileID: 146335219}
+  - component: {fileID: 146335221}
   m_Layer: 5
   m_Name: Next_Wave_Text
   m_TagString: Untagged
@@ -507,8 +508,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -8, y: 510}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchoredPosition: {x: 35.59, y: 510}
+  m_SizeDelta: {x: 343.77, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &146335219
 MonoBehaviour:
@@ -552,6 +553,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 146335217}
   m_CullTransparentMesh: 1
+--- !u!114 &146335221
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 146335217}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ea8a2bb61289bc4e8d8b9e4eb0c7df0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  countdownTime: 30
+  countdownText: {fileID: 146335219}
+  currentWave: 1
 --- !u!1 &197756374
 GameObject:
   m_ObjectHideFlags: 0
@@ -2611,6 +2627,10 @@ PrefabInstance:
       propertyPath: fireRate
       value: 0.3
       objectReference: {fileID: 0}
+    - target: {fileID: 1417341473842119925, guid: c98c871e65c550d459687a8b76a213e2, type: 3}
+      propertyPath: BulletsParent
+      value: 
+      objectReference: {fileID: 73031937}
     - target: {fileID: 5699572039314229684, guid: c98c871e65c550d459687a8b76a213e2, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.86
@@ -2685,7 +2705,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &919469308
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2705,8 +2725,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 856.69995, y: 198.12994}
-  m_SizeDelta: {x: -1713.2, y: -396.3}
+  m_AnchoredPosition: {x: 846.93, y: 166.53998}
+  m_SizeDelta: {x: -1693.9, y: -333.07}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &919469309
 MonoBehaviour:
@@ -3092,6 +3112,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2046087499}
     m_Modifications:
+    - target: {fileID: 1417341473842119925, guid: c98c871e65c550d459687a8b76a213e2, type: 3}
+      propertyPath: BulletsParent
+      value: 
+      objectReference: {fileID: 73031937}
     - target: {fileID: 5699572039314229684, guid: c98c871e65c550d459687a8b76a213e2, type: 3}
       propertyPath: m_LocalPosition.x
       value: -7.31
@@ -6298,6 +6322,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2046087499}
     m_Modifications:
+    - target: {fileID: 1417341473842119925, guid: c98c871e65c550d459687a8b76a213e2, type: 3}
+      propertyPath: BulletsParent
+      value: 
+      objectReference: {fileID: 73031937}
     - target: {fileID: 5699572039314229684, guid: c98c871e65c550d459687a8b76a213e2, type: 3}
       propertyPath: m_LocalPosition.x
       value: -2.83

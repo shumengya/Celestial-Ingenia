@@ -21,6 +21,7 @@ public class CopperSmeltingFactory : BuildingBase
         oneTimer += Time.deltaTime;
         if (oneTimer >= 1f)
         {
+            PlayerConfig.Instance.copperNum += 1;
             oneTimer = 0f;
         }
 
