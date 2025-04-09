@@ -22,10 +22,7 @@ public class StoneQuary : BuildingBase
         oneTimer += Time.deltaTime;
         if (oneTimer >= 1f)
         {
-            if (playerHealthBar != null)
-            {
-                playerHealthBar.TakeDamage(damageAmount);
-            }
+            PlayerConfig.Instance.stoneNum += 1;
             oneTimer = 0f;
         }
 

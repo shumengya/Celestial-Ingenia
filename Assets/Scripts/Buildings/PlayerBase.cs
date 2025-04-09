@@ -3,7 +3,7 @@ using UnityEngine;
 public class PlayerBase : BuildingBase
 {
     public float damageAmount = 1f;
-    private float oneTimer = 0f;
+    private float fiveTimer = 0f;
 
     protected override void Start()
     {
@@ -18,11 +18,14 @@ public class PlayerBase : BuildingBase
 
     protected override void Update()
     {
-        // 铁工厂特有的逻辑：每秒造成伤害
-        oneTimer += Time.deltaTime;
-        if (oneTimer >= 1f)
+        fiveTimer += Time.deltaTime;
+        if (fiveTimer >= 5f)
         {
-            oneTimer = 0f;
+            PlayerConfig.Instance.ironNum += 1;
+            PlayerConfig.Instance.copperNum += 1;
+            PlayerConfig.Instance.woodNum += 1;
+            PlayerConfig.Instance.stoneNum += 1;
+            fiveTimer = 0f;
         }
 
         // 调用基类的Update方法处理通用逻辑
