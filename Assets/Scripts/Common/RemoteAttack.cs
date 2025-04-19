@@ -35,6 +35,13 @@ public class RemoteAttack : MonoBehaviour
 
     private void Update()
     {
+        // 检查建筑是否可以攻击（如果在建造中则不能攻击）
+        BuildingBase building = GetComponentInParent<BuildingBase>();
+        if (building != null && !building.CanAttack())
+        {
+            return; // 建筑正在建造中，不能攻击
+        }
+        
         // 更新攻击模式状态
         if (attackMode != null)
         {

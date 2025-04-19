@@ -3,7 +3,8 @@ using UnityEngine.UI;
 
 public class BuildingSelectionPanel : MonoBehaviour
 {
-    //-----------------按钮注册-----------------------
+    
+//------------------------按钮注册------------------------------//
     [Header("建筑按钮")]
     public Button PlayerBase;
     public Button TimberMill;
@@ -15,9 +16,12 @@ public class BuildingSelectionPanel : MonoBehaviour
     public Button Turret_Arrow;
     public Button Turret_Fire_Gun;
     public Button Turret_Multi_Arrow;
+    public Button Turret_QinCrossbow;
+    public Button Turret_ZhugeCrossbow;
+//------------------------按钮注册------------------------------//
 
 
-    //-----------------建筑预制体注册-----------------------
+//-------------------------建筑预制体注册----------------------------------//
     [Header("建筑预制体")]
     public GameObject playerBasePrefab; //大本营
     public GameObject timberMillPrefab; //伐木厂
@@ -26,12 +30,14 @@ public class BuildingSelectionPanel : MonoBehaviour
     public GameObject CopperSmeltingFactoryPrefab; //铜矿厂
 
     public GameObject TurretPrefab; // 炮塔
-    public GameObject Turret_Arrow_Prefab; // 箭塔
+    public GameObject Turret_Arrow_Prefab; // 三弓床弩
     public GameObject Turret_Fire_Gun_Prefab; // 火枪塔
-    public GameObject Turret_Multi_Arrow_Prefab; // 多重弩箭塔
+    public GameObject Turret_Multi_Arrow_Prefab; //神火飞鸦
+    public GameObject Turret_QinCrossbowPrefab; // 秦弩
+    public GameObject Turret_ZhugeCrossbowPrefab; // 诸葛弩
+//-------------------------建筑预制体注册----------------------------------//
 
-
-
+    [Header("其他设置")]
     public Transform buildingParent;
     public CanvasGroup canvasGroup; 
     private GameObject selectedBuildingPrefab;
@@ -47,7 +53,7 @@ public class BuildingSelectionPanel : MonoBehaviour
         canvasGroup.interactable = false;
         canvasGroup.blocksRaycasts = false;
 
-        //-----------------------注册按钮点击事件--------------------------------
+//----------------------------------------注册按钮点击事件-------------------------------------------------//
         PlayerBase.onClick.AddListener(() => OnBuildingButtonClick(playerBasePrefab));
         TimberMill.onClick.AddListener(() => OnBuildingButtonClick(timberMillPrefab));
         StoneQuarry.onClick.AddListener(() => OnBuildingButtonClick(stoneQuarryPrefab));
@@ -59,7 +65,9 @@ public class BuildingSelectionPanel : MonoBehaviour
         Turret_Arrow.onClick.AddListener(() => OnBuildingButtonClick(Turret_Arrow_Prefab));
         Turret_Fire_Gun.onClick.AddListener(() => OnBuildingButtonClick(Turret_Fire_Gun_Prefab));
         Turret_Multi_Arrow.onClick.AddListener(() => OnBuildingButtonClick(Turret_Multi_Arrow_Prefab));
-
+        Turret_QinCrossbow.onClick.AddListener(() => OnBuildingButtonClick(Turret_QinCrossbowPrefab));
+        Turret_ZhugeCrossbow.onClick.AddListener(() => OnBuildingButtonClick(Turret_ZhugeCrossbowPrefab));
+//----------------------------------------注册按钮点击事件-------------------------------------------------//
 
         isPlacingBuilding = false;
         isCollisionDetected = false; // 初始化碰撞标记
@@ -79,9 +87,9 @@ public class BuildingSelectionPanel : MonoBehaviour
         CreatePreviewBuilding();
     }
 
+    // 创建预览建筑
     void CreatePreviewBuilding()
     {
-        Debug.Log("建筑选择面板：CreatePreviewBuilding方法已调用。");
         if (selectedBuildingPrefab == null)
         {
             Debug.LogError("创建预览建筑时，所选建筑预制体为空！");
@@ -96,14 +104,30 @@ public class BuildingSelectionPanel : MonoBehaviour
         {
             buildingBase.enabled = false;
         }
+
+        //设置预览建筑的标签为默认，防止被敌人锁定
+        buildingBase.tag = "Default";
         
-        // 禁用可能影响功能的其他组件
+        // 禁用自身对象可能影响功能的其他组件
         MonoBehaviour[] scripts = previewBuilding.GetComponents<MonoBehaviour>();
         foreach (MonoBehaviour script in scripts)
         {
             if (script != null && script != buildingBase)
             {
                 script.enabled = false;
+            }
+        }
+
+        //禁用子对象可能影响功能的其他组件
+        foreach (Transform child in previewBuilding.transform)
+        {
+            MonoBehaviour[] childScripts = child.GetComponents<MonoBehaviour>();
+            foreach (MonoBehaviour script in childScripts)
+            {
+                if (script != null && script != buildingBase)
+                {
+                    script.enabled = false;
+                }
             }
         }
         

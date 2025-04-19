@@ -67,12 +67,24 @@ public class BuildingBase : MonoBehaviour
             canBeInteracted = false; // 建造期间不可交互
             canBeClicked = false;    // 建造期间不可点击
             
-            // 设置初始视觉效果 - 半透明
+            // 设置自身对象的初始视觉效果为半透明
             if (spriteRenderer != null)
             {
                 Color startColor = normalColor;
                 startColor.a = 0.5f;
                 spriteRenderer.color = startColor;
+            }
+
+            //  设置子对象的初始视觉效果为半透明
+            SpriteRenderer[] spriteRenderers = GetComponentsInChildren<SpriteRenderer>();
+            foreach (SpriteRenderer renderer in spriteRenderers)
+            {
+                if (renderer != null && renderer != spriteRenderer) // 排除自身的SpriteRenderer
+                {
+                    Color startColor = normalColor;
+                    startColor.a = 0.5f;
+                    renderer.color = startColor;
+                }
             }
             
             // 设置生命值为正常血量的一半
@@ -114,6 +126,8 @@ public class BuildingBase : MonoBehaviour
             {
                 CompleteConstruction();
             }
+
+
             
             // 建造期间不执行其他操作
             return;
@@ -217,6 +231,16 @@ public class BuildingBase : MonoBehaviour
             else
             {
                 spriteRenderer.color = isSelected ? selectedColor : originalColor;  // 直接使用原始颜色
+                //恢复子对象颜色为原色
+                SpriteRenderer[] spriteRenderers = GetComponentsInChildren<SpriteRenderer>();
+                foreach (SpriteRenderer renderer in spriteRenderers)
+                {
+                    if (renderer != null && renderer != spriteRenderer) // 排除自身的SpriteRenderer
+                    {
+                        renderer.color = originalColor;  // 恢复为原始颜色
+                    }
+                }
+                
             }
         }
     }
@@ -247,5 +271,10 @@ public class BuildingBase : MonoBehaviour
         return canBeInteracted && !isUnderConstruction;
     }
 
+    // 检查建筑是否可攻击
+    public bool CanAttack()
+    {
+        return !isUnderConstruction;
+    }
 
 }
