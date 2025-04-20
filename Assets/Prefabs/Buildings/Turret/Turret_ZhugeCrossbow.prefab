@@ -176,6 +176,10 @@ MonoBehaviour:
   smyName: "\u5F29\u5854"
   smyType: "\u5EFA\u7B51"
   smyDescription: "\u53D1\u5C04\u4F1A\u7A7F\u900F\u7684\u5F29\u7BAD"
+  cost_wood: 35
+  cost_stone: 4
+  cost_iron: 4
+  cost_copper: 4
   canBeInteracted: 1
   isSelected: 0
   canBeClicked: 1

@@ -40,10 +40,12 @@ public class BuildingSelectionPanel : MonoBehaviour
     [Header("其他设置")]
     public Transform buildingParent;
     public CanvasGroup canvasGroup; 
+    public GameObject buildingPlaceEffect; // 建筑放置时的粒子效果
     private GameObject selectedBuildingPrefab;
     private GameObject previewBuilding;
     private bool isPlacingBuilding;
     private bool isCollisionDetected; // 新增：用于标记是否发生碰撞
+
 
     void Start()
     {
@@ -76,11 +78,24 @@ public class BuildingSelectionPanel : MonoBehaviour
     void OnBuildingButtonClick(GameObject buildingPrefab)
     {
         Debug.Log($"建筑选择面板：OnBuildingButtonClick方法被调用，传入预制体：{buildingPrefab?.name}");
+        
         if (buildingPrefab == null)
         {
             Debug.LogError("建筑预制体为空！");
             return;
         }
+        
+        // 检查资源是否足够
+        BuildingBase buildingBase = buildingPrefab.GetComponent<BuildingBase>();
+        if (buildingBase != null)
+        {
+            if (!HasEnoughResources(buildingBase))
+            {
+                ToastManager.Instance.ShowToast("资源不足，无法建造！", 2f);
+                return;
+            }
+        }
+        
         selectedBuildingPrefab = buildingPrefab;
         HidePanel(); // 隐藏面板
         isPlacingBuilding = true;
@@ -166,6 +181,7 @@ public class BuildingSelectionPanel : MonoBehaviour
                 Debug.Log("建筑选择面板：鼠标左键被点击。");
                 if (!isCollisionDetected)
                 {
+                    
                     PlaceBuilding();
                 }
                 else
@@ -234,14 +250,38 @@ public class BuildingSelectionPanel : MonoBehaviour
             return;
         }
         
-        // 实例化实际建筑
-        GameObject newBuilding = Instantiate(selectedBuildingPrefab, previewBuilding.transform.position, Quaternion.identity, buildingParent);
-        
-        // 初始化建筑的建造状态
-        BuildingBase buildingBase = newBuilding.GetComponent<BuildingBase>();
+        // 再次检查资源是否足够（以防玩家在选择建筑和放置之间资源发生变化）
+        BuildingBase buildingBase = selectedBuildingPrefab.GetComponent<BuildingBase>();
         if (buildingBase != null)
         {
-            buildingBase.isUnderConstruction = true;
+            if (!HasEnoughResources(buildingBase))
+            {
+                ToastManager.Instance.ShowToast("资源不足，无法建造！", 2f);
+                CancelBuildingPlacement();
+                return;
+            }
+            
+            // 扣除资源
+            ConsumeResources(buildingBase);
+        }
+        
+        Vector3 buildingPosition = previewBuilding.transform.position;
+        
+        // 实例化实际建筑
+        GameObject newBuilding = Instantiate(selectedBuildingPrefab, buildingPosition, Quaternion.identity, buildingParent);
+        
+        // 初始化建筑的建造状态
+        BuildingBase newBuildingBase = newBuilding.GetComponent<BuildingBase>();
+        if (newBuildingBase != null)
+        {
+            newBuildingBase.isUnderConstruction = true;
+        }
+        
+        // 产生建筑放置效果
+        if (buildingPlaceEffect != null)
+        {
+            GameObject effect = Instantiate(buildingPlaceEffect, buildingPosition, Quaternion.identity);
+            Destroy(effect,2f);
         }
         
         Destroy(previewBuilding);
@@ -275,5 +315,39 @@ public class BuildingSelectionPanel : MonoBehaviour
         canvasGroup.alpha = 0;
         canvasGroup.interactable = false;
         canvasGroup.blocksRaycasts = false;
+    }
+
+    // 检查是否有足够的资源
+    private bool HasEnoughResources(BuildingBase building)
+    {
+        PlayerConfig playerConfig = PlayerConfig.Instance;
+        
+        if (playerConfig == null)
+        {
+            Debug.LogError("无法找到PlayerConfig实例！");
+            return false;
+        }
+        
+        return playerConfig.woodNum >= building.cost_wood &&
+               playerConfig.stoneNum >= building.cost_stone &&
+               playerConfig.ironNum >= building.cost_iron &&
+               playerConfig.copperNum >= building.cost_copper;
+    }
+    
+    // 消耗资源
+    private void ConsumeResources(BuildingBase building)
+    {
+        PlayerConfig playerConfig = PlayerConfig.Instance;
+        
+        if (playerConfig == null)
+        {
+            Debug.LogError("无法找到PlayerConfig实例！");
+            return;
+        }
+        
+        playerConfig.woodNum -= building.cost_wood;
+        playerConfig.stoneNum -= building.cost_stone;
+        playerConfig.ironNum -= building.cost_iron;
+        playerConfig.copperNum -= building.cost_copper;
     }
 }

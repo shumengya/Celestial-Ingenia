@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 5699572039314229684}
   - component: {fileID: 7677869347824499340}
   - component: {fileID: 6308687237443896166}
-  - component: {fileID: 8135531685398147013}
   - component: {fileID: 3887739220172174841}
   - component: {fileID: 1175298198867835656}
+  - component: {fileID: 8135531685398147013}
   m_Layer: 6
   m_Name: IronFactory
   m_TagString: Player
@@ -111,28 +111,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &8135531685398147013
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9068081681723721744}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4b6983e1e8820f842a7e3e2379fb7133, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  smyName: "\u94C1\u77FF\u5382"
-  smyType: "\u5EFA\u7B51"
-  smyDescription: "\u751F\u4EA7\u94C1\u7684\u77FF\u573A"
-  canBeInteracted: 1
-  isSelected: 0
-  canBeClicked: 1
-  isUnderConstruction: 1
-  constructionTime: 5
-  selectedColor: {r: 1, g: 1, b: 1, a: 1}
-  damageAmount: 1
 --- !u!50 &3887739220172174841
 Rigidbody2D:
   serializedVersion: 4
@@ -205,6 +183,32 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.1475022, y: 1.5508226}
   m_EdgeRadius: 0
+--- !u!114 &8135531685398147013
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9068081681723721744}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b6983e1e8820f842a7e3e2379fb7133, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  smyName: "\u94C1\u77FF\u5382"
+  smyType: "\u5EFA\u7B51"
+  smyDescription: "\u751F\u4EA7\u94C1\u7684\u77FF\u573A"
+  cost_wood: 35
+  cost_stone: 20
+  cost_iron: 0
+  cost_copper: 0
+  canBeInteracted: 1
+  isSelected: 0
+  canBeClicked: 1
+  isUnderConstruction: 1
+  constructionTime: 5
+  selectedColor: {r: 1, g: 1, b: 1, a: 1}
+  damageAmount: 1
 --- !u!1001 &2917262958884994132
 PrefabInstance:
   m_ObjectHideFlags: 0

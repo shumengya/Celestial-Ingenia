@@ -176,6 +176,10 @@ MonoBehaviour:
   smyName: "\u706B\u67AA\u5854"
   smyType: "\u5EFA\u7B51"
   smyDescription: "\u8FDE\u7EED\u53D1\u5C04\u6570\u679A\u706B\u67AA\u5B50\u5F39"
+  cost_wood: 10
+  cost_stone: 10
+  cost_iron: 20
+  cost_copper: 30
   canBeInteracted: 1
   isSelected: 0
   canBeClicked: 1
@@ -251,6 +255,10 @@ PrefabInstance:
       propertyPath: gunBarrel
       value: 
       objectReference: {fileID: 5237936377148008682}
+    - target: {fileID: 7458930045661690175, guid: b70d9ea42a94daf418773d57f08ab3a1, type: 3}
+      propertyPath: angleDeviation
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

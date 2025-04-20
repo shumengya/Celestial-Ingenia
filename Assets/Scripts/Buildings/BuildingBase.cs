@@ -11,6 +11,11 @@ public class BuildingBase : MonoBehaviour
     public string smyName = "建筑";
     public string smyType = "建筑";
     public string smyDescription = "基础建筑";
+    public int cost_wood = 0;
+    public int cost_stone = 0;
+    public int cost_iron = 0;
+    public int cost_copper = 0;
+
 
     // 交互状态
     [Header("交互状态")]
@@ -137,6 +142,13 @@ public class BuildingBase : MonoBehaviour
         if (playerHealthBar != null && playerHealthBar.IsDead())
         {
             Destroy(gameObject);
+            // 方法1：通过FindObjectOfType获取（适用于场景中只有一个CameraMovement组件的情况）
+            CameraMovement cameraMovement = FindObjectOfType<CameraMovement>();
+            if (cameraMovement != null)
+            {
+                cameraMovement.ShakeCamera(0.1f, 0.1f); // 使用默认参数
+                // 或者自定义参数: cameraMovement.ShakeCamera(1.0f, 0.8f);
+            }
         }
 
         // 检测鼠标点击

@@ -19,13 +19,15 @@ public class PlayerBase : BuildingBase
     protected override void Update()
     {
         fiveTimer += Time.deltaTime;
-        if (fiveTimer >= 5f)
+        if (fiveTimer >= 1f)
         {
             PlayerConfig.Instance.ironNum += 1;
             PlayerConfig.Instance.copperNum += 1;
             PlayerConfig.Instance.woodNum += 1;
             PlayerConfig.Instance.stoneNum += 1;
+
             fiveTimer = 0f;
+
         }
 
         // 调用基类的Update方法处理通用逻辑

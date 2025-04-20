@@ -176,6 +176,10 @@ MonoBehaviour:
   smyName: "\u591A\u91CD\u7BAD\u5854"
   smyType: "\u5EFA\u7B51"
   smyDescription: "\u53D1\u5C04\u591A\u652F\u7BAD,\u50CF\u6F2B\u5929\u661F\u706B\u4E00\u6837"
+  cost_wood: 25
+  cost_stone: 5
+  cost_iron: 5
+  cost_copper: 5
   canBeInteracted: 1
   isSelected: 0
   canBeClicked: 1
@@ -347,7 +351,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3963192822597698592, guid: bdd4217512d93e94788ccded7973a9a6, type: 3}
       propertyPath: angleDeviation
-      value: 5
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4510462268903864914, guid: bdd4217512d93e94788ccded7973a9a6, type: 3}
       propertyPath: m_SortingOrder

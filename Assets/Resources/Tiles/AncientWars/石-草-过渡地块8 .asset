@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 13312, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: shortgrass
+  m_Name: "\u77F3-\u8349-\u8FC7\u6E21\u5730\u57578 "
   m_EditorClassIdentifier: 
-  m_Sprite: {fileID: 21300000, guid: 96aee12a09cd80e44867f9b08b940a7f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a4a6a51d83c791048b072d93bec82870, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Transform:
     e00: 1

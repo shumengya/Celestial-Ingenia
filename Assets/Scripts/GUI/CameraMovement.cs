@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class CameraMovement : MonoBehaviour
 {
@@ -12,16 +13,25 @@ public class CameraMovement : MonoBehaviour
     public float minZoom = 10f;
     public float maxZoom = 60f;
 
+    // 震动相关参数
+    private bool isShaking = false;
+    private Vector3 originalPosition;
+
     private Camera mainCamera;
 
     void Start()
     {
         // 获取主相机组件
         mainCamera = GetComponent<Camera>();
+        originalPosition = transform.position;
     }
 
     void Update()
     {
+        // 如果正在震动，则跳过普通的移动操作
+        if (isShaking)
+            return;
+            
         // 获取水平和垂直输入
         float horizontalInput = Input.GetAxis("Horizontal");
         float verticalInput = Input.GetAxis("Vertical");
@@ -31,6 +41,7 @@ public class CameraMovement : MonoBehaviour
 
         // 根据移动方向和速度更新摄像机的位置
         transform.Translate(movement * moveSpeed * Time.deltaTime);
+        originalPosition = transform.position;
 
         // 获取鼠标滚轮的输入
         float scrollInput = Input.GetAxis("Mouse ScrollWheel");
@@ -52,5 +63,43 @@ public class CameraMovement : MonoBehaviour
                 mainCamera.fieldOfView = Mathf.Clamp(mainCamera.fieldOfView, minZoom, maxZoom);
             }
         }
+    }
+
+    /// <summary>
+    /// 触发相机震动效果
+    /// </summary>
+    /// <param name="duration">震动持续时间（秒）</param>
+    /// <param name="magnitude">震动幅度</param>
+    public void ShakeCamera(float duration = 0.5f, float magnitude = 0.5f)
+    {
+        // 如果未处于震动状态，开始震动协程
+        if (!isShaking)
+        {
+            StartCoroutine(ShakeCameraCoroutine(duration, magnitude));
+        }
+    }
+
+    private IEnumerator ShakeCameraCoroutine(float duration, float magnitude)
+    {
+        isShaking = true;
+        originalPosition = transform.position;
+        float elapsed = 0f;
+
+        while (elapsed < duration)
+        {
+            // 计算随机偏移
+            float x = Random.Range(-1f, 1f) * magnitude;
+            float y = Random.Range(-1f, 1f) * magnitude;
+
+            // 应用偏移到相机位置
+            transform.position = new Vector3(originalPosition.x + x, originalPosition.y + y, originalPosition.z);
+
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
+
+        // 震动结束，恢复原始位置
+        transform.position = originalPosition;
+        isShaking = false;
     }
 }
