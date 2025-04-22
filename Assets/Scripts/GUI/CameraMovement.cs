@@ -15,7 +15,7 @@ public class CameraMovement : MonoBehaviour
 
     // 震动相关参数
     private bool isShaking = false;
-    private Vector3 originalPosition;
+    private Vector2 originalPosition;
 
     private Camera mainCamera;
 
@@ -23,7 +23,9 @@ public class CameraMovement : MonoBehaviour
     {
         // 获取主相机组件
         mainCamera = GetComponent<Camera>();
-        originalPosition = transform.position;
+        // 确保使用2D正交相机
+        mainCamera.orthographic = true;
+        originalPosition = new Vector2(transform.position.x, transform.position.y);
     }
 
     void Update()
@@ -36,32 +38,25 @@ public class CameraMovement : MonoBehaviour
         float horizontalInput = Input.GetAxis("Horizontal");
         float verticalInput = Input.GetAxis("Vertical");
 
-        // 根据输入计算移动方向
-        Vector3 movement = new Vector3(horizontalInput, verticalInput, 0f);
+        // 根据输入计算移动方向 (仅x和y)
+        Vector2 movement = new Vector2(horizontalInput, verticalInput);
 
-        // 根据移动方向和速度更新摄像机的位置
-        transform.Translate(movement * moveSpeed * Time.deltaTime);
-        originalPosition = transform.position;
+        // 根据移动方向和速度更新摄像机的位置，保持z位置不变
+        float zPos = transform.position.z;
+        transform.Translate(new Vector3(movement.x, movement.y, 0f) * moveSpeed * Time.deltaTime);
+        // 确保z轴位置不变
+        transform.position = new Vector3(transform.position.x, transform.position.y, zPos);
+        originalPosition = new Vector2(transform.position.x, transform.position.y);
 
         // 获取鼠标滚轮的输入
         float scrollInput = Input.GetAxis("Mouse ScrollWheel");
 
         if (scrollInput != 0f)
         {
-            if (mainCamera.orthographic)
-            {
-                // 正交相机的缩放处理
-                mainCamera.orthographicSize -= scrollInput * zoomSpeed;
-                // 限制正交大小在最小和最大缩放范围之间
-                mainCamera.orthographicSize = Mathf.Clamp(mainCamera.orthographicSize, minZoom, maxZoom);
-            }
-            else
-            {
-                // 透视相机的缩放处理
-                mainCamera.fieldOfView -= scrollInput * zoomSpeed;
-                // 限制视野在最小和最大缩放范围之间
-                mainCamera.fieldOfView = Mathf.Clamp(mainCamera.fieldOfView, minZoom, maxZoom);
-            }
+            // 正交相机的缩放处理
+            mainCamera.orthographicSize -= scrollInput * zoomSpeed;
+            // 限制正交大小在最小和最大缩放范围之间
+            mainCamera.orthographicSize = Mathf.Clamp(mainCamera.orthographicSize, minZoom, maxZoom);
         }
     }
 
@@ -82,24 +77,25 @@ public class CameraMovement : MonoBehaviour
     private IEnumerator ShakeCameraCoroutine(float duration, float magnitude)
     {
         isShaking = true;
-        originalPosition = transform.position;
+        originalPosition = new Vector2(transform.position.x, transform.position.y);
         float elapsed = 0f;
+        float zPos = transform.position.z;
 
         while (elapsed < duration)
         {
-            // 计算随机偏移
+            // 计算随机偏移 (仅x和y)
             float x = Random.Range(-1f, 1f) * magnitude;
             float y = Random.Range(-1f, 1f) * magnitude;
 
-            // 应用偏移到相机位置
-            transform.position = new Vector3(originalPosition.x + x, originalPosition.y + y, originalPosition.z);
+            // 应用偏移到相机位置，保持z不变
+            transform.position = new Vector3(originalPosition.x + x, originalPosition.y + y, zPos);
 
             elapsed += Time.deltaTime;
             yield return null;
         }
 
         // 震动结束，恢复原始位置
-        transform.position = originalPosition;
+        transform.position = new Vector3(originalPosition.x, originalPosition.y, zPos);
         isShaking = false;
     }
 }

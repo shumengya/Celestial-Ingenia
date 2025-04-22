@@ -15,6 +15,8 @@ public class BuildingBase : MonoBehaviour
     public int cost_stone = 0;
     public int cost_iron = 0;
     public int cost_copper = 0;
+    public bool isOnlyBePlacedOnGround = false; //是否只能放置在特定资源点上面
+    public bool isOnlyBePlacedAdjacent = false; //是否只能放置在特定资源点旁边
 
 
     // 交互状态
@@ -22,6 +24,7 @@ public class BuildingBase : MonoBehaviour
     public bool canBeInteracted = true;
     public bool isSelected = false;
     public bool canBeClicked = true;
+
 
     // 建造状态
     [Header("建造状态")]

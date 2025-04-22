@@ -57,7 +57,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -199,6 +199,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 1066423341460419227, guid: c08dc2bae669408458273fbfc2be9eac, type: 3}
+      propertyPath: m_Text
+      value: "\u795E\u706B\u98DE\u9E26"
+      objectReference: {fileID: 0}
     - target: {fileID: 1196120379742417952, guid: c08dc2bae669408458273fbfc2be9eac, type: 3}
       propertyPath: m_Layer
       value: 6
@@ -209,7 +213,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2149115960998302963, guid: c08dc2bae669408458273fbfc2be9eac, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.0015
+      value: 0.002
       objectReference: {fileID: 0}
     - target: {fileID: 2149115960998302963, guid: c08dc2bae669408458273fbfc2be9eac, type: 3}
       propertyPath: m_LocalPosition.x
@@ -250,6 +254,10 @@ PrefabInstance:
     - target: {fileID: 2149115960998302963, guid: c08dc2bae669408458273fbfc2be9eac, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4660571054354334240, guid: c08dc2bae669408458273fbfc2be9eac, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 891
       objectReference: {fileID: 0}
     - target: {fileID: 5230019283439312350, guid: c08dc2bae669408458273fbfc2be9eac, type: 3}
       propertyPath: m_Name

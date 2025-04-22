@@ -22,9 +22,9 @@ TagManager:
   - EnemyBullet
   - Obstacle
   - Ground
-  - 
-  - 
-  - 
+  - Projectile
+  - GroundResourcePoints
+  - AdjacentResourcePoints
   - 
   - 
   - 

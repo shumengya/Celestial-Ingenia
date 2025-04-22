@@ -6,7 +6,7 @@ public abstract class AttackModeBase : MonoBehaviour
     public float angleDeviation = 10f; // 射击角度偏差
     
     [Header("后坐力设置")]
-    public bool enableRecoil = true; // 是否启用后坐力
+    public bool enableRecoil = false; // 是否启用后坐力
     public float recoilDistance = 0.2f; // 后坐力移动距离
     public float recoilRecoveryTime = 0.1f; // 恢复原位所需时间
     

@@ -18,6 +18,7 @@ public class BuildingSelectionPanel : MonoBehaviour
     public Button Turret_Multi_Arrow;
     public Button Turret_QinCrossbow;
     public Button Turret_ZhugeCrossbow;
+    public Button Turret_ThrowStoneCannon;
 //------------------------按钮注册------------------------------//
 
 
@@ -35,6 +36,7 @@ public class BuildingSelectionPanel : MonoBehaviour
     public GameObject Turret_Multi_Arrow_Prefab; //神火飞鸦
     public GameObject Turret_QinCrossbowPrefab; // 秦弩
     public GameObject Turret_ZhugeCrossbowPrefab; // 诸葛弩
+    public GameObject Turret_ThrowStoneCannonPrefab; // 投石炮
 //-------------------------建筑预制体注册----------------------------------//
 
     [Header("其他设置")]
@@ -45,6 +47,7 @@ public class BuildingSelectionPanel : MonoBehaviour
     private GameObject previewBuilding;
     private bool isPlacingBuilding;
     private bool isCollisionDetected; // 新增：用于标记是否发生碰撞
+    private bool canPlaceOnResourcePoint; // 新增：是否满足资源点放置条件
 
 
     void Start()
@@ -69,10 +72,12 @@ public class BuildingSelectionPanel : MonoBehaviour
         Turret_Multi_Arrow.onClick.AddListener(() => OnBuildingButtonClick(Turret_Multi_Arrow_Prefab));
         Turret_QinCrossbow.onClick.AddListener(() => OnBuildingButtonClick(Turret_QinCrossbowPrefab));
         Turret_ZhugeCrossbow.onClick.AddListener(() => OnBuildingButtonClick(Turret_ZhugeCrossbowPrefab));
+        Turret_ThrowStoneCannon.onClick.AddListener(() => OnBuildingButtonClick(Turret_ThrowStoneCannonPrefab));
 //----------------------------------------注册按钮点击事件-------------------------------------------------//
 
         isPlacingBuilding = false;
         isCollisionDetected = false; // 初始化碰撞标记
+        canPlaceOnResourcePoint = true; // 初始化资源点放置条件
     }
 
     void OnBuildingButtonClick(GameObject buildingPrefab)
@@ -121,7 +126,7 @@ public class BuildingSelectionPanel : MonoBehaviour
         }
 
         //设置预览建筑的标签为默认，防止被敌人锁定
-        buildingBase.tag = "Default";
+        previewBuilding.tag = "Default";
         
         // 禁用自身对象可能影响功能的其他组件
         MonoBehaviour[] scripts = previewBuilding.GetComponents<MonoBehaviour>();
@@ -171,24 +176,64 @@ public class BuildingSelectionPanel : MonoBehaviour
                 previewBuilding.transform.position = mousePosition;
                 Debug.Log($"建筑选择面板：预览建筑位置已设置为：{mousePosition}");
 
-                // 检测碰撞
+                // 检测碰撞和放置条件
                 isCollisionDetected = CheckCollision();
-                Debug.Log($"建筑选择面板：碰撞检测结果：{isCollisionDetected}");
+                
+                // 获取建筑基础组件
+                BuildingBase buildingBase = selectedBuildingPrefab.GetComponent<BuildingBase>();
+                canPlaceOnResourcePoint = true; // 默认可以放置
+                
+                // 检查特殊放置条件
+                if (buildingBase != null)
+                {
+                    // 如果需要放在资源点上
+                    if (buildingBase.isOnlyBePlacedOnGround)
+                    {
+                        canPlaceOnResourcePoint = IsOnResourcePoint("GroundResourcePoints");
+                    }
+                    // 如果需要放在资源点旁边
+                    else if (buildingBase.isOnlyBePlacedAdjacent)
+                    {
+                        canPlaceOnResourcePoint = IsAdjacentToResourcePoint("AdjacentResourcePoints");
+                    }
+                }
+                
+                // 根据放置条件改变预览建筑颜色
+                UpdatePreviewColor(isCollisionDetected || !canPlaceOnResourcePoint);
             }
 
             if (Input.GetMouseButtonDown(0))
             {
                 Debug.Log("建筑选择面板：鼠标左键被点击。");
-                if (!isCollisionDetected)
+                
+                // 判断是否可以放置
+                if (!isCollisionDetected && canPlaceOnResourcePoint)
                 {
-                    
                     PlaceBuilding();
                 }
                 else
                 {
-                    // 显示提示信息，例如使用之前封装的 Toast 弹窗
-                    Debug.Log("建筑选择面板：由于碰撞，无法放置建筑。");
-                    ToastManager.Instance.ShowToast("该位置已有建筑，无法放置！", 2f);
+                    // 显示提示信息
+                    if (isCollisionDetected)
+                    {
+                        Debug.Log("建筑选择面板：由于碰撞，无法放置建筑。");
+                        ToastManager.Instance.ShowToast("该位置已有建筑，无法放置！", 2f);
+                    }
+                    else if (!canPlaceOnResourcePoint)
+                    {
+                        BuildingBase buildingBase = selectedBuildingPrefab.GetComponent<BuildingBase>();
+                        if (buildingBase != null)
+                        {
+                            if (buildingBase.isOnlyBePlacedOnGround)
+                            {
+                                ToastManager.Instance.ShowToast("该建筑只能放置在资源点上！", 2f);
+                            }
+                            else if (buildingBase.isOnlyBePlacedAdjacent)
+                            {
+                                ToastManager.Instance.ShowToast("该建筑只能放置在资源点旁边！", 2f);
+                            }
+                        }
+                    }
                 }
             }
             else if (Input.GetMouseButtonDown(1))
@@ -196,6 +241,25 @@ public class BuildingSelectionPanel : MonoBehaviour
                 Debug.Log("建筑选择面板：鼠标右键被点击。");
                 CancelBuildingPlacement();
             }
+        }
+    }
+
+    // 更新预览颜色以显示是否可放置
+    void UpdatePreviewColor(bool cannotPlace)
+    {
+        if (previewBuilding == null) return;
+        
+        SpriteRenderer spriteRenderer = previewBuilding.GetComponent<SpriteRenderer>();
+        if (spriteRenderer == null) return;
+        
+        // 红色表示不可放置，绿色表示可以放置
+        if (cannotPlace)
+        {
+            spriteRenderer.color = new Color(1f, 0.5f, 0.5f, 0.5f); // 半透明红色
+        }
+        else
+        {
+            spriteRenderer.color = new Color(0.5f, 1f, 0.5f, 0.5f); // 半透明绿色
         }
     }
 
@@ -239,6 +303,137 @@ public class BuildingSelectionPanel : MonoBehaviour
             }
         }
         return false;
+    }
+
+    // 检查是否放置在资源点上面（超过50%重叠）
+    bool IsOnResourcePoint(string layerName)
+    {
+        Debug.Log($"检查是否放置在{layerName}上面");
+        if (previewBuilding == null) return false;
+
+        BoxCollider2D previewCollider = previewBuilding.GetComponent<BoxCollider2D>();
+        if (previewCollider == null) return false;
+
+        // 获取预览建筑的位置和大小
+        Vector2 position = previewBuilding.transform.position;
+        Vector2 size = previewCollider.size;
+        Quaternion rotation = previewBuilding.transform.rotation;
+        
+        // 获取指定图层的索引
+        int layerIndex = LayerMask.NameToLayer(layerName);
+        if (layerIndex == -1)
+        {
+            Debug.LogError($"图层 {layerName} 不存在！");
+            return false;
+        }
+        
+        // 创建图层掩码
+        int layerMask = 1 << layerIndex;
+        
+        // 检测与资源点的碰撞
+        Collider2D[] resourcePoints = Physics2D.OverlapBoxAll(position, size, rotation.eulerAngles.z, layerMask);
+        
+        if (resourcePoints.Length == 0)
+        {
+            Debug.Log($"没有找到{layerName}资源点");
+            return false;
+        }
+        
+        // 检查重叠面积是否超过50%
+        foreach (Collider2D resourcePoint in resourcePoints)
+        {
+            if (IsOverlappingByHalf(previewCollider, resourcePoint))
+            {
+                Debug.Log($"在{layerName}上放置成功，重叠超过50%");
+                return true;
+            }
+        }
+        
+        Debug.Log($"在{layerName}上放置失败，重叠不足50%");
+        return false;
+    }
+    
+    // 检查是否与资源点重叠面积超过50%
+    bool IsOverlappingByHalf(BoxCollider2D buildingCollider, Collider2D resourceCollider)
+    {
+        if (resourceCollider is BoxCollider2D)
+        {
+            BoxCollider2D resourceBoxCollider = resourceCollider as BoxCollider2D;
+            
+            // 计算两个碰撞体的边界
+            Bounds buildingBounds = buildingCollider.bounds;
+            Bounds resourceBounds = resourceBoxCollider.bounds;
+            
+            // 计算重叠区域
+            float xOverlap = Mathf.Max(0, Mathf.Min(buildingBounds.max.x, resourceBounds.max.x) - Mathf.Max(buildingBounds.min.x, resourceBounds.min.x));
+            float yOverlap = Mathf.Max(0, Mathf.Min(buildingBounds.max.y, resourceBounds.max.y) - Mathf.Max(buildingBounds.min.y, resourceBounds.min.y));
+            
+            // 计算重叠面积
+            float overlapArea = xOverlap * yOverlap;
+            
+            // 计算建筑碰撞体的面积
+            float buildingArea = buildingBounds.size.x * buildingBounds.size.y;
+            
+            // 计算重叠百分比
+            float overlapPercentage = overlapArea / buildingArea;
+            
+            Debug.Log($"重叠百分比: {overlapPercentage * 100}%");
+            
+            // 如果重叠面积超过建筑面积的50%，则返回true
+            return overlapPercentage >= 0.5f;
+        }
+        
+        // 对于非BoxCollider2D类型的碰撞体，使用简单的碰撞检测
+        return buildingCollider.IsTouching(resourceCollider);
+    }
+    
+    // 检查是否放置在资源点旁边
+    bool IsAdjacentToResourcePoint(string layerName)
+    {
+        Debug.Log($"检查是否放置在{layerName}旁边");
+        if (previewBuilding == null) return false;
+        
+        BoxCollider2D previewCollider = previewBuilding.GetComponent<BoxCollider2D>();
+        if (previewCollider == null) return false;
+        
+        // 获取预览建筑的位置
+        Vector2 position = previewBuilding.transform.position;
+        
+        // 获取指定图层的索引
+        int layerIndex = LayerMask.NameToLayer(layerName);
+        if (layerIndex == -1)
+        {
+            Debug.LogError($"图层 {layerName} 不存在！");
+            return false;
+        }
+        
+        // 创建图层掩码
+        int layerMask = 1 << layerIndex;
+        
+        // 定义两个检测范围
+        // 外圈范围：用于检测是否在资源点附近
+        Vector2 outerCheckSize = previewCollider.size * 2.0f; // 扩大100%检测范围
+        
+        // 内圈范围：用于检测是否与资源点直接接触
+        Vector2 innerCheckSize = previewCollider.size * 1.1f; // 略大于建筑的范围
+        
+        // 检测在外圈范围内是否有资源点
+        Collider2D[] outerResourcePoints = Physics2D.OverlapBoxAll(position, outerCheckSize, previewBuilding.transform.rotation.eulerAngles.z, layerMask);
+        
+        // 检测在内圈范围内是否有资源点
+        Collider2D[] innerResourcePoints = Physics2D.OverlapBoxAll(position, innerCheckSize, previewBuilding.transform.rotation.eulerAngles.z, layerMask);
+        
+        // 条件1：外圈必须有资源点
+        // 条件2：内圈不能有资源点（不直接接触）
+        bool isNearby = outerResourcePoints.Length > 0;
+        bool isTouching = innerResourcePoints.Length > 0;
+        
+        bool isCorrectlyAdjacent = isNearby && !isTouching;
+        
+        Debug.Log($"在{layerName}旁边放置: {isCorrectlyAdjacent}, 靠近资源点: {isNearby}, 直接接触: {isTouching}");
+        Debug.Log($"检测到附近有{outerResourcePoints.Length}个资源点，直接接触有{innerResourcePoints.Length}个资源点");
+        
+        return isCorrectlyAdjacent;
     }
 
     void PlaceBuilding()
@@ -298,6 +493,7 @@ public class BuildingSelectionPanel : MonoBehaviour
         ShowPanel(); // 取消放置时显示面板
         isPlacingBuilding = false;
         isCollisionDetected = false; // 重置碰撞标记
+        canPlaceOnResourcePoint = true; // 重置资源点放置条件
     }
 
     // 新增：通过Canvas Group控制显示隐藏

@@ -57,7 +57,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -182,7 +182,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b174fbb0b4e295249a182913b81c0003, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  angleDeviation: 10
+  angleDeviation: 0
+  enableRecoil: 1
+  recoilDistance: 0.2
+  recoilRecoveryTime: 0.1
   rocketCount: 12
   rocketDelay: 0.2
   salvoInterval: 3
