@@ -34,7 +34,7 @@ Transform:
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 2313449260290105721}
-  - {fileID: 5467312798605672739}
+  - {fileID: 8704211231371470776}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &6308687237443896166
@@ -180,6 +180,8 @@ MonoBehaviour:
   cost_stone: 10
   cost_iron: 20
   cost_copper: 10
+  isOnlyBePlacedOnGround: 0
+  isOnlyBePlacedAdjacent: 0
   canBeInteracted: 1
   isSelected: 0
   canBeClicked: 1
@@ -297,7 +299,7 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2149115960998302963, guid: c08dc2bae669408458273fbfc2be9eac, type: 3}
   m_PrefabInstance: {fileID: 4451865733367231882}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &5754457655529146231
+--- !u!1001 &8993597494287770092
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -345,14 +347,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 596979990973916631, guid: 29bbaca4fb8a10a41ad555385aa3a133, type: 3}
+      propertyPath: attackMode
+      value: 
+      objectReference: {fileID: 8342381840022134951}
     - target: {fileID: 675054691897528969, guid: 29bbaca4fb8a10a41ad555385aa3a133, type: 3}
       propertyPath: m_Name
-      value: Barrel_HudunCannon
+      value: Barrel_ThrowStoneCannon
       objectReference: {fileID: 0}
     - target: {fileID: 1083596541382213963, guid: 29bbaca4fb8a10a41ad555385aa3a133, type: 3}
-      propertyPath: parabolicBulletPrefab
-      value: 
-      objectReference: {fileID: 7471882503357086665, guid: 9ad2c138dda84874f800ecbff0bac6c6, type: 3}
+      propertyPath: arcHeight
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1083596541382213963, guid: 29bbaca4fb8a10a41ad555385aa3a133, type: 3}
+      propertyPath: bulletSpeed
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1083596541382213963, guid: 29bbaca4fb8a10a41ad555385aa3a133, type: 3}
+      propertyPath: angleDeviation
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 1083596541382213963, guid: 29bbaca4fb8a10a41ad555385aa3a133, type: 3}
       propertyPath: showTrajectoryPreview
       value: 0
@@ -366,8 +380,19 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 29bbaca4fb8a10a41ad555385aa3a133, type: 3}
---- !u!4 &5467312798605672739 stripped
+--- !u!114 &8342381840022134951 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1083596541382213963, guid: 29bbaca4fb8a10a41ad555385aa3a133, type: 3}
+  m_PrefabInstance: {fileID: 8993597494287770092}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4953f4ca33bfbd547bb5e50cad8f1128, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &8704211231371470776 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 289423046224184916, guid: 29bbaca4fb8a10a41ad555385aa3a133, type: 3}
-  m_PrefabInstance: {fileID: 5754457655529146231}
+  m_PrefabInstance: {fileID: 8993597494287770092}
   m_PrefabAsset: {fileID: 0}

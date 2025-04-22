@@ -15,12 +15,16 @@ public abstract class AttackModeBase : MonoBehaviour
     private Vector3 originalPosition; // 原始位置
     private bool isRecoiling = false; // 是否正在后坐力状态
     private float recoilTimer = 0f; // 后坐力计时器
+    private AudioSource audioSource; // 音频源组件
     
     public virtual void Initialize(RemoteAttack attack, Transform bulletsParent)
     {
         this.remoteAttack = attack;
         this.bulletsParent = bulletsParent;
         this.originalPosition = transform.localPosition;
+        
+        // 获取AudioSource组件
+        audioSource = GetComponent<AudioSource>();
     }
     
     // 每个攻击模式必须实现的方法
@@ -61,6 +65,9 @@ public abstract class AttackModeBase : MonoBehaviour
             Debug.LogError($"子弹预制体 {bullet.name} 没有BulletBase脚本!");
         }
         
+        // 播放开火音效
+        PlayFireSound();
+        
         // 应用后坐力
         if (enableRecoil && !isRecoiling)
         {
@@ -81,6 +88,15 @@ public abstract class AttackModeBase : MonoBehaviour
         
         // 设置后坐力位置
         transform.localPosition = originalPosition + recoilDirection * recoilDistance;
+    }
+    
+    // 播放开火音效
+    protected void PlayFireSound()
+    {
+        if (audioSource != null)
+        {
+            audioSource.Play();
+        }
     }
     
     protected virtual void Update()
