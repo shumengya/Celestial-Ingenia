@@ -180,6 +180,8 @@ MonoBehaviour:
   cost_stone: 4
   cost_iron: 4
   cost_copper: 4
+  isOnlyBePlacedOnGround: 0
+  isOnlyBePlacedAdjacent: 0
   canBeInteracted: 1
   isSelected: 0
   canBeClicked: 1
@@ -195,6 +197,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5699572039314229684}
     m_Modifications:
+    - target: {fileID: 221888812797485685, guid: 9a92c39220631fd45a90006c3c3f9b28, type: 3}
+      propertyPath: angleDeviation
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 289423046224184916, guid: 9a92c39220631fd45a90006c3c3f9b28, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

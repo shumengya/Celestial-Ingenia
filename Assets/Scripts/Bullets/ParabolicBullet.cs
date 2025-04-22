@@ -14,7 +14,7 @@ public class ParabolicBullet : BulletBase
     private Vector2 initialVelocity;       // 初始速度
     private float flightTime = 0f;         // 飞行时间
     private Vector2 targetPosition;        // 目标位置
-    new private Vector2 startPosition;     // 起始位置，使用new关键字表明我们有意隐藏继承的成员
+    private Vector2 parabolicStartPos;     // 起始位置，改名避免与父类冲突
     private SpriteRenderer spriteRenderer; // 子弹的渲染器，用于旋转图像
     
     // 抛物线运动需要的参数
@@ -25,8 +25,8 @@ public class ParabolicBullet : BulletBase
     public void Initialize(Vector2 targetPos, float bulletSpeed)
     {
         targetPosition = targetPos;
-        startPosition = transform.position;
-        distanceToTarget = Vector2.Distance(new Vector2(startPosition.x, startPosition.y), 
+        parabolicStartPos = transform.position;
+        distanceToTarget = Vector2.Distance(new Vector2(parabolicStartPos.x, parabolicStartPos.y), 
                                            new Vector2(targetPosition.x, targetPosition.y));
         
         // 设置初始速度，计算出合适的发射角度
@@ -37,7 +37,7 @@ public class ParabolicBullet : BulletBase
         float angleRad = angle * Mathf.Deg2Rad;
         
         // 计算水平和垂直方向的初速度分量
-        Vector2 direction = (targetPosition - startPosition).normalized;
+        Vector2 direction = (targetPosition - parabolicStartPos).normalized;
         initialVelocity = new Vector2(
             direction.x * bulletSpeed * Mathf.Cos(angleRad),
             direction.y * bulletSpeed * Mathf.Cos(angleRad)
@@ -84,7 +84,7 @@ public class ParabolicBullet : BulletBase
     protected override void Start()
     {
         base.Start();
-        startPosition = transform.position;
+        parabolicStartPos = transform.position;
         spriteRenderer = GetComponent<SpriteRenderer>();
         
         if (spriteRenderer == null)
@@ -121,7 +121,7 @@ public class ParabolicBullet : BulletBase
         }
         
         // 水平位置随时间线性变化
-        Vector2 horizontalPosition = Vector2.Lerp(startPosition, targetPosition, progress);
+        Vector2 horizontalPosition = Vector2.Lerp(parabolicStartPos, targetPosition, progress);
         
         // 垂直位置遵循抛物线：h = h0 + v0t - 0.5gt²
         // 这里我们使用sin曲线来模拟抛物线，以简化计算
@@ -153,7 +153,7 @@ public class ParabolicBullet : BulletBase
         // 检查距离限制
         if (useDistanceLimit)
         {
-            float distanceTraveled = Vector2.Distance(startPosition, transform.position);
+            float distanceTraveled = Vector2.Distance(parabolicStartPos, transform.position);
             if (distanceTraveled >= maxDistance)
             {
                 OnDestroyBullet();

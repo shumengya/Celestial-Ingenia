@@ -19,6 +19,7 @@ public class BuildingSelectionPanel : MonoBehaviour
     public Button Turret_QinCrossbow;
     public Button Turret_ZhugeCrossbow;
     public Button Turret_ThrowStoneCannon;
+    public Button Turret_HuDunCannon;
 //------------------------按钮注册------------------------------//
 
 
@@ -37,6 +38,7 @@ public class BuildingSelectionPanel : MonoBehaviour
     public GameObject Turret_QinCrossbowPrefab; // 秦弩
     public GameObject Turret_ZhugeCrossbowPrefab; // 诸葛弩
     public GameObject Turret_ThrowStoneCannonPrefab; // 投石炮
+    public GameObject Turret_HuDunCannonPrefab; // 虎墩炮
 //-------------------------建筑预制体注册----------------------------------//
 
     [Header("其他设置")]
@@ -46,8 +48,9 @@ public class BuildingSelectionPanel : MonoBehaviour
     private GameObject selectedBuildingPrefab;
     private GameObject previewBuilding;
     private bool isPlacingBuilding;
-    private bool isCollisionDetected; // 新增：用于标记是否发生碰撞
-    private bool canPlaceOnResourcePoint; // 新增：是否满足资源点放置条件
+    private bool isCollisionDetected; // 用于标记是否发生碰撞
+    private bool canPlaceOnResourcePoint; // 是否满足资源点放置条件
+    private AudioSource audioSource; // 音频源组件
 
 
     void Start()
@@ -57,6 +60,9 @@ public class BuildingSelectionPanel : MonoBehaviour
         canvasGroup.alpha = 0;
         canvasGroup.interactable = false;
         canvasGroup.blocksRaycasts = false;
+
+        // 获取AudioSource组件
+        audioSource = GetComponent<AudioSource>();
 
 //----------------------------------------注册按钮点击事件-------------------------------------------------//
         PlayerBase.onClick.AddListener(() => OnBuildingButtonClick(playerBasePrefab));
@@ -73,6 +79,7 @@ public class BuildingSelectionPanel : MonoBehaviour
         Turret_QinCrossbow.onClick.AddListener(() => OnBuildingButtonClick(Turret_QinCrossbowPrefab));
         Turret_ZhugeCrossbow.onClick.AddListener(() => OnBuildingButtonClick(Turret_ZhugeCrossbowPrefab));
         Turret_ThrowStoneCannon.onClick.AddListener(() => OnBuildingButtonClick(Turret_ThrowStoneCannonPrefab));
+        Turret_HuDunCannon.onClick.AddListener(() => OnBuildingButtonClick(Turret_HuDunCannonPrefab));       
 //----------------------------------------注册按钮点击事件-------------------------------------------------//
 
         isPlacingBuilding = false;
@@ -82,7 +89,6 @@ public class BuildingSelectionPanel : MonoBehaviour
 
     void OnBuildingButtonClick(GameObject buildingPrefab)
     {
-        Debug.Log($"建筑选择面板：OnBuildingButtonClick方法被调用，传入预制体：{buildingPrefab?.name}");
         
         if (buildingPrefab == null)
         {
@@ -168,7 +174,6 @@ public class BuildingSelectionPanel : MonoBehaviour
     {
         if (isPlacingBuilding)
         {
-            Debug.Log("建筑选择面板：Update方法 - 正在放置建筑。");
             if (previewBuilding != null)
             {
                 Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -202,10 +207,9 @@ public class BuildingSelectionPanel : MonoBehaviour
                 UpdatePreviewColor(isCollisionDetected || !canPlaceOnResourcePoint);
             }
 
+            //左键单击放置建筑
             if (Input.GetMouseButtonDown(0))
-            {
-                Debug.Log("建筑选择面板：鼠标左键被点击。");
-                
+            {          
                 // 判断是否可以放置
                 if (!isCollisionDetected && canPlaceOnResourcePoint)
                 {
@@ -216,7 +220,6 @@ public class BuildingSelectionPanel : MonoBehaviour
                     // 显示提示信息
                     if (isCollisionDetected)
                     {
-                        Debug.Log("建筑选择面板：由于碰撞，无法放置建筑。");
                         ToastManager.Instance.ShowToast("该位置已有建筑，无法放置！", 2f);
                     }
                     else if (!canPlaceOnResourcePoint)
@@ -236,9 +239,9 @@ public class BuildingSelectionPanel : MonoBehaviour
                     }
                 }
             }
+            //右键单击取消放置建筑返回建造面板
             else if (Input.GetMouseButtonDown(1))
             {
-                Debug.Log("建筑选择面板：鼠标右键被点击。");
                 CancelBuildingPlacement();
             }
         }
@@ -265,7 +268,6 @@ public class BuildingSelectionPanel : MonoBehaviour
 
     bool CheckCollision()
     {
-        Debug.Log("建筑选择面板：CheckCollision方法已调用。");
         if (previewBuilding == null)
         {
             Debug.Log("建筑选择面板：在CheckCollision方法中，预览建筑为空。");
@@ -412,10 +414,10 @@ public class BuildingSelectionPanel : MonoBehaviour
         
         // 定义两个检测范围
         // 外圈范围：用于检测是否在资源点附近
-        Vector2 outerCheckSize = previewCollider.size * 2.0f; // 扩大100%检测范围
+        Vector2 outerCheckSize = previewCollider.size * 1.8f; // 扩大100%检测范围
         
         // 内圈范围：用于检测是否与资源点直接接触
-        Vector2 innerCheckSize = previewCollider.size * 1.1f; // 略大于建筑的范围
+        Vector2 innerCheckSize = previewCollider.size * 1f; // 略大于建筑的范围
         
         // 检测在外圈范围内是否有资源点
         Collider2D[] outerResourcePoints = Physics2D.OverlapBoxAll(position, outerCheckSize, previewBuilding.transform.rotation.eulerAngles.z, layerMask);
@@ -438,7 +440,6 @@ public class BuildingSelectionPanel : MonoBehaviour
 
     void PlaceBuilding()
     {
-        Debug.Log("建筑选择面板：PlaceBuilding方法已调用。");
         if (selectedBuildingPrefab == null || previewBuilding == null)
         {
             Debug.LogError("无法放置建筑。所选预制体或预览建筑为空！");
@@ -479,13 +480,18 @@ public class BuildingSelectionPanel : MonoBehaviour
             Destroy(effect,2f);
         }
         
+        // 播放建筑放置音效
+        if (audioSource != null)
+        {
+            audioSource.Play();
+        }
+        
         Destroy(previewBuilding);
         isPlacingBuilding = false;
     }
 
     void CancelBuildingPlacement()
     {
-        Debug.Log("建筑选择面板：CancelBuildingPlacement方法已调用。");
         if (previewBuilding != null)
         {
             Destroy(previewBuilding);
@@ -499,7 +505,6 @@ public class BuildingSelectionPanel : MonoBehaviour
     // 新增：通过Canvas Group控制显示隐藏
     public void ShowPanel()
     {
-        Debug.Log("建筑选择面板：ShowPanel方法已调用。");
         canvasGroup.alpha = 1;
         canvasGroup.interactable = true;
         canvasGroup.blocksRaycasts = true;
@@ -507,7 +512,6 @@ public class BuildingSelectionPanel : MonoBehaviour
 
     public void HidePanel()
     {
-        Debug.Log("建筑选择面板：HidePanel方法已调用。");
         canvasGroup.alpha = 0;
         canvasGroup.interactable = false;
         canvasGroup.blocksRaycasts = false;

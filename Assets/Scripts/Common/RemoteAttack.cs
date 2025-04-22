@@ -16,6 +16,10 @@ public class RemoteAttack : MonoBehaviour
 
     private void Start()
     {
+
+        GameObject playerBullets = GameObject.FindWithTag("PlayerBullets");
+        BulletsParent = playerBullets.transform;
+
         // 自动获取组件（如果未手动赋值）
         if (attackRange == null)
         {

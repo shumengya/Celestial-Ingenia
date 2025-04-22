@@ -138,7 +138,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyTag: Enemy
   detectedEnemies: []
-  circleCollider: {fileID: 0}
+  circleCollider: {fileID: 713801321371660513}
 --- !u!114 &7838835567499860996
 MonoBehaviour:
   m_ObjectHideFlags: 0

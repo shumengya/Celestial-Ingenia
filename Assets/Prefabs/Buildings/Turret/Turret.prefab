@@ -180,6 +180,8 @@ MonoBehaviour:
   cost_stone: 10
   cost_iron: 20
   cost_copper: 10
+  isOnlyBePlacedOnGround: 0
+  isOnlyBePlacedAdjacent: 0
   canBeInteracted: 1
   isSelected: 0
   canBeClicked: 1
@@ -373,6 +375,10 @@ PrefabInstance:
       propertyPath: m_SortingOrder
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 4706891435685556006, guid: 1e59e52eca590944bb4ef30d682845ed, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 5bce34229b7f09b4f9bd7ad4ab9bc26c, type: 3}
     - target: {fileID: 5794097340634860184, guid: 1e59e52eca590944bb4ef30d682845ed, type: 3}
       propertyPath: gunBarrel
       value: 
@@ -380,6 +386,10 @@ PrefabInstance:
     - target: {fileID: 5794097340634860184, guid: 1e59e52eca590944bb4ef30d682845ed, type: 3}
       propertyPath: angleDeviation
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5794097340634860184, guid: 1e59e52eca590944bb4ef30d682845ed, type: 3}
+      propertyPath: fireSoundVolume
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

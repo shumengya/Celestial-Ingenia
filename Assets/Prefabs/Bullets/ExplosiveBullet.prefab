@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3013096227387586824}
   - component: {fileID: 5755201563474532153}
   m_Layer: 7
-  m_Name: StoneShell1
+  m_Name: ExplosiveBullet
   m_TagString: PlayerBullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -29,7 +29,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 2}
+  m_LocalScale: {x: 1.6, y: 1.6, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -66,7 +66,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.0454365, y: -0.06551349}
+  m_Offset: {x: 0.018306106, y: 0.0030264258}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -77,7 +77,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.4598819, y: 0.38654214}
+  m_Size: {x: 0.5712593, y: 0.52362204}
   m_EdgeRadius: 0
 --- !u!212 &3013096227387586824
 SpriteRenderer:
@@ -156,13 +156,13 @@ MonoBehaviour:
   flyingLayer: Projectile
   landingLayer: PlayerBullet
   landingThreshold: 0.9
-  explosionRadius: 1.5
+  explosionRadius: 2
   explosionDamage: 20
   explosionEffect: {fileID: 0}
   explosionLayerMask:
     serializedVersion: 2
     m_Bits: 256
-  explosionForce: 10
+  explosionForce: 0
   explosionSound: {fileID: 0}
   useLayerBasedCollision: 1
   showDebugInfo: 1

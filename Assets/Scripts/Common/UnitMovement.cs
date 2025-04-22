@@ -5,14 +5,12 @@ public class UnitMovement : MonoBehaviour
     public float moveSpeed = 3f; // 敌人的移动速度
     public float rotationSpeed = 200f; // 敌人的旋转速度
     public string playerTag = "Player"; // 玩家的标签
-
     // 避障相关参数
     public LayerMask obstacleLayerMask; // 障碍物图层掩码
     public float obstacleDetectionRange = 1.5f; // 障碍物检测范围
     public float avoidanceWeight = 2.0f; // 避障权重
     public int numberOfRays = 8; // 检测射线数量
     public float rayAngleRange = 120f; // 检测角度范围（度）
-
     // 添加调试参数
     public bool showDebugRays = true;
     public float steeringFactor = 0.5f; // 引导系数

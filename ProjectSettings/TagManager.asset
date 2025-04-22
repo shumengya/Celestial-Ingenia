@@ -9,6 +9,7 @@ TagManager:
   - SceneTransition
   - UICycler
   - Default
+  - PlayerBullets
   layers:
   - Default
   - TransparentFX

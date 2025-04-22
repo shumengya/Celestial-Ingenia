@@ -90,7 +90,6 @@
     <Compile Include="Assets\Scripts\Common\AttackModes\KatyushaAttackMode.cs" />
     <Compile Include="Assets\Scripts\Common\AttackRange.cs" />
     <Compile Include="Assets\Scripts\GUI\GameUI.cs" />
-    <Compile Include="Assets\FloatingText.cs" />
     <Compile Include="Assets\Scripts\Common\AttackModes\ShotgunAttackMode.cs" />
     <Compile Include="Assets\Scripts\GameManager\ToastManager.cs" />
     <Compile Include="Assets\Scripts\Common\AttackModes\GatlingAttackMode.cs" />
@@ -104,9 +103,9 @@
     <Compile Include="Assets\Scripts\GUI\GameOverPanel.cs" />
     <Compile Include="Assets\Scripts\Bullets\Arrow.cs" />
     <Compile Include="Assets\Scripts\Bullets\FireBall.cs" />
-    <Compile Include="Assets\BGMManager.cs" />
     <Compile Include="Assets\Scripts\Effects\DestroyAfterTime.cs" />
     <Compile Include="Assets\Scripts\GUI\UICycler.cs" />
+    <Compile Include="Assets\Scripts\BGMManager.cs" />
     <Compile Include="Assets\Scripts\Bullets\FireLighting.cs" />
     <Compile Include="Assets\Scripts\Buildings\IronFactory.cs" />
     <Compile Include="Assets\Scripts\GUI\Enemy_Num_Text.cs" />
@@ -120,6 +119,7 @@
     <Compile Include="Assets\Scripts\Common\UnitMovementProMax.cs" />
     <Compile Include="Assets\Scripts\Bullets\MortarProjectile.cs" />
     <Compile Include="Assets\Scripts\GUI\MainMenu.cs" />
+    <Compile Include="Assets\Scripts\FloatingText.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Shaders\2d_golden_glow.shader" />
