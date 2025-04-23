@@ -16,6 +16,8 @@ public abstract class AttackModeBase : MonoBehaviour
     private bool isRecoiling = false; // 是否正在后坐力状态
     private float recoilTimer = 0f; // 后坐力计时器
     private AudioSource audioSource; // 音频源组件
+    private float lastPlayTime = 0f;
+    private const float minInterval = 0.2f;
     
     public virtual void Initialize(RemoteAttack attack, Transform bulletsParent)
     {
@@ -93,9 +95,10 @@ public abstract class AttackModeBase : MonoBehaviour
     // 播放开火音效
     protected void PlayFireSound()
     {
-        if (audioSource != null)
+        if (audioSource != null && Time.time - lastPlayTime >= minInterval)
         {
             audioSource.Play();
+            lastPlayTime = Time.time;
         }
     }
     
