@@ -15,6 +15,10 @@ public class MortarProjectile : ParabolicBullet
     [Header("层级控制")]
     public bool useLayerBasedCollision = true; // 是否使用基于层级的碰撞控制
     
+    [Header("拖尾效果")]
+    public bool useTrailEffect = true;         // 是否使用拖尾效果
+    public GameObject trailEffectPrefab;       // 拖尾效果预制体
+    
     [Header("调试")]
     public bool showDebugInfo = true;         // 是否显示调试信息
     
@@ -22,6 +26,8 @@ public class MortarProjectile : ParabolicBullet
     public static bool globalDebug = true;
     
     private bool hasExploded = false;          // 是否已经爆炸
+    private GameObject trailInstance;          // 拖尾实例
+    private ParticleSystem trailParticleSystem; // 拖尾粒子系统引用
     
     protected override void Start()
     {
@@ -59,6 +65,26 @@ public class MortarProjectile : ParabolicBullet
             if (showDebugInfo || globalDebug)
             {
                 Debug.Log($"已设置爆炸层级掩码为: {explosionLayerMask.value}，对应层: {LayerMaskToString(explosionLayerMask)}");
+            }
+        }
+        
+        // 初始化拖尾效果
+        if (useTrailEffect && trailEffectPrefab != null)
+        {
+            // 实例化拖尾预制体并设置为子对象
+            trailInstance = Instantiate(trailEffectPrefab, transform.position, Quaternion.identity, transform);
+            // 获取粒子系统引用以便后续控制
+            trailParticleSystem = trailInstance.GetComponent<ParticleSystem>();
+            
+            if (trailParticleSystem == null)
+            {
+                // 尝试在子对象中查找粒子系统
+                trailParticleSystem = trailInstance.GetComponentInChildren<ParticleSystem>();
+            }
+            
+            if (trailParticleSystem == null && showDebugInfo)
+            {
+                Debug.LogWarning("拖尾预制体中未找到粒子系统组件");
             }
         }
     }
@@ -164,6 +190,7 @@ public class MortarProjectile : ParabolicBullet
         
         hasExploded = true;
         
+
         // 生成爆炸效果
         if (explosionEffect != null)
         {

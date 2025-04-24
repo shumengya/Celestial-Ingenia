@@ -158,11 +158,13 @@ MonoBehaviour:
   landingThreshold: 0.9
   explosionRadius: 2
   explosionDamage: 20
-  explosionEffect: {fileID: 0}
+  explosionEffect: {fileID: 6409037004282420950, guid: d815dc47122eb60449b1b662c45f37c5, type: 3}
   explosionLayerMask:
     serializedVersion: 2
     m_Bits: 256
   explosionForce: 0
   explosionSound: {fileID: 0}
   useLayerBasedCollision: 1
+  useTrailEffect: 1
+  trailEffectPrefab: {fileID: 0}
   showDebugInfo: 1

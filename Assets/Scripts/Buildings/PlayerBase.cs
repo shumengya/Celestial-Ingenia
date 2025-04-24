@@ -29,8 +29,6 @@ public class PlayerBase : BuildingBase
             fiveTimer = 0f;
 
         }
-
-        // 调用基类的Update方法处理通用逻辑
         base.Update();
     }
 }    

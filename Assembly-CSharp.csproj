@@ -97,6 +97,7 @@
     <Compile Include="Assets\Scripts\Common\AttackModes\GatlingAttackMode.cs" />
     <Compile Include="Assets\Scripts\GUI\BuildingSelectionPanel.cs" />
     <Compile Include="Assets\Scripts\GUI\JumpingTextEffect.cs" />
+    <Compile Include="Assets\Scripts\PlaceableBase.cs" />
     <Compile Include="Assets\Scripts\Bullets\LongArrow.cs" />
     <Compile Include="Assets\Scripts\Buildings\PlayerBase.cs" />
     <Compile Include="Assets\Scripts\GUI\Bullet_Num_Text.cs" />

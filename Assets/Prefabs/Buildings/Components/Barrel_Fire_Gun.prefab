@@ -16,9 +16,9 @@ GameObject:
   - component: {fileID: 7838835567499860996}
   - component: {fileID: 7458930045661690175}
   - component: {fileID: 4910755546653833421}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Barrel_Fire_Gun
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -197,7 +197,7 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 675054691897528969}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 8aa765839038dfd4e97a94a82a8cc960, type: 3}

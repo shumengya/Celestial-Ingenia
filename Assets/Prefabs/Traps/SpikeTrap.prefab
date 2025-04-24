@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 5699572039314229684}
   - component: {fileID: 1175298198867835656}
   - component: {fileID: 6308687237443896166}
-  - component: {fileID: 7040920348038548586}
+  - component: {fileID: 1836218973477341147}
   m_Layer: 15
-  m_Name: BombTrap
+  m_Name: SpikeTrap
   m_TagString: Default
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -67,7 +67,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.14182281, y: 0.26511192}
+  m_Offset: {x: 0.024508476, y: -1.6623998}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -78,7 +78,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 9.019543, y: 4.7105513}
+  m_Size: {x: 10.091019, y: 7.552102}
   m_EdgeRadius: 0
 --- !u!212 &6308687237443896166
 SpriteRenderer:
@@ -121,7 +121,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 21300000, guid: f63679511bd6d4c4d9a7edb5ab064c14, type: 3}
+  m_Sprite: {fileID: 21300000, guid: cae432967483da74f8b0df2951aa1b1a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -132,7 +132,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &7040920348038548586
+--- !u!114 &1836218973477341147
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -141,15 +141,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 9068081681723721744}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d3e1d58fbc5be57418215d42d5ab43d9, type: 3}
+  m_Script: {fileID: 11500000, guid: 2bb9204c47240194ca679df830eec177, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  smyName: "\u5730\u96F7"
+  smyName: "\u6728\u8D28\u5C16\u523A"
   smyType: "\u9677\u9631"
-  smyDescription: "\u7206\u70B8"
-  cost_wood: 15
-  cost_stone: 0
-  cost_iron: 5
+  smyDescription: "\u62D6\u4F4F\u654C\u4EBA"
+  cost_wood: 20
+  cost_stone: 5
+  cost_iron: 0
   cost_copper: 0
   isOnlyBePlacedOnGround: 0
   isOnlyBePlacedAdjacent: 0
@@ -159,6 +159,8 @@ MonoBehaviour:
   isUnderConstruction: 1
   constructionTime: 5
   selectedColor: {r: 1, g: 0, b: 0, a: 1}
+  damagePerSecond: 10
+  trapDuration: 5
 --- !u!1001 &4451865733367231882
 PrefabInstance:
   m_ObjectHideFlags: 0

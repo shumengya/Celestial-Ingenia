@@ -1,22 +1,11 @@
 using UnityEngine;
 
-public class BuildingBase : MonoBehaviour
+public class BuildingBase : PlaceableBase
 {
     
 // 健康条相关
     protected HealthBar playerHealthBar;
 
-    // 建筑信息
-    [Header("建筑信息")]
-    public string smyName = "建筑";
-    public string smyType = "建筑";
-    public string smyDescription = "基础建筑";
-    public int cost_wood = 0;
-    public int cost_stone = 0;
-    public int cost_iron = 0;
-    public int cost_copper = 0;
-    public bool isOnlyBePlacedOnGround = false; //是否只能放置在特定资源点上面
-    public bool isOnlyBePlacedAdjacent = false; //是否只能放置在特定资源点旁边
 
 
     // 交互状态
@@ -46,23 +35,18 @@ public class BuildingBase : MonoBehaviour
     // 组件引用
     [Header("组件引用")]
     protected SpriteRenderer spriteRenderer;
-    protected BoxCollider2D boxCollider;
+    protected BoxCollider2D boxCollider2D;
 
     protected virtual void Start()
     {
+
         playerHealthBar = GetComponentInChildren<HealthBar>();
         maxHealth = playerHealthBar.GetMaxHealth();
         spriteRenderer = GetComponent<SpriteRenderer>();
         
         // 获取BoxCollider2D引用
-        boxCollider = GetComponent<BoxCollider2D>();
+        boxCollider2D = GetComponent<BoxCollider2D>();
         
-        // 确保BoxCollider2D存在且正确配置
-        if (boxCollider != null && spriteRenderer != null)
-        {
-            // 可以调整BoxCollider2D以匹配Sprite
-            //boxCollider.size = spriteRenderer.sprite.bounds.size;
-        }
 
         // 获取初始颜色
         originalColor = spriteRenderer.color;
@@ -75,22 +59,22 @@ public class BuildingBase : MonoBehaviour
             canBeInteracted = false; // 建造期间不可交互
             canBeClicked = false;    // 建造期间不可点击
             
-            // 设置自身对象的初始视觉效果为半透明
+            // 设置自身对象的初始视觉效果为全透明
             if (spriteRenderer != null)
             {
                 Color startColor = normalColor;
-                startColor.a = 0.5f;
+                startColor.a = 0.0f;
                 spriteRenderer.color = startColor;
             }
 
-            //  设置子对象的初始视觉效果为半透明
+            //  设置子对象的初始视觉效果为全透明
             SpriteRenderer[] spriteRenderers = GetComponentsInChildren<SpriteRenderer>();
             foreach (SpriteRenderer renderer in spriteRenderers)
             {
                 if (renderer != null && renderer != spriteRenderer) // 排除自身的SpriteRenderer
                 {
                     Color startColor = normalColor;
-                    startColor.a = 0.5f;
+                    startColor.a = 0.0f;
                     renderer.color = startColor;
                 }
             }
@@ -189,11 +173,23 @@ public class BuildingBase : MonoBehaviour
     {
         if (spriteRenderer != null)
         {
-            // 透明度从0.5到1.0渐变
-            float alpha = 0.5f + (progress * 0.5f);
+            // 透明度从0.0到1.0渐变
+            float alpha = progress;
             Color progressColor = normalColor;
             progressColor.a = alpha;
             spriteRenderer.color = progressColor;
+            
+            // 更新子对象的透明度
+            SpriteRenderer[] spriteRenderers = GetComponentsInChildren<SpriteRenderer>();
+            foreach (SpriteRenderer renderer in spriteRenderers)
+            {
+                if (renderer != null && renderer != spriteRenderer) // 排除自身的SpriteRenderer
+                {
+                    Color childColor = renderer.color;
+                    childColor.a = alpha;
+                    renderer.color = childColor;
+                }
+            }
         }
     }
     

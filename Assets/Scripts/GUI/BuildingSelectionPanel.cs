@@ -20,6 +20,8 @@ public class BuildingSelectionPanel : MonoBehaviour
     public Button Turret_ZhugeCrossbow;
     public Button Turret_ThrowStoneCannon;
     public Button Turret_HuDunCannon;
+    public Button SpikeTrap;
+    public Button BombTrap;
 //------------------------按钮注册------------------------------//
 
 
@@ -39,6 +41,8 @@ public class BuildingSelectionPanel : MonoBehaviour
     public GameObject Turret_ZhugeCrossbowPrefab; // 诸葛弩
     public GameObject Turret_ThrowStoneCannonPrefab; // 投石炮
     public GameObject Turret_HuDunCannonPrefab; // 虎墩炮
+    public GameObject SpikeTrapPrefab; // 尖刺陷阱
+    public GameObject BombTrapPrefab; // 炸弹陷阱
 //-------------------------建筑预制体注册----------------------------------//
 
     [Header("其他设置")]
@@ -80,6 +84,10 @@ public class BuildingSelectionPanel : MonoBehaviour
         Turret_ZhugeCrossbow.onClick.AddListener(() => OnBuildingButtonClick(Turret_ZhugeCrossbowPrefab));
         Turret_ThrowStoneCannon.onClick.AddListener(() => OnBuildingButtonClick(Turret_ThrowStoneCannonPrefab));
         Turret_HuDunCannon.onClick.AddListener(() => OnBuildingButtonClick(Turret_HuDunCannonPrefab));       
+
+        //这些是各种陷阱
+        SpikeTrap.onClick.AddListener(() => OnBuildingButtonClick(SpikeTrapPrefab));
+        BombTrap.onClick.AddListener(() => OnBuildingButtonClick(BombTrapPrefab));
 //----------------------------------------注册按钮点击事件-------------------------------------------------//
 
         isPlacingBuilding = false;
@@ -133,6 +141,7 @@ public class BuildingSelectionPanel : MonoBehaviour
 
         //设置预览建筑的标签为默认，防止被敌人锁定
         previewBuilding.tag = "Default";
+        previewBuilding.layer = LayerMask.NameToLayer("Default");
         
         // 禁用自身对象可能影响功能的其他组件
         MonoBehaviour[] scripts = previewBuilding.GetComponents<MonoBehaviour>();
@@ -179,7 +188,7 @@ public class BuildingSelectionPanel : MonoBehaviour
                 Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                 mousePosition.z = 0;
                 previewBuilding.transform.position = mousePosition;
-                Debug.Log($"建筑选择面板：预览建筑位置已设置为：{mousePosition}");
+                //Debug.Log($"建筑选择面板：预览建筑位置已设置为：{mousePosition}");
 
                 // 检测碰撞和放置条件
                 isCollisionDetected = CheckCollision();
@@ -224,14 +233,14 @@ public class BuildingSelectionPanel : MonoBehaviour
                     }
                     else if (!canPlaceOnResourcePoint)
                     {
-                        BuildingBase buildingBase = selectedBuildingPrefab.GetComponent<BuildingBase>();
-                        if (buildingBase != null)
+                        PlaceableBase placeableBase = selectedBuildingPrefab.GetComponent<PlaceableBase>();
+                        if (placeableBase != null)
                         {
-                            if (buildingBase.isOnlyBePlacedOnGround)
+                            if (placeableBase.isOnlyBePlacedOnGround)
                             {
                                 ToastManager.Instance.ShowToast("该建筑只能放置在资源点上！", 2f);
                             }
-                            else if (buildingBase.isOnlyBePlacedAdjacent)
+                            else if (placeableBase.isOnlyBePlacedAdjacent)
                             {
                                 ToastManager.Instance.ShowToast("该建筑只能放置在资源点旁边！", 2f);
                             }
@@ -283,11 +292,13 @@ public class BuildingSelectionPanel : MonoBehaviour
 
         // 获取预览建筑的位置和大小
         Vector2 position = previewBuilding.transform.position;
-        Vector2 size = previewCollider.size;
+        // 考虑物体的实际缩放
+        Vector2 scale = previewBuilding.transform.localScale;
+        Vector2 scaledSize = new Vector2(previewCollider.size.x * scale.x, previewCollider.size.y * scale.y);
         Quaternion rotation = previewBuilding.transform.rotation;
 
-        // 修改部分：只检测BoxCollider2D类型的碰撞体
-        Collider2D[] hits = Physics2D.OverlapBoxAll(position, size, rotation.eulerAngles.z, LayerMask.GetMask("Player"));
+        // 修改部分：只检测BoxCollider2D类型的碰撞体，并使用缩放后的尺寸
+        Collider2D[] hits = Physics2D.OverlapBoxAll(position, scaledSize, rotation.eulerAngles.z, LayerMask.GetMask("Player", "Obstacle","Trap"));
         foreach (Collider2D hit in hits)
         {
             // 排除自身碰撞体
@@ -298,10 +309,6 @@ public class BuildingSelectionPanel : MonoBehaviour
             {
                 Debug.Log($"建筑选择面板：检测到有效碰撞体（BoxCollider2D）: {hit.gameObject.name}");
                 return true;
-            }
-            else
-            {
-                Debug.Log($"建筑选择面板：忽略非BoxCollider2D碰撞体: {hit.GetType().Name}");
             }
         }
         return false;
@@ -318,7 +325,9 @@ public class BuildingSelectionPanel : MonoBehaviour
 
         // 获取预览建筑的位置和大小
         Vector2 position = previewBuilding.transform.position;
-        Vector2 size = previewCollider.size;
+        // 考虑物体的实际缩放
+        Vector2 scale = previewBuilding.transform.localScale;
+        Vector2 scaledSize = new Vector2(previewCollider.size.x * scale.x, previewCollider.size.y * scale.y);
         Quaternion rotation = previewBuilding.transform.rotation;
         
         // 获取指定图层的索引
@@ -332,8 +341,8 @@ public class BuildingSelectionPanel : MonoBehaviour
         // 创建图层掩码
         int layerMask = 1 << layerIndex;
         
-        // 检测与资源点的碰撞
-        Collider2D[] resourcePoints = Physics2D.OverlapBoxAll(position, size, rotation.eulerAngles.z, layerMask);
+        // 检测与资源点的碰撞，使用缩放后的尺寸
+        Collider2D[] resourcePoints = Physics2D.OverlapBoxAll(position, scaledSize, rotation.eulerAngles.z, layerMask);
         
         if (resourcePoints.Length == 0)
         {
@@ -362,8 +371,19 @@ public class BuildingSelectionPanel : MonoBehaviour
         {
             BoxCollider2D resourceBoxCollider = resourceCollider as BoxCollider2D;
             
-            // 计算两个碰撞体的边界
-            Bounds buildingBounds = buildingCollider.bounds;
+            // 考虑建筑物体的缩放
+            Vector3 buildingScale = buildingCollider.transform.localScale;
+            
+            // 创建考虑缩放的边界
+            Bounds buildingBounds = new Bounds(
+                buildingCollider.bounds.center, 
+                new Vector3(
+                    buildingCollider.size.x * buildingScale.x, 
+                    buildingCollider.size.y * buildingScale.y, 
+                    buildingCollider.bounds.size.z
+                )
+            );
+            
             Bounds resourceBounds = resourceBoxCollider.bounds;
             
             // 计算重叠区域
@@ -398,8 +418,10 @@ public class BuildingSelectionPanel : MonoBehaviour
         BoxCollider2D previewCollider = previewBuilding.GetComponent<BoxCollider2D>();
         if (previewCollider == null) return false;
         
-        // 获取预览建筑的位置
+        // 获取预览建筑的位置和缩放
         Vector2 position = previewBuilding.transform.position;
+        Vector2 scale = previewBuilding.transform.localScale;
+        Vector2 scaledSize = new Vector2(previewCollider.size.x * scale.x, previewCollider.size.y * scale.y);
         
         // 获取指定图层的索引
         int layerIndex = LayerMask.NameToLayer(layerName);
@@ -412,12 +434,12 @@ public class BuildingSelectionPanel : MonoBehaviour
         // 创建图层掩码
         int layerMask = 1 << layerIndex;
         
-        // 定义两个检测范围
+        // 定义两个检测范围，考虑缩放因素
         // 外圈范围：用于检测是否在资源点附近
-        Vector2 outerCheckSize = previewCollider.size * 1.8f; // 扩大100%检测范围
+        Vector2 outerCheckSize = scaledSize * 1.8f; // 扩大100%检测范围
         
         // 内圈范围：用于检测是否与资源点直接接触
-        Vector2 innerCheckSize = previewCollider.size * 1f; // 略大于建筑的范围
+        Vector2 innerCheckSize = scaledSize * 1f; // 略大于建筑的范围
         
         // 检测在外圈范围内是否有资源点
         Collider2D[] outerResourcePoints = Physics2D.OverlapBoxAll(position, outerCheckSize, previewBuilding.transform.rotation.eulerAngles.z, layerMask);
@@ -447,37 +469,29 @@ public class BuildingSelectionPanel : MonoBehaviour
         }
         
         // 再次检查资源是否足够（以防玩家在选择建筑和放置之间资源发生变化）
-        BuildingBase buildingBase = selectedBuildingPrefab.GetComponent<BuildingBase>();
-        if (buildingBase != null)
+        PlaceableBase placeableBase = selectedBuildingPrefab.GetComponent<PlaceableBase>();
+        if (placeableBase != null)
         {
-            if (!HasEnoughResources(buildingBase))
+            if (!HasEnoughResources(placeableBase))
             {
                 ToastManager.Instance.ShowToast("资源不足，无法建造！", 2f);
                 CancelBuildingPlacement();
                 return;
             }
-            
             // 扣除资源
-            ConsumeResources(buildingBase);
+            ConsumeResources(placeableBase);
         }
         
         Vector3 buildingPosition = previewBuilding.transform.position;
         
         // 实例化实际建筑
-        GameObject newBuilding = Instantiate(selectedBuildingPrefab, buildingPosition, Quaternion.identity, buildingParent);
+        Instantiate(selectedBuildingPrefab, buildingPosition, Quaternion.identity, buildingParent);
         
-        // 初始化建筑的建造状态
-        BuildingBase newBuildingBase = newBuilding.GetComponent<BuildingBase>();
-        if (newBuildingBase != null)
-        {
-            newBuildingBase.isUnderConstruction = true;
-        }
         
         // 产生建筑放置效果
         if (buildingPlaceEffect != null)
         {
-            GameObject effect = Instantiate(buildingPlaceEffect, buildingPosition, Quaternion.identity);
-            Destroy(effect,2f);
+            Instantiate(buildingPlaceEffect, buildingPosition, Quaternion.identity);
         }
         
         // 播放建筑放置音效
@@ -518,7 +532,7 @@ public class BuildingSelectionPanel : MonoBehaviour
     }
 
     // 检查是否有足够的资源
-    private bool HasEnoughResources(BuildingBase building)
+    private bool HasEnoughResources(PlaceableBase building)
     {
         PlayerConfig playerConfig = PlayerConfig.Instance;
         
@@ -532,10 +546,10 @@ public class BuildingSelectionPanel : MonoBehaviour
                playerConfig.stoneNum >= building.cost_stone &&
                playerConfig.ironNum >= building.cost_iron &&
                playerConfig.copperNum >= building.cost_copper;
-    }
+    }   
     
     // 消耗资源
-    private void ConsumeResources(BuildingBase building)
+    private void ConsumeResources(PlaceableBase building)
     {
         PlayerConfig playerConfig = PlayerConfig.Instance;
         

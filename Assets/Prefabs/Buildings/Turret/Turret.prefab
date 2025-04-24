@@ -351,6 +351,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Barrel_Turret
       objectReference: {fileID: 0}
+    - target: {fileID: 675054691897528969, guid: 1e59e52eca590944bb4ef30d682845ed, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 675054691897528969, guid: 1e59e52eca590944bb4ef30d682845ed, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: 713801321371660513, guid: 1e59e52eca590944bb4ef30d682845ed, type: 3}
       propertyPath: m_Radius
       value: 10

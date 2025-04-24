@@ -241,6 +241,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Barrel_Fire_Gun
       objectReference: {fileID: 0}
+    - target: {fileID: 675054691897528969, guid: b70d9ea42a94daf418773d57f08ab3a1, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 675054691897528969, guid: b70d9ea42a94daf418773d57f08ab3a1, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: 713801321371660513, guid: b70d9ea42a94daf418773d57f08ab3a1, type: 3}
       propertyPath: m_Radius
       value: 10

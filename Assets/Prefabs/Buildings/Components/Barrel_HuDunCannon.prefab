@@ -15,9 +15,9 @@ GameObject:
   - component: {fileID: 596979990973916631}
   - component: {fileID: 4810515901250963532}
   - component: {fileID: 1083596541382213963}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Barrel_HuDunCannon
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

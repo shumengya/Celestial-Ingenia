@@ -24,11 +24,6 @@ public class UnitMovement : MonoBehaviour
         attackRange = GetComponent<AttackRange>();
         // 获取刚体组件
         rb = GetComponent<Rigidbody2D>();
-        
-        // 修改：排除自身所在图层或使用特定图层
-       // obstacleLayerMask = LayerMask.GetMask("Obstacles");
-        // 如果需要检测玩家和敌人，可以单独添加
-        // 避免敌人之间互相阻挡时可不添加Enemy层
     }
 
     void Update()
