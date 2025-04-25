@@ -65,6 +65,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\GUI\GamePlayPanel.cs" />
+    <Compile Include="Assets\Scripts\Buildings\Decorate_Building.cs" />
     <Compile Include="Assets\Scripts\Buildings\BasicGunBarrel.cs" />
     <Compile Include="Assets\Scripts\Buildings\BasicTurret.cs" />
     <Compile Include="Assets\Scripts\Traps\TrapBase.cs" />

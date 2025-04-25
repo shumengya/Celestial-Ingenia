@@ -20,9 +20,24 @@ public class BuildingSelectionPanel : MonoBehaviour
     public Button Turret_ZhugeCrossbow;
     public Button Turret_ThrowStoneCannon;
     public Button Turret_HuDunCannon;
-    public Button SpikeTrap;
-    public Button BombTrap;
-//------------------------按钮注册------------------------------//
+    public Button Turret_DawnBallista;
+    public Button Trap_Spike;
+    public Button Trap_Bomb;
+    public Button Trap_Landmine;
+    public Button Trap_IronSpike;
+    
+    public Button House;
+    public Button House_Big;
+    public Button Statue_Hero;
+    public Button Statue_TwoBladeHero;
+    public Button Statue_Guard;
+    public Button Campfire;
+    public Button Campfire_Pile;
+    public Button Campfire_Pile2;
+    public Button Campfire_Blue;
+    public Button Campfire_Green;
+    public Button Lantern_Small;
+    public Button Lantern;
 
 
 //-------------------------建筑预制体注册----------------------------------//
@@ -41,8 +56,30 @@ public class BuildingSelectionPanel : MonoBehaviour
     public GameObject Turret_ZhugeCrossbowPrefab; // 诸葛弩
     public GameObject Turret_ThrowStoneCannonPrefab; // 投石炮
     public GameObject Turret_HuDunCannonPrefab; // 虎墩炮
-    public GameObject SpikeTrapPrefab; // 尖刺陷阱
-    public GameObject BombTrapPrefab; // 炸弹陷阱
+    public GameObject Turret_DawnBallistaPrefab; // 晨光弩炮
+
+    public GameObject Trap_SpikePrefab; // 尖刺陷阱
+    public GameObject Trap_BombPrefab; // 炸弹陷阱
+    public GameObject Trap_LandminePrefab; // 地雷陷阱
+    public GameObject Trap_IronSpikePrefab; // 铁刺陷阱
+
+
+    public GameObject HousePrefab; // 房屋
+    public GameObject House_BigPrefab; // 大房屋
+
+    public GameObject Statue_HeroPrefab; // 英雄雕像
+    public GameObject Statue_TwoBladeHeroPrefab; // 双刀英雄雕像
+    public GameObject Statue_GuardPrefab; // 卫兵雕像
+
+    public GameObject CampfirePrefab; //篝火
+    public GameObject Campfire_PilePrefab; //篝火堆
+    public GameObject Campfire_Pile2Prefab; //篝火堆2
+    public GameObject Campfire_BluePrefab; //蓝色篝火
+    public GameObject Campfire_GreenPrefab; //绿色篝火
+
+    public GameObject Lantern_SmallPrefab; //小灯笼
+    public GameObject LanternPrefab; //灯笼
+
 //-------------------------建筑预制体注册----------------------------------//
 
     [Header("其他设置")]
@@ -84,10 +121,32 @@ public class BuildingSelectionPanel : MonoBehaviour
         Turret_ZhugeCrossbow.onClick.AddListener(() => OnBuildingButtonClick(Turret_ZhugeCrossbowPrefab));
         Turret_ThrowStoneCannon.onClick.AddListener(() => OnBuildingButtonClick(Turret_ThrowStoneCannonPrefab));
         Turret_HuDunCannon.onClick.AddListener(() => OnBuildingButtonClick(Turret_HuDunCannonPrefab));       
+        Turret_DawnBallista.onClick.AddListener(() => OnBuildingButtonClick(Turret_DawnBallistaPrefab));
 
         //这些是各种陷阱
-        SpikeTrap.onClick.AddListener(() => OnBuildingButtonClick(SpikeTrapPrefab));
-        BombTrap.onClick.AddListener(() => OnBuildingButtonClick(BombTrapPrefab));
+        Trap_Spike.onClick.AddListener(() => OnBuildingButtonClick(Trap_SpikePrefab));
+        Trap_Bomb.onClick.AddListener(() => OnBuildingButtonClick(Trap_BombPrefab));
+        Trap_Landmine.onClick.AddListener(() => OnBuildingButtonClick(Trap_LandminePrefab));
+        Trap_IronSpike.onClick.AddListener(() => OnBuildingButtonClick(Trap_IronSpikePrefab));
+
+        House.onClick.AddListener(() => OnBuildingButtonClick(HousePrefab));
+        House_Big.onClick.AddListener(() => OnBuildingButtonClick(House_BigPrefab));
+
+        Statue_Hero.onClick.AddListener(() => OnBuildingButtonClick(Statue_HeroPrefab));
+        Statue_TwoBladeHero.onClick.AddListener(() => OnBuildingButtonClick(Statue_TwoBladeHeroPrefab));
+        Statue_Guard.onClick.AddListener(() => OnBuildingButtonClick(Statue_GuardPrefab));
+
+        Campfire.onClick.AddListener(() => OnBuildingButtonClick(CampfirePrefab));
+        Campfire_Pile.onClick.AddListener(() => OnBuildingButtonClick(Campfire_PilePrefab));
+        Campfire_Pile2.onClick.AddListener(() => OnBuildingButtonClick(Campfire_Pile2Prefab));
+        Campfire_Blue.onClick.AddListener(() => OnBuildingButtonClick(Campfire_BluePrefab));
+        Campfire_Green.onClick.AddListener(() => OnBuildingButtonClick(Campfire_GreenPrefab));
+
+        Lantern_Small.onClick.AddListener(() => OnBuildingButtonClick(Lantern_SmallPrefab));
+        Lantern.onClick.AddListener(() => OnBuildingButtonClick(LanternPrefab));
+
+        
+        
 //----------------------------------------注册按钮点击事件-------------------------------------------------//
 
         isPlacingBuilding = false;
