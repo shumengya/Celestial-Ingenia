@@ -77,8 +77,8 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: b141fe38e9be28e418a7b9cc4e3ffeb4, type: 3}
+  m_SortingOrder: 3
+  m_Sprite: {fileID: 21300000, guid: 0b81cc6005baf8f439e76a38e1f0ed85, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -121,9 +121,9 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.10144806, y: 0}
   serializedVersion: 2
-  m_Radius: 10
+  m_Radius: 17.287746
 --- !u!114 &1098494550892632959
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -138,7 +138,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyTag: Enemy
   detectedEnemies: []
-  circleCollider: {fileID: 0}
+  circleCollider: {fileID: 713801321371660513}
 --- !u!114 &596979990973916631
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -188,10 +188,14 @@ MonoBehaviour:
   enableRecoil: 0
   recoilDistance: 0.2
   recoilRecoveryTime: 0.1
-  fireRate: 2
-  bulletSpeed: 8
-  arcHeight: 3
-  parabolicBulletPrefab: {fileID: 7471882503357086665, guid: efce0f5c32f9c4046af61a90e8ff3179, type: 3}
-  showTrajectoryPreview: 1
+  fireRate: 6
+  bulletSpeed: 9
+  arcHeight: 8
+  parabolicBulletPrefab: {fileID: 7471882503357086665, guid: 9ad2c138dda84874f800ecbff0bac6c6, type: 3}
+  showTrajectoryPreview: 0
   trajectoryPoints: 10
   trajectoryPointPrefab: {fileID: 0}
+  burstCount: 3
+  burstInterval: 0.5
+  positionOffset: 1.5
+  angleOffset: 20

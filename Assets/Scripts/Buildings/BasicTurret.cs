@@ -5,17 +5,6 @@ public class BasicTurret : BuildingBase
     public float damageAmount = 1f;
     private float oneTimer = 0f;
 
-    protected override void Start()
-    {
-        // 设置铁工厂特有的属性
-        smyName = "大本营";
-        smyType = "建筑";
-        smyDescription = "玩家的核心中的核心";
-        
-        // 调用基类的Start方法
-        base.Start();
-    }
-
     protected override void Update()
     {
         oneTimer += Time.deltaTime;

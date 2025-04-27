@@ -186,7 +186,7 @@ MonoBehaviour:
   canBeClicked: 1
   isUnderConstruction: 1
   constructionTime: 5
-  selectedColor: {r: 1, g: 1, b: 1, a: 1}
+  selectedColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!1001 &4451865733367231882
 PrefabInstance:
   m_ObjectHideFlags: 0

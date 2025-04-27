@@ -1,11 +1,21 @@
 using UnityEngine;
 
-public class BuildingBase : PlaceableBase
+public class BuildingBase : MonoBehaviour
 {
     
 // 健康条相关
     protected HealthBar playerHealthBar;
-
+    // 建筑信息
+    [Header("基础信息")]
+    public string smyName = "建筑";
+    public string smyType = "建筑";
+    public string smyDescription = "基础建筑";
+    public int cost_wood = 0;
+    public int cost_stone = 0;
+    public int cost_iron = 0;
+    public int cost_copper = 0;
+    public bool isOnlyBePlacedOnGround = false; //是否只能放置在特定资源点上面
+    public bool isOnlyBePlacedAdjacent = false; //是否只能放置在特定资源点旁边
 
 
     // 交互状态
@@ -34,12 +44,19 @@ public class BuildingBase : PlaceableBase
 
     // 组件引用
     [Header("组件引用")]
+    protected BuildingIntroPanel buildingIntroPanel;
     protected SpriteRenderer spriteRenderer;
     protected BoxCollider2D boxCollider2D;
 
     protected virtual void Start()
     {
-
+        // 使用标签查找BuildingIntroPanel
+        GameObject panelObj = GameObject.FindWithTag("BuildingIntroPanel");
+        if (panelObj != null)
+        {
+            buildingIntroPanel = panelObj.GetComponent<BuildingIntroPanel>();
+        }
+        
         playerHealthBar = GetComponentInChildren<HealthBar>();
         maxHealth = playerHealthBar.GetMaxHealth();
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -141,6 +158,7 @@ public class BuildingBase : PlaceableBase
         // 检测鼠标点击
         if (Input.GetMouseButtonDown(0) && canBeClicked)
         {
+            
             // 创建射线从相机到鼠标位置
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit2D[] hits = Physics2D.RaycastAll(ray.origin, ray.direction);
@@ -154,6 +172,7 @@ public class BuildingBase : PlaceableBase
                 if (hit.collider != null && hit.collider.gameObject == gameObject && hit.collider is BoxCollider2D)
                 {
                     clickedOnBox = true;
+                    Debug.Log($"检测到点击在建筑 {smyName} 上");
                     HandleClick();
                     break;
                 }
@@ -164,6 +183,8 @@ public class BuildingBase : PlaceableBase
             {
                 isSelected = false;
                 UpdateVisualState();
+                buildingIntroPanel.HidePanel(); // 隐藏面板
+                Debug.Log("点击其他位置，取消当前建筑选中状态");
             }
         }
     }
@@ -217,12 +238,34 @@ public class BuildingBase : PlaceableBase
     {
         if (canBeInteracted)
         {
+            
             // 切换选中状态
             isSelected = !isSelected;
             UpdateVisualState();
             
             // 这里可以添加选中后的操作，比如显示UI、执行特定功能等
             Debug.Log($"建筑 {smyName} 被" + (isSelected ? "选中" : "取消选中"));
+
+            if (isSelected && buildingIntroPanel != null)
+            {
+                Debug.Log("尝试显示面板并设置信息");
+                // 更新面板信息
+                buildingIntroPanel.building_name.text = smyName;
+                buildingIntroPanel.building_type.text = "类型:"+smyType;
+                buildingIntroPanel.building_intro.text = smyDescription;
+                buildingIntroPanel.wood_text.text = "木材:"+cost_wood.ToString();
+                buildingIntroPanel.stone_text.text = "石料:"+cost_stone.ToString();
+                buildingIntroPanel.copper_text.text = "铜矿:"+cost_copper.ToString();
+                buildingIntroPanel.iron_text.text = "铁矿:"+cost_iron.ToString();
+                buildingIntroPanel.built_time.text = "建造时间:"+constructionTime.ToString()+"秒";
+                buildingIntroPanel.building_health.text = "生命值:"+maxHealth.ToString();
+                
+                // 显示面板
+                buildingIntroPanel.ShowPanel();
+            }else{
+                buildingIntroPanel.HidePanel(); // 隐藏面板
+                Debug.Log("隐藏建筑介绍面板");
+            }
         }
     }
     

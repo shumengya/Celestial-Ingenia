@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -83,6 +84,7 @@ public class BuildingSelectionPanel : MonoBehaviour
 //-------------------------建筑预制体注册----------------------------------//
 
     [Header("其他设置")]
+    public Button quitButton;
     public Transform buildingParent;
     public CanvasGroup canvasGroup; 
     public GameObject buildingPlaceEffect; // 建筑放置时的粒子效果
@@ -96,6 +98,7 @@ public class BuildingSelectionPanel : MonoBehaviour
 
     void Start()
     {
+        quitButton.onClick.AddListener(() => OnQuitButtonClick());
         Debug.Log("建筑选择面板：Start方法已调用。");
         // 初始化时隐藏面板（透明度设为0，禁用交互）
         canvasGroup.alpha = 0;
@@ -152,6 +155,11 @@ public class BuildingSelectionPanel : MonoBehaviour
         isPlacingBuilding = false;
         isCollisionDetected = false; // 初始化碰撞标记
         canPlaceOnResourcePoint = true; // 初始化资源点放置条件
+    }
+
+    private void OnQuitButtonClick()
+    {
+       HidePanel();
     }
 
     void OnBuildingButtonClick(GameObject buildingPrefab)
@@ -292,7 +300,7 @@ public class BuildingSelectionPanel : MonoBehaviour
                     }
                     else if (!canPlaceOnResourcePoint)
                     {
-                        PlaceableBase placeableBase = selectedBuildingPrefab.GetComponent<PlaceableBase>();
+                        BuildingBase placeableBase = selectedBuildingPrefab.GetComponent<BuildingBase>();
                         if (placeableBase != null)
                         {
                             if (placeableBase.isOnlyBePlacedOnGround)
@@ -528,7 +536,7 @@ public class BuildingSelectionPanel : MonoBehaviour
         }
         
         // 再次检查资源是否足够（以防玩家在选择建筑和放置之间资源发生变化）
-        PlaceableBase placeableBase = selectedBuildingPrefab.GetComponent<PlaceableBase>();
+        BuildingBase placeableBase = selectedBuildingPrefab.GetComponent<BuildingBase>();
         if (placeableBase != null)
         {
             if (!HasEnoughResources(placeableBase))
@@ -575,7 +583,7 @@ public class BuildingSelectionPanel : MonoBehaviour
         canPlaceOnResourcePoint = true; // 重置资源点放置条件
     }
 
-    // 新增：通过Canvas Group控制显示隐藏
+    //通过Canvas Group控制显示隐藏
     public void ShowPanel()
     {
         canvasGroup.alpha = 1;
@@ -591,7 +599,7 @@ public class BuildingSelectionPanel : MonoBehaviour
     }
 
     // 检查是否有足够的资源
-    private bool HasEnoughResources(PlaceableBase building)
+    private bool HasEnoughResources(BuildingBase building)
     {
         PlayerConfig playerConfig = PlayerConfig.Instance;
         
@@ -608,7 +616,7 @@ public class BuildingSelectionPanel : MonoBehaviour
     }   
     
     // 消耗资源
-    private void ConsumeResources(PlaceableBase building)
+    private void ConsumeResources(BuildingBase building)
     {
         PlayerConfig playerConfig = PlayerConfig.Instance;
         

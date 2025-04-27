@@ -1,53 +1,75 @@
 using UnityEngine;
+using System.Collections;
 
 public class ShotgunAttackMode : AttackModeBase
 {
     [Header("散弹设置")]
-    public int bulletCount = 5; // 每次射击的子弹数量
-    public float spreadAngle = 30f; // 散布角度
-    public float fireRate = 1.5f; // 射击间隔（秒）
+    public int rows = 3;                    // 子弹行数
+    public int columns = 5;                 // 子弹列数
+    public float horizontalSpread = 5f;     // 水平方向上的角度偏移
+    public float verticalSpread = 3f;       // 垂直方向上的角度偏移
+    public float rowDelay = 0.1f;           // 行与行之间的发射延迟
+    public float cooldownTime = 1f;         // 攻击冷却时间
     
-    private float nextFireTime = 0f;
+    private float nextAttackTime = 0f;
+    private bool isAttacking = false;
     
     public override bool CanAttack()
     {
-        return Time.time >= nextFireTime;
+        return !isAttacking && Time.time >= nextAttackTime;
     }
     
     public override void Attack(Vector2 targetPosition)
     {
+        if (!isAttacking)
+        {
+            StartCoroutine(FireShotgunPattern(targetPosition));
+        }
+    }
+    
+    private IEnumerator FireShotgunPattern(Vector2 targetPosition)
+    {
+        isAttacking = true;
+        
         // 计算基础射击方向
         Vector2 baseDirection = GetFiringDirection(targetPosition);
         
-        // 计算每颗子弹之间的角度间隔
-        float angleStep = spreadAngle / (bulletCount - 1);
-        float startAngle = -spreadAngle / 2;
+        // 计算散弹阵列的中心点
+        float centerRow = (rows - 1) / 2f;
+        float centerCol = (columns - 1) / 2f;
         
-        // 发射多个子弹
-        for (int i = 0; i < bulletCount; i++)
+        // 按行依次发射
+        for (int row = 0; row < rows; row++)
         {
-            // 计算当前子弹的角度
-            float currentAngle = startAngle + (angleStep * i);
+            // 发射当前行的所有子弹
+            for (int col = 0; col < columns; col++)
+            {
+                // 计算当前子弹相对于中心的角度偏移
+                float horizontalOffset = (col - centerCol) * horizontalSpread;
+                float verticalOffset = (row - centerRow) * verticalSpread;
+                
+                // 应用角度偏移
+                Quaternion rotation = Quaternion.Euler(0, 0, horizontalOffset + verticalOffset);
+                Vector2 bulletDirection = rotation * baseDirection;
+                
+                // 创建子弹
+                CreateBullet(transform.position, bulletDirection);
+            }
             
-            // 添加基础角度偏差
-            Quaternion spreadRotation = Quaternion.Euler(0, 0, currentAngle);
-            Vector2 bulletDirection = spreadRotation * baseDirection;
-            
-            // 再添加随机角度偏差（使散布更自然）
-            float randomDeviation = Random.Range(-angleDeviation/2, angleDeviation/2);
-            Quaternion randomRotation = Quaternion.Euler(0, 0, randomDeviation);
-            bulletDirection = randomRotation * bulletDirection;
-            
-            // 生成子弹
-            CreateBullet(transform.position, bulletDirection);
+            // 等待指定时间后发射下一行
+            if (row < rows - 1)
+            {
+                yield return new WaitForSeconds(rowDelay);
+            }
         }
         
-        // 设置下次射击时间
-        nextFireTime = Time.time + fireRate;
+        // 设置冷却时间
+        nextAttackTime = Time.time + cooldownTime;
+        isAttacking = false;
     }
     
     public override void UpdateAttackState()
     {
-        // 散弹模式不需要特殊的状态更新
+        // 此模式不需要额外的状态更新，因为使用了协程
     }
 } 

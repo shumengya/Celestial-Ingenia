@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class ParabolicAttackMode : AttackModeBase
 {
@@ -13,9 +14,16 @@ public class ParabolicAttackMode : AttackModeBase
     public int trajectoryPoints = 10;         // 预览点数量
     public GameObject trajectoryPointPrefab;  // 预览点预制体
     
+    [Header("多重发射设置")]
+    public int burstCount = 1;                // 一次射击发射的子弹数量
+    public float burstInterval = 0.1f;        // 连发间隔时间（秒）
+    public float positionOffset = 0.2f;       // 每颗子弹位置偏移量
+    public float angleOffset = 5f;            // 每颗子弹角度偏移量
+    
     private float nextFireTime = 0f;
     private LineRenderer trajectoryLine;      // 预览线渲染器
     private MortarWeapon mortarWeapon;        // 迫击炮武器组件引用
+    private bool isFiring = false;            // 是否正在连发中
     
     private void Awake()
     {
@@ -46,21 +54,59 @@ public class ParabolicAttackMode : AttackModeBase
     
     public override bool CanAttack()
     {
-        return Time.time >= nextFireTime;
+        return Time.time >= nextFireTime && !isFiring;
     }
     
     public override void Attack(Vector2 targetPosition)
     {
+        // 设置下次射击时间
+        nextFireTime = Time.time + fireRate;
+        
+        // 开始连发协程
+        StartCoroutine(FireBurst(targetPosition));
+    }
+    
+    // 连发射击协程
+    private IEnumerator FireBurst(Vector2 targetPosition)
+    {
+        isFiring = true;
+        
+        for (int i = 0; i < burstCount; i++)
+        {
+            // 计算当前子弹的目标位置（添加偏移）
+            Vector2 offsetDirection = (targetPosition - (Vector2)transform.position).normalized;
+            Vector2 perpendicularDirection = new Vector2(-offsetDirection.y, offsetDirection.x);
+            
+            // 交替左右偏移
+            float currentPosOffset = positionOffset * ((i % 2 == 0) ? 1 : -1) * (i / 2 + 0.5f);
+            Vector2 offsetTargetPos = targetPosition + perpendicularDirection * currentPosOffset;
+            
+            // 添加角度偏移
+            float currentAngleOffset = angleOffset * ((i % 2 == 0) ? 1 : -1) * (i / 2 + 0.5f);
+            
+            // 发射单颗子弹
+            FireSingleProjectile(offsetTargetPos, currentAngleOffset);
+            
+            // 等待指定间隔时间
+            if (i < burstCount - 1)
+            {
+                yield return new WaitForSeconds(burstInterval);
+            }
+        }
+        
+        isFiring = false;
+    }
+    
+    // 发射单颗子弹
+    private void FireSingleProjectile(Vector2 targetPosition, float additionalAngle)
+    {
         // 计算发射方向
         Vector2 direction = GetFiringDirection(targetPosition);
         
-        // 添加随机角度偏差
-        float randomDeviation = Random.Range(-angleDeviation, angleDeviation);
-        Quaternion rotation = Quaternion.Euler(0, 0, randomDeviation);
+        // 添加随机角度偏差和指定的额外偏移
+        float totalDeviation = Random.Range(-angleDeviation, angleDeviation) + additionalAngle;
+        Quaternion rotation = Quaternion.Euler(0, 0, totalDeviation);
         direction = rotation * direction;
-        
-        // 调整目标位置，考虑角度偏差
-        Vector2 adjustedTarget = targetPosition;
         
         // 播放迫击炮发射效果
         if (mortarWeapon != null)
@@ -77,10 +123,10 @@ public class ParabolicAttackMode : AttackModeBase
             // 初始化抛物线子弹
             if (bullet.TryGetComponent(out ParabolicBullet parabolicBullet))
             {
-                parabolicBullet.team = 0;
+                parabolicBullet.team = 0; // 确保设置为玩家队伍(0)
                 parabolicBullet.speed = bulletSpeed;
                 parabolicBullet.initialHeight = arcHeight;
-                parabolicBullet.Initialize(adjustedTarget, bulletSpeed);
+                parabolicBullet.Initialize(targetPosition, bulletSpeed);
             }
             else
             {
@@ -97,14 +143,12 @@ public class ParabolicAttackMode : AttackModeBase
             ParabolicBullet parabolicBullet = bullet.AddComponent<ParabolicBullet>();
             if (parabolicBullet != null)
             {
+                parabolicBullet.team = 0; // 确保设置为玩家队伍(0)
                 parabolicBullet.speed = bulletSpeed;
                 parabolicBullet.initialHeight = arcHeight;
-                parabolicBullet.Initialize(adjustedTarget, bulletSpeed);
+                parabolicBullet.Initialize(targetPosition, bulletSpeed);
             }
         }
-        
-        // 设置下次射击时间
-        nextFireTime = Time.time + fireRate;
     }
     
     public override void UpdateAttackState()

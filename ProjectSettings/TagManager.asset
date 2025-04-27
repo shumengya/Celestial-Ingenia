@@ -10,6 +10,7 @@ TagManager:
   - UICycler
   - Default
   - PlayerBullets
+  - BuildingIntroPanel
   layers:
   - Default
   - TransparentFX

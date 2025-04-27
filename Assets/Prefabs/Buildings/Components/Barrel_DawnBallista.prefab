@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1098494550892632959}
   - component: {fileID: 596979990973916631}
   - component: {fileID: 7838835567499860996}
-  - component: {fileID: 3963192822597698592}
+  - component: {fileID: 6180470056727812941}
   m_Layer: 6
   m_Name: Barrel_DawnBallista
   m_TagString: Player
@@ -77,7 +77,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 3
   m_Sprite: {fileID: 21300000, guid: 4db1fbb4abcb87642badef4efc0d599c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -154,7 +154,7 @@ MonoBehaviour:
   bulletPrefab: {fileID: 7471882503357086665, guid: ffdfc0e7e75b79b438b493c272ebc45c, type: 3}
   BulletsParent: {fileID: 0}
   attackRange: {fileID: 1098494550892632959}
-  attackMode: {fileID: 3963192822597698592}
+  attackMode: {fileID: 6180470056727812941}
 --- !u!114 &7838835567499860996
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -170,7 +170,7 @@ MonoBehaviour:
   attackRange: {fileID: 1098494550892632959}
   rotateWhenNoEnemy: 0
   rotationSpeed: 100
---- !u!114 &3963192822597698592
+--- !u!114 &6180470056727812941
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -179,14 +179,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 675054691897528969}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b174fbb0b4e295249a182913b81c0003, type: 3}
+  m_Script: {fileID: 11500000, guid: 03bc3316295f41f428887318d0ec2fa8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   angleDeviation: 0
   enableRecoil: 1
   recoilDistance: 0.2
   recoilRecoveryTime: 0.1
-  rocketCount: 12
-  rocketDelay: 0.2
-  salvoInterval: 3
-  areaRadius: 2
+  rows: 2
+  columns: 5
+  horizontalSpread: 7
+  verticalSpread: 7
+  rowDelay: 0.2
+  cooldownTime: 3

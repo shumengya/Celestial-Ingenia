@@ -232,23 +232,36 @@ public class MortarProjectile : ParabolicBullet
                 Debug.Log($"碰撞体: {hit.gameObject.name}，层级: {LayerMask.LayerToName(hit.gameObject.layer)}，标签: {hit.tag}");
             }
             
+            // 检查队伍标签，避免伤害友方单位
+            int hitTeam = -1;
+            if (hit.CompareTag("Player") || hit.gameObject.layer == LayerMask.NameToLayer("Player"))
+            {
+                hitTeam = 0; // 玩家队伍
+            }
+            else if (hit.CompareTag("Enemy") || hit.gameObject.layer == LayerMask.NameToLayer("Enemy"))
+            {
+                hitTeam = 1; // 敌人队伍
+            }
+            
+            // 如果是友方单位，跳过伤害计算
+            if (hitTeam == team)
+            {
+                if (showDebugInfo || globalDebug) Debug.Log($"跳过友方单位: {hit.gameObject.name}");
+                continue;
+            }
+            
             // 尝试多种方式获取健康值组件
             HealthBar healthBar = FindHealthBarInObject(hit.gameObject);
             
             // 对范围内的目标造成伤害
             if (healthBar != null)
             {
-                // 根据距离计算伤害衰减
-                float distance = Vector2.Distance(transform.position, hit.transform.position);
-                float damagePercent = 1 - (distance / explosionRadius);
-                damagePercent = Mathf.Clamp01(damagePercent); // 确保百分比在0-1之间
-                int actualDamage = Mathf.Max(1, Mathf.RoundToInt(explosionDamage * damagePercent)); // 至少造成1点伤害
-                
+                int actualDamage = explosionDamage; 
+
                 if (showDebugInfo || globalDebug) 
                 {
-                    Debug.Log($"对 {hit.gameObject.name} 造成 {actualDamage} 点伤害（距离: {distance}，衰减: {damagePercent}）");
+                    Debug.Log($"对 {hit.gameObject.name} 造成 {actualDamage} 点伤害");
                 }
-                
                 // 应用伤害
                 healthBar.TakeDamage(actualDamage);
                 causedAnyDamage = true;
@@ -257,7 +270,7 @@ public class MortarProjectile : ParabolicBullet
             {
                 // 尝试查找更通用的伤害接口或组件
                 var damageable = hit.GetComponent<IDamageable>();
-                if (damageable != null)
+                if (damageable != null && hitTeam != team)
                 {
                     int actualDamage = explosionDamage;
                     if (showDebugInfo || globalDebug) Debug.Log($"通过接口对 {hit.gameObject.name} 造成伤害: {actualDamage}");
@@ -278,13 +291,16 @@ public class MortarProjectile : ParabolicBullet
                 }
             }
             
-            // 应用爆炸力
-            Rigidbody2D rb = hit.attachedRigidbody;
-            if (rb != null)
+            // 应用爆炸力 - 只对敌方应用爆炸力
+            if (hitTeam != team)
             {
-                Vector2 direction = (hit.transform.position - transform.position).normalized;
-                rb.AddForce(direction * explosionForce);
-                if (showDebugInfo || globalDebug) Debug.Log($"对 {hit.gameObject.name} 施加爆炸力: {explosionForce}");
+                Rigidbody2D rb = hit.attachedRigidbody;
+                if (rb != null)
+                {
+                    Vector2 direction = (hit.transform.position - transform.position).normalized;
+                    rb.AddForce(direction * explosionForce);
+                    if (showDebugInfo || globalDebug) Debug.Log($"对 {hit.gameObject.name} 施加爆炸力: {explosionForce}");
+                }
             }
         }
         
@@ -300,18 +316,6 @@ public class MortarProjectile : ParabolicBullet
             {
                 float distance = Vector2.Distance(transform.position, enemy.transform.position);
                 Debug.Log($"Enemy: {enemy.name}，距离: {distance}，层级: {LayerMask.LayerToName(enemy.layer)}");
-                
-                // 如果敌人在爆炸范围内但没有受到伤害，尝试直接造成伤害
-                if (distance <= explosionRadius * 1.5f)
-                {
-                    HealthBar healthBar = FindHealthBarInObject(enemy);
-                    if (healthBar != null)
-                    {
-                        int actualDamage = Mathf.Max(1, explosionDamage / 2); // 造成一半伤害作为回退方案
-                        Debug.Log($"紧急回退方案: 对 {enemy.name} 直接造成 {actualDamage} 点伤害");
-                        healthBar.TakeDamage(actualDamage);
-                    }
-                }
             }
         }
         

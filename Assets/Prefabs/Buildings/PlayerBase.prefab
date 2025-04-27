@@ -61,8 +61,8 @@ MonoBehaviour:
   m_NormalMapDistance: 3
   m_NormalMapQuality: 2
   m_UseNormalMap: 0
-  m_ShadowIntensityEnabled: 0
-  m_ShadowIntensity: 0.75
+  m_ShadowIntensityEnabled: 1
+  m_ShadowIntensity: 0.3
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
@@ -491,7 +491,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 632631779588214657, guid: c08dc2bae669408458273fbfc2be9eac, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1066423341460419227, guid: c08dc2bae669408458273fbfc2be9eac, type: 3}
       propertyPath: m_Text
@@ -564,6 +564,10 @@ PrefabInstance:
     - target: {fileID: 5230019283439312350, guid: c08dc2bae669408458273fbfc2be9eac, type: 3}
       propertyPath: m_Layer
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5230019283439312350, guid: c08dc2bae669408458273fbfc2be9eac, type: 3}
+      propertyPath: m_TagString
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 5532505969791518219, guid: c08dc2bae669408458273fbfc2be9eac, type: 3}
       propertyPath: m_Layer
