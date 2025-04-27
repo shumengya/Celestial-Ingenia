@@ -173,9 +173,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfcee868936ef1a40854923099228a30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  smyName: "\u5EFA\u7B51"
+  smyName: "\u706F\u7B3C"
   smyType: "\u5EFA\u7B51"
-  smyDescription: "\u57FA\u7840\u5EFA\u7B51"
+  smyDescription: "\u7167\u660E\\nzafaewsfafa"
   cost_wood: 0
   cost_stone: 0
   cost_iron: 0
