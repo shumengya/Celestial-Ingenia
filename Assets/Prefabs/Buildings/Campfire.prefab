@@ -176,7 +176,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   smyName: "\u5EFA\u7B51"
   smyType: "\u5EFA\u7B51"
-  smyDescription: "\u57FA\u7840\u5EFA\u7B51"
+  smyDescription: "\u5C71\u9876\u6D1E\u4EBA\u65E9\u5728\u4E09\u4E07\u5E74\u524D\u53EF\u80FD\u901A\u8FC7\u71E7\u77F3\u649E\u51FB\uFF0C\u914D\u5408\u8D64\u94C1\u77FF\u7C89\uFF0C\u5B9E\u73B0\u4E3B\u52A8\u751F\u706B\u3002"
   cost_wood: 0
   cost_stone: 0
   cost_iron: 0
