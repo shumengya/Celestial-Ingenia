@@ -177,7 +177,7 @@ MonoBehaviour:
   minimumAttackRange: 10
   attackRange: 25
   showTrajectoryPreview: 1
-  trajectoryLineColor: {r: 0, g: 1, b: 0, a: 1}
+  trajectoryLineColor: {r: 0, g: 1, b: 0, a: 0.2784314}
   trajectoryPoints: 10
   trajectoryPointPrefab: {fileID: 8649704230116424086, guid: 320777568d59d184295d5fcb4a522ff0, type: 3}
   burstCount: 1

@@ -204,5 +204,9 @@ MonoBehaviour:
   showAttackAreaPreview: 1
   previewColor: {r: 0, g: 1, b: 0.11642933, a: 0.019607844}
   areaTargetPrefab: {fileID: 0}
+  showTrajectoryPreview: 1
+  trajectoryLineColor: {r: 0, g: 1, b: 0, a: 0.16470589}
+  trajectoryPoints: 10
+  trajectoryPointPrefab: {fileID: 8649704230116424086, guid: 320777568d59d184295d5fcb4a522ff0, type: 3}
   firingEffect: {fileID: 0}
   firingSound: {fileID: 0}

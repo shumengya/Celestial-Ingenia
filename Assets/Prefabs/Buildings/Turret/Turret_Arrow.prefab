@@ -173,7 +173,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffdb519560eb2f247a6ce4f387cc5ab0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  smyName: "\u5F29\u5854"
+  smyName: "\u4E09\u5F13\u5E8A\u5F29"
   smyType: "\u5EFA\u7B51"
   smyDescription: "\u53D1\u5C04\u4F1A\u7A7F\u900F\u7684\u5F29\u7BAD"
   cost_wood: 20

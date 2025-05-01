@@ -12,7 +12,7 @@ public class ParabolicAttackMode : AttackModeBase
     
     [Header("瞄准预览")]
     public bool showTrajectoryPreview = true; // 是否显示弹道预览
-    public Color trajectoryLineColor = Color.green;
+    public Color trajectoryLineColor = new Color(0, 1, 0, 0.2f);
     public int trajectoryPoints = 10;         // 预览点数量
     public GameObject trajectoryPointPrefab;  // 落点预览预制体
     

@@ -27,6 +27,12 @@ public class ArrowBarrageAttackMode : AttackModeBase
     public Color previewColor = new Color(1f, 0.5f, 0, 0.3f); // 预览颜色（橙色半透明）
     public GameObject areaTargetPrefab;        // 区域目标指示器预制体
     
+    [Header("弹道预览")]
+    public bool showTrajectoryPreview = true;  // 是否显示弹道预览
+    public Color trajectoryLineColor = new Color(0, 1, 0, 0.2f);
+    public int trajectoryPoints = 10;          // 预览点数量
+    public GameObject trajectoryPointPrefab;   // 落点预览预制体
+    
     [Header("视觉效果")]
     public GameObject firingEffect;            // 发射效果
     public AudioClip firingSound;              // 发射声音
@@ -36,6 +42,17 @@ public class ArrowBarrageAttackMode : AttackModeBase
     private Vector2 nextTargetPosition;
     private bool hasValidTarget = false;
     private GameObject areaMarker;              // 区域标记
+    private LineRenderer trajectoryLine;        // 预览线渲染器
+    private GameObject landingPointMarker;      // 落点标记实例
+    
+    private void Awake()
+    {
+        // 初始化弹道预览
+        if (showTrajectoryPreview)
+        {
+            InitializeTrajectoryPreview();
+        }
+    }
     
     public override void Initialize(RemoteAttack attack, Transform bulletsParentTransform)
     {
@@ -67,12 +84,35 @@ public class ArrowBarrageAttackMode : AttackModeBase
         }
     }
     
+    // 初始化弹道预览
+    private void InitializeTrajectoryPreview()
+    {
+        // 创建轨迹线渲染器
+        GameObject trajectoryLineObj = new GameObject("TrajectoryLine");
+        trajectoryLineObj.transform.SetParent(transform);
+        trajectoryLine = trajectoryLineObj.AddComponent<LineRenderer>();
+        trajectoryLine.startWidth = 0.05f;
+        trajectoryLine.endWidth = 0.05f;
+        trajectoryLine.positionCount = trajectoryPoints;
+        trajectoryLine.material = new Material(Shader.Find("Sprites/Default"));
+        trajectoryLine.startColor = trajectoryLineColor;
+        trajectoryLine.endColor = trajectoryLineColor;
+        trajectoryLine.enabled = false; // 初始时不显示
+    }
+    
     private void OnDestroy()
     {
         // 清理区域标记
         if (areaMarker != null)
         {
             Destroy(areaMarker);
+        }
+        
+        // 清理落点标记
+        if (landingPointMarker != null)
+        {
+            Destroy(landingPointMarker);
+            landingPointMarker = null;
         }
     }
     
@@ -140,6 +180,12 @@ public class ArrowBarrageAttackMode : AttackModeBase
             UpdateAreaPreview(targetPosition);
         }
         
+        // 更新轨迹预览
+        if (showTrajectoryPreview)
+        {
+            UpdateTrajectoryPreview(targetPosition);
+        }
+        
         // 开始箭雨协程
         StartCoroutine(FireArrowBarrage(targetPosition));
     }
@@ -168,6 +214,84 @@ public class ArrowBarrageAttackMode : AttackModeBase
         
         // 更新位置
         areaMarker.transform.position = targetPos;
+    }
+    
+    // 更新弹道预览
+    public void UpdateTrajectoryPreview(Vector2 targetPos)
+    {
+        // 计算开始和结束点
+        Vector2 startPos = transform.position;
+        Vector2 endPos = targetPos;
+        float distance = Vector2.Distance(startPos, endPos);
+        
+        // 更新落点标记
+        UpdateLandingPointMarker(endPos);
+        
+        // 确保轨迹线可见
+        if (trajectoryLine != null)
+        {
+            trajectoryLine.enabled = true;
+            
+            // 设置预览点
+            for (int i = 0; i < trajectoryPoints; i++)
+            {
+                // 计算水平插值进度
+                float progress = (float)i / (trajectoryPoints - 1);
+                
+                // 水平位置
+                Vector2 horizontalPos = Vector2.Lerp(startPos, endPos, progress);
+                
+                // 高度遵循抛物线：使用正弦函数模拟抛物线
+                float height = arcHeight * Mathf.Sin(progress * Mathf.PI);
+                
+                // 设置点位置
+                Vector3 pointPos = new Vector3(horizontalPos.x, horizontalPos.y, 0) + new Vector3(0, height, 0);
+                trajectoryLine.SetPosition(i, pointPos);
+            }
+        }
+    }
+    
+    // 更新落点标记
+    private void UpdateLandingPointMarker(Vector2 landingPosition)
+    {
+        // 如果预制体不存在，不创建标记
+        if (trajectoryPointPrefab == null)
+        {
+            return;
+        }
+        
+        // 如果落点标记不存在，创建一个
+        if (landingPointMarker == null)
+        {
+            landingPointMarker = Instantiate(trajectoryPointPrefab, landingPosition, Quaternion.identity);
+            
+            // 如果预制体有动画，不要摧毁它（让它循环播放）
+            Animator animator = landingPointMarker.GetComponent<Animator>();
+            if (animator != null)
+            {
+                animator.enabled = true;
+            }
+        }
+        else
+        {
+            // 直接更新落点标记的位置
+            landingPointMarker.transform.position = landingPosition;
+            landingPointMarker.SetActive(true);
+        }
+    }
+    
+    // 隐藏轨迹预览
+    private void HideTrajectoryPreview()
+    {
+        if (trajectoryLine != null)
+        {
+            trajectoryLine.enabled = false;
+        }
+        
+        if (landingPointMarker != null)
+        {
+            landingPointMarker.SetActive(false);
+        }
     }
     
     // 发射箭雨协程
@@ -342,6 +466,31 @@ public class ArrowBarrageAttackMode : AttackModeBase
         if (areaMarker != null)
         {
             areaMarker.SetActive(hasValidTarget);
+        }
+        
+        // 更新预览显示
+        if (showTrajectoryPreview)
+        {
+            // 检查是否有有效目标
+            bool shouldShowTrajectory = hasValidTarget;
+            
+            // 更新轨迹线可见性
+            if (trajectoryLine != null)
+            {
+                trajectoryLine.enabled = shouldShowTrajectory;
+            }
+            
+            // 更新落点标记可见性
+            if (landingPointMarker != null)
+            {
+                landingPointMarker.SetActive(shouldShowTrajectory);
+            }
+            
+            // 如果没有有效目标但仍然显示轨迹，隐藏预览
+            if (!shouldShowTrajectory)
+            {
+                HideTrajectoryPreview();
+            }
         }
     }
     

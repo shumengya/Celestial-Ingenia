@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 5327257488885478971}
   - component: {fileID: 3887739220172174841}
   - component: {fileID: 1319321972359264955}
-  - component: {fileID: 940067079213875644}
   m_Layer: 6
   m_Name: Statue_TwoBladeHero
   m_TagString: Player
@@ -173,7 +172,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfcee868936ef1a40854923099228a30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  smyName: "\u5EFA\u7B51"
+  smyName: "\u53CC\u5203\u82F1\u96C4\u96D5\u50CF"
   smyType: "\u5EFA\u7B51"
   smyDescription: "\u57FA\u7840\u5EFA\u7B51"
   cost_wood: 0
@@ -188,36 +187,6 @@ MonoBehaviour:
   isUnderConstruction: 1
   constructionTime: 5
   selectedColor: {r: 1, g: 0, b: 0, a: 1}
---- !u!114 &940067079213875644
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9068081681723721744}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7db70e0ea77f5ac47a8f4565a9406397, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_ShadowGroup: 0
-  m_ComponentVersion: 1
-  m_HasRenderer: 1
-  m_UseRendererSilhouette: 1
-  m_CastsShadows: 1
-  m_SelfShadows: 0
-  m_ApplyToSortingLayers: 00000000
-  m_ShapePath:
-  - {x: -7.6800003, y: -7.6800003, z: 0}
-  - {x: -7.6800003, y: 7.6800003, z: 0}
-  - {x: 7.6800003, y: 7.6800003, z: 0}
-  - {x: 0, y: 0, z: 0}
-  m_ShapePathHash: -1191532827
-  m_Mesh: {fileID: 0}
-  m_InstanceId: 124906
-  m_LocalBounds:
-    m_Center: {x: 0, y: 0, z: 0}
-    m_Extent: {x: 7.6800003, y: 7.6800003, z: 0}
 --- !u!1001 &4451865733367231882
 PrefabInstance:
   m_ObjectHideFlags: 0
