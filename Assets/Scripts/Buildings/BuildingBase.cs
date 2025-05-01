@@ -95,13 +95,6 @@ public class BuildingBase : MonoBehaviour
                     renderer.color = startColor;
                 }
             }
-            
-            // 设置生命值为正常血量的一半
-            if (playerHealthBar != null)
-            {
-                playerHealthBar.SetMaxHealth(maxHealth);
-                playerHealthBar.SetHealth(maxHealth * 0.5f);
-            }
         }
         else
         {
@@ -300,7 +293,7 @@ public class BuildingBase : MonoBehaviour
     }
     
     
-    // 公开方法：外部代码可调用来选择或取消选择
+//--------------------------------公开方法：外部代码可调用来选择或取消选择--------------------------------
     public virtual void SetSelected(bool selected)
     {
         if (!isUnderConstruction)

@@ -13,10 +13,10 @@ GameObject:
   - component: {fileID: 713801321371660513}
   - component: {fileID: 1098494550892632959}
   - component: {fileID: 596979990973916631}
-  - component: {fileID: 1083596541382213963}
-  - component: {fileID: 5155825778613330197}
+  - component: {fileID: 6279293001805376431}
+  - component: {fileID: 2641131572171102420}
   m_Layer: 6
-  m_Name: Barrel_ThrowStoneCannon
+  m_Name: Barrel_ArrowBarrage
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -78,7 +78,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 3
-  m_Sprite: {fileID: 21300000, guid: 45c4350e4e3761149a86c4991b295ff4, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4d3a4744b4be0ef4dbf331cad568b585, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -121,9 +121,9 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.10144806, y: 0}
+  m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.0001
+  m_Radius: 10
 --- !u!114 &1098494550892632959
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -151,42 +151,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ba33c53f23f9904f8669cb287a32756, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 7471882503357086665, guid: 6e1a069193f04b3468cf716379e8c2a0, type: 3}
+  bulletPrefab: {fileID: 7471882503357086665, guid: fcdde5834f68e214eb8b39ec38d1d19b, type: 3}
   BulletsParent: {fileID: 0}
   attackRange: {fileID: 1098494550892632959}
-  attackMode: {fileID: 1083596541382213963}
---- !u!114 &1083596541382213963
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 675054691897528969}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4953f4ca33bfbd547bb5e50cad8f1128, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  angleDeviation: 0
-  enableRecoil: 0
-  recoilDistance: 0
-  recoilRecoveryTime: 0
-  fireRate: 2
-  arcHeight: 6
-  parabolicBulletPrefab: {fileID: 7471882503357086665, guid: 9ad2c138dda84874f800ecbff0bac6c6, type: 3}
-  minimumAttackRange: 10
-  attackRange: 25
-  showTrajectoryPreview: 1
-  trajectoryLineColor: {r: 0, g: 1, b: 0, a: 1}
-  trajectoryPoints: 10
-  trajectoryPointPrefab: {fileID: 8649704230116424086, guid: 320777568d59d184295d5fcb4a522ff0, type: 3}
-  burstCount: 3
-  burstInterval: 0.25
-  positionOffset: 0
-  angleOffset: 0
-  firingEffect: {fileID: 0}
-  firingSound: {fileID: 0}
---- !u!114 &5155825778613330197
+  attackMode: {fileID: 2641131572171102420}
+--- !u!114 &6279293001805376431
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -201,5 +170,39 @@ MonoBehaviour:
   maxRotationAngle: 30
   rotationSpeed: 3
   invertRotation: 0
-  attackRange: {fileID: 0}
-  remoteAttack: {fileID: 0}
+  attackRange: {fileID: 1098494550892632959}
+  remoteAttack: {fileID: 596979990973916631}
+--- !u!114 &2641131572171102420
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 675054691897528969}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75c9ea2bf3cb4d24c9f097731e5a3e49, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  angleDeviation: 0
+  enableRecoil: 0
+  recoilDistance: 0.2
+  recoilRecoveryTime: 0.1
+  fireRate: 4
+  arrowPrefab: {fileID: 7471882503357086665, guid: fcdde5834f68e214eb8b39ec38d1d19b, type: 3}
+  arcHeight: 5
+  minimumAttackRange: 10
+  attackRange: 30
+  arrowCount: 30
+  spreadRadius: 3
+  delayBetweenArrows: 0.02
+  randomizeArrowPositions: 1
+  baseShootingAngle: 45
+  angleVariation: 15
+  useArcFormation: 0
+  arcRows: 5
+  showAttackAreaPreview: 1
+  previewColor: {r: 0, g: 1, b: 0.11642933, a: 0.019607844}
+  areaTargetPrefab: {fileID: 0}
+  firingEffect: {fileID: 0}
+  firingSound: {fileID: 0}

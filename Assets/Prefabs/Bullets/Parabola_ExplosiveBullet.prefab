@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3013096227387586824}
   - component: {fileID: 5755201563474532153}
   m_Layer: 7
-  m_Name: ExplosiveBullet
+  m_Name: Parabola_ExplosiveBullet
   m_TagString: PlayerBullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -66,7 +66,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.018306106, y: 0.0030264258}
+  m_Offset: {x: -0.018699378, y: 0.0030264258}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -77,7 +77,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.5712593, y: 0.52362204}
+  m_Size: {x: 0.53207713, y: 0.52362204}
   m_EdgeRadius: 0
 --- !u!212 &3013096227387586824
 SpriteRenderer:
@@ -120,7 +120,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 3
-  m_Sprite: {fileID: 21300000, guid: 7fbc79d255a352d4090ebb79c5165c41, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 9f4bd9f845a1f4d46886e49fda8dec65, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -143,20 +143,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e342b29b78e8ca04db48681181dfc5a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
+  speed: 0
   damage: 20
   useLifetimeLimit: 0
   useDistanceLimit: 0
-  maxLifetime: 5
-  maxDistance: 20
+  maxLifetime: 0
+  maxDistance: 0
   team: 0
   impactEffect: {fileID: 0}
   gravity: 9.8
-  initialHeight: 2
+  initialHeight: 4
+  bulletSpeed: 5
   flyingLayer: Projectile
   landingLayer: PlayerBullet
   landingThreshold: 0.9
-  explosionRadius: 1
+  mortarSpeed: 5
+  explosionRadius: 0.6
   explosionDamage: 15
   explosionEffect: {fileID: 6409037004282420950, guid: d815dc47122eb60449b1b662c45f37c5, type: 3}
   explosionLayerMask:
@@ -166,5 +168,6 @@ MonoBehaviour:
   explosionSound: {fileID: 0}
   useLayerBasedCollision: 1
   useTrailEffect: 1
-  trailEffectPrefab: {fileID: 0}
+  trailEffectPrefab: {fileID: 2429332889633967961, guid: af722615532cff84dbcd48b09eda99c7, type: 3}
+  detachTrailFromProjectile: 0
   showDebugInfo: 1
