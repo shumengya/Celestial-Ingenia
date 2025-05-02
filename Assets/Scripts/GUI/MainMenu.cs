@@ -8,17 +8,21 @@ public class MainMenu : MonoBehaviour
 {
     public Button startGameBtn;
     public Button gamePlayIntroBtn;
+    public Button gameUpdateBtn;
+    public Button gameSettingBtn;
     public Button exitGamebtn;
     public SceneTransition transitionPrefab; // 在 Inspector 中绑定预制体
     public GamePlayIntroPanel gamePlayIntroPanel;
+    public GameSettingPanel gameSettingPanel;
+    
     void Start()
     {
-
-        // 为开始游戏按钮添加点击事件
         startGameBtn.onClick.AddListener(StartGame);
         gamePlayIntroBtn.onClick.AddListener(ShowGamePlayIntro);
-        // 为退出游戏按钮添加点击事件
+        gameUpdateBtn.onClick.AddListener(UpdateGame);
+        gameSettingBtn.onClick.AddListener(SettingGame);
         exitGamebtn.onClick.AddListener(ExitGame);
+        gameSettingPanel.HidePanel();
     }
 
     // 开始游戏的方法
@@ -46,5 +50,15 @@ public class MainMenu : MonoBehaviour
     void ShowGamePlayIntro()
     {
         gamePlayIntroPanel.ShowPanel();
+    }
+
+    void UpdateGame()
+    {
+        Debug.Log("游戏更新！");
+    }
+
+    void SettingGame()
+    {
+        gameSettingPanel.ShowPanel();
     }
 }    

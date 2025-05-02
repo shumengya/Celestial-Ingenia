@@ -7,7 +7,7 @@ public class PlayerConfig : MonoBehaviour
     // 单例实例
     public static PlayerConfig Instance;
 
-    public string playerName = "";
+    public string playerName = "树萌芽";
     public int woodNum = 9999;
     public int stoneNum = 9999;
     public int ironNum = 9999;
