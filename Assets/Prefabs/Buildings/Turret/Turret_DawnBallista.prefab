@@ -173,7 +173,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffdb519560eb2f247a6ce4f387cc5ab0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  smyName: "\u591A\u91CD\u7BAD\u5854"
+  smyName: "\u5E8A\u5F29"
   smyType: "\u5EFA\u7B51"
   smyDescription: "\u53D1\u5C04\u591A\u652F\u7BAD,\u50CF\u6F2B\u5929\u661F\u706B\u4E00\u6837"
   cost_wood: 25
@@ -301,11 +301,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 289423046224184916, guid: 6a4769a1e938a5f438de8d54022dec4d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -0.051
       objectReference: {fileID: 0}
     - target: {fileID: 289423046224184916, guid: 6a4769a1e938a5f438de8d54022dec4d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.05
+      value: 0.093
       objectReference: {fileID: 0}
     - target: {fileID: 289423046224184916, guid: 6a4769a1e938a5f438de8d54022dec4d, type: 3}
       propertyPath: m_LocalPosition.z

@@ -22,10 +22,13 @@ public class BuildingSelectionPanel : MonoBehaviour
     public Button Turret_ThrowStoneCannon;
     public Button Turret_HuDunCannon;
     public Button Turret_DawnBallista;
+    public Button Turret_ArrowBarrageTower;
+
     public Button Trap_Spike;
     public Button Trap_Bomb;
     public Button Trap_Landmine;
     public Button Trap_IronSpike;
+
     
     public Button House;
     public Button House_Big;
@@ -40,6 +43,9 @@ public class BuildingSelectionPanel : MonoBehaviour
     public Button Lantern_Small;
     public Button Lantern;
 
+    public Button compass;
+    public Button beaconTower;
+    public Button sundial;
 
 //-------------------------建筑预制体注册----------------------------------//
     [Header("建筑预制体")]
@@ -58,6 +64,7 @@ public class BuildingSelectionPanel : MonoBehaviour
     public GameObject Turret_ThrowStoneCannonPrefab; // 投石炮
     public GameObject Turret_HuDunCannonPrefab; // 虎墩炮
     public GameObject Turret_DawnBallistaPrefab; // 晨光弩炮
+    public GameObject Turret_ArrowBarrageTowerPrefab; // 万箭齐发塔
 
     public GameObject Trap_SpikePrefab; // 尖刺陷阱
     public GameObject Trap_BombPrefab; // 炸弹陷阱
@@ -80,6 +87,10 @@ public class BuildingSelectionPanel : MonoBehaviour
 
     public GameObject Lantern_SmallPrefab; //小灯笼
     public GameObject LanternPrefab; //灯笼
+
+    public GameObject compassPrefab; //罗盘
+    public GameObject beaconTowerPrefab; //烽火台
+    public GameObject sundialPrefab; //日晷
 
 //-------------------------建筑预制体注册----------------------------------//
 
@@ -125,6 +136,8 @@ public class BuildingSelectionPanel : MonoBehaviour
         Turret_ThrowStoneCannon.onClick.AddListener(() => OnBuildingButtonClick(Turret_ThrowStoneCannonPrefab));
         Turret_HuDunCannon.onClick.AddListener(() => OnBuildingButtonClick(Turret_HuDunCannonPrefab));       
         Turret_DawnBallista.onClick.AddListener(() => OnBuildingButtonClick(Turret_DawnBallistaPrefab));
+        Turret_ArrowBarrageTower.onClick.AddListener(() => OnBuildingButtonClick(Turret_ArrowBarrageTowerPrefab));
+
 
         //这些是各种陷阱
         Trap_Spike.onClick.AddListener(() => OnBuildingButtonClick(Trap_SpikePrefab));
@@ -148,7 +161,9 @@ public class BuildingSelectionPanel : MonoBehaviour
         Lantern_Small.onClick.AddListener(() => OnBuildingButtonClick(Lantern_SmallPrefab));
         Lantern.onClick.AddListener(() => OnBuildingButtonClick(LanternPrefab));
 
-        
+        compass.onClick.AddListener(() => OnBuildingButtonClick(compassPrefab));
+        beaconTower.onClick.AddListener(() => OnBuildingButtonClick(beaconTowerPrefab));
+        sundial.onClick.AddListener(() => OnBuildingButtonClick(sundialPrefab));
         
 //----------------------------------------注册按钮点击事件-------------------------------------------------//
 

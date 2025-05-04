@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 5327257488885478971}
   - component: {fileID: 3887739220172174841}
   - component: {fileID: 1319321972359264955}
-  m_Layer: 6
+  m_Layer: 10
   m_Name: Campfire_Blue
-  m_TagString: Player
+  m_TagString: Default
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -174,7 +174,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfcee868936ef1a40854923099228a30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  smyName: "\u5EFA\u7B51"
+  smyName: "\u84DD\u7130\u7BDD\u706B"
   smyType: "\u5EFA\u7B51"
   smyDescription: "\u70BC\u4E39\u672F\u89C6\u84DD\u706B\u4E3A\u201C\u7384\u706B\u201D\uFF0C\u8BA4\u4E3A\u542B\u786B\u3001\u6C5E\u7B49\u77FF\u7269\u71C3\u70E7\u65F6\u7684\u84DD\u8272\u706B\u7130\u662F\u201C\u4E39\u836F\u901A\u7075\u201D\u7684\u6807\u5FD7\uFF0C\u6E38\u620F\u4E2D\u5B83\u6709\u7740\u610F\u60F3\u4E0D\u5230\u7684\u6548\u679C\u3002"
   cost_wood: 0
@@ -199,7 +199,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5281733442850523721}
   - component: {fileID: 5438422295570870692}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Light2D
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -236,9 +236,9 @@ MonoBehaviour:
   m_ComponentVersion: 1
   m_LightType: 3
   m_BlendStyleIndex: 0
-  m_FalloffIntensity: 0.5
-  m_Color: {r: 0.10849059, g: 0.31075162, b: 1, a: 1}
-  m_Intensity: 8
+  m_FalloffIntensity: 0.4
+  m_Color: {r: 0.375534, g: 0.40487185, b: 0.8207547, a: 1}
+  m_Intensity: 7
   m_LightVolumeIntensity: 1
   m_LightVolumeIntensityEnabled: 0
   m_ApplyToSortingLayers: 00000000
@@ -260,7 +260,7 @@ MonoBehaviour:
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
-  m_PointLightOuterRadius: 8
+  m_PointLightOuterRadius: 10
   m_ShapeLightParametricSides: 5
   m_ShapeLightParametricAngleOffset: 0
   m_ShapeLightParametricRadius: 1
@@ -335,6 +335,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: "\u70DF\u96FE"
       objectReference: {fileID: 0}
+    - target: {fileID: 8696418112472175719, guid: 8681b764093c20941a58038ba590b5a0, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -355,7 +359,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 632631779588214657, guid: c08dc2bae669408458273fbfc2be9eac, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 632631779588214657, guid: c08dc2bae669408458273fbfc2be9eac, type: 3}
       propertyPath: m_IsActive
@@ -367,7 +371,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1196120379742417952, guid: c08dc2bae669408458273fbfc2be9eac, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2149115960998302963, guid: c08dc2bae669408458273fbfc2be9eac, type: 3}
       propertyPath: m_LocalScale.x
@@ -427,19 +431,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5230019283439312350, guid: c08dc2bae669408458273fbfc2be9eac, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 5532505969791518219, guid: c08dc2bae669408458273fbfc2be9eac, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 6004508487558625315, guid: c08dc2bae669408458273fbfc2be9eac, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 6004508487558625315, guid: c08dc2bae669408458273fbfc2be9eac, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6794240024494421556, guid: c08dc2bae669408458273fbfc2be9eac, type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8426354680209871503, guid: c08dc2bae669408458273fbfc2be9eac, type: 3}
       propertyPath: maxHealth

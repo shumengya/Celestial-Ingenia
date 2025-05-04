@@ -5,6 +5,7 @@ public class ParabolicBullet : BulletBase
     [Header("抛物线设置")]
     public float gravity = 9.8f;          // 重力加速度
     public float initialHeight = 2.0f;     // 初始高度，影响弹道高度
+    public float bulletSpeed = 6f;         // 子弹速度，由子弹自身定义
     
     [Header("层级设置")]
     public string flyingLayer = "Projectile";     // 飞行时的层级
@@ -21,8 +22,8 @@ public class ParabolicBullet : BulletBase
     private float distanceToTarget;        // 到目标的水平距离
     private bool hasChangedToLandingLayer = false; // 是否已切换到着陆层
     
-    // 初始化子弹
-    public void Initialize(Vector2 targetPos, float bulletSpeed)
+    // 初始化子弹（不再使用外部传入的速度）
+    public void Initialize(Vector2 targetPos)
     {
         targetPosition = targetPos;
         parabolicStartPos = transform.position;
@@ -104,7 +105,7 @@ public class ParabolicBullet : BulletBase
         flightTime += Time.deltaTime;
         
         // 计算当前位置 (基于抛物线方程)
-        float progress = flightTime * speed / distanceToTarget;
+        float progress = flightTime * bulletSpeed / distanceToTarget;
         
         // 如果到达或超过目标，销毁子弹
         if (progress >= 1.0f)

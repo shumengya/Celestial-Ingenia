@@ -7,15 +7,22 @@ using UnityEngine.UI;
 public class MainMenu : MonoBehaviour
 {
     public Button startGameBtn;
+    public Button gamePlayIntroBtn;
+    public Button gameUpdateBtn;
+    public Button gameSettingBtn;
     public Button exitGamebtn;
     public SceneTransition transitionPrefab; // 在 Inspector 中绑定预制体
+    public GamePlayIntroPanel gamePlayIntroPanel;
+    public GameSettingPanel gameSettingPanel;
+    
     void Start()
     {
-
-        // 为开始游戏按钮添加点击事件
         startGameBtn.onClick.AddListener(StartGame);
-        // 为退出游戏按钮添加点击事件
+        gamePlayIntroBtn.onClick.AddListener(ShowGamePlayIntro);
+        gameUpdateBtn.onClick.AddListener(UpdateGame);
+        gameSettingBtn.onClick.AddListener(SettingGame);
         exitGamebtn.onClick.AddListener(ExitGame);
+        gameSettingPanel.HidePanel();
     }
 
     // 开始游戏的方法
@@ -38,5 +45,20 @@ public class MainMenu : MonoBehaviour
         // 在发布版本中退出应用程序
         Application.Quit();
         #endif
+    }
+
+    void ShowGamePlayIntro()
+    {
+        gamePlayIntroPanel.ShowPanel();
+    }
+
+    void UpdateGame()
+    {
+        Debug.Log("游戏更新！");
+    }
+
+    void SettingGame()
+    {
+        gameSettingPanel.ShowPanel();
     }
 }    
