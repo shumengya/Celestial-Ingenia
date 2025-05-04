@@ -30,7 +30,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.16, y: 0.16, z: 0}
+  m_LocalScale: {x: 0.12, y: 0.12, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2313449260290105721}
@@ -174,11 +174,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   smyName: "\u53F8\u5357\u4EEA"
   smyType: "\u5EFA\u7B51"
-  smyDescription: "\u57FA\u7840\u5EFA\u7B51"
-  cost_wood: 0
-  cost_stone: 0
-  cost_iron: 0
-  cost_copper: 0
+  smyDescription: "\u53F8\u5357\u662F\u6218\u56FD\u65F6\u671F\u8BB0\u8F7D\u4E8E\u300A\u97E9\u975E\u5B50\u30FB\u6709\u5EA6\u300B\u300A\u8BBA\u8861\u300B\u7684\u4E2D\u56FD\u6700\u65E9\u78C1\u6027\u6307\u5357\u5DE5\u5177\uFF0C\u5229\u7528\u5929\u7136\u78C1\u77F3\u4E0E\u5730\u7403\u78C1\u573A\u4F5C\u7528\u5B9A\u5411\uFF0C\u4E3A\u6307\u5357\u9488\u96CF\u5F62\u53CA\u7535\u78C1\u5B66\u65E9\u671F\u5E94\u7528\u3002"
+  cost_wood: 50
+  cost_stone: 50
+  cost_iron: 50
+  cost_copper: 30
   isOnlyBePlacedOnGround: 0
   isOnlyBePlacedAdjacent: 0
   canBeInteracted: 1

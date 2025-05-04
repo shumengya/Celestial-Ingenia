@@ -2197,10 +2197,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerName: 
-  woodNum: 9999
-  stoneNum: 9999
-  ironNum: 9999
-  copperNum: 9999
+  woodNum: 1000
+  stoneNum: 1000
+  ironNum: 1000
+  copperNum: 1000
   woodText: {fileID: 0}
   stoneText: {fileID: 0}
   ironText: {fileID: 0}

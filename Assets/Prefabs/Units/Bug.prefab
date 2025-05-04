@@ -284,7 +284,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7708f7c6e4665f43a78a77b4ab2e734, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 1.1
+  moveSpeed: 1.4
   rotationSpeed: 400
   playerTag: Player
   obstacleLayerMask:
@@ -464,7 +464,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6004508487558625315, guid: c08dc2bae669408458273fbfc2be9eac, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8931724463168868860, guid: c08dc2bae669408458273fbfc2be9eac, type: 3}
       propertyPath: m_SizeDelta.x

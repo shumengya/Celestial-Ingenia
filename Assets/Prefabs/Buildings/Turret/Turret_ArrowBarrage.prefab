@@ -175,11 +175,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   smyName: "\u4E07\u7BAD\u9F50\u53D1"
   smyType: "\u5EFA\u7B51"
-  smyDescription: "\u4E00\u9635\u7BAD\u96E8\u6765\u88AD"
-  cost_wood: 0
-  cost_stone: 0
-  cost_iron: 0
-  cost_copper: 0
+  smyDescription: "\u653B\u51FB\u578B\u9632\u5FA1\u5EFA\u7B51\uFF0C\u642D\u8F7D360\xB0\u65CB\u8F6C\u5F29\u70AE\u9635\u5217\u4E0E\u7784\u51C6\u7CFB\u7EDF\uFF0C\u53EF\u5BF9300\u7C73\u5185\u76EE\u6807\u81EA\u52A8\u503E\u6CFB\u7BAD\u96E8\uFF0C\u5F62\u6210\u8303\u56F4\u9971\u548C\u6253\u51FB\uFF0C\u9644\u5E26\u7834\u7532\u6548\u679C\uFF0C\u517C\u5177\u9AD8\u5F3A\u5EA6\u9632\u5FA1\u5916\u58F3\uFF0C\u662F\u96C6\u7FA4\u654C\u4EBA\u7684\u514B\u661F\u3002\u200B "
+  cost_wood: 100
+  cost_stone: 100
+  cost_iron: 100
+  cost_copper: 100
   isOnlyBePlacedOnGround: 0
   isOnlyBePlacedAdjacent: 0
   canBeInteracted: 1
@@ -283,7 +283,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6004508487558625315, guid: c08dc2bae669408458273fbfc2be9eac, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8426354680209871503, guid: c08dc2bae669408458273fbfc2be9eac, type: 3}
       propertyPath: maxHealth

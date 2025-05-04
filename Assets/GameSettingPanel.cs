@@ -17,6 +17,7 @@ public CanvasGroup canvasGroup;
 
 void Start()
 {
+    HidePanel();
     sureButton.onClick.AddListener(OnSureButtonClick);
     quitButton.onClick.AddListener(OnQuitButtonClick);
     woodInputField.text = PlayerConfig.Instance.woodNum.ToString();

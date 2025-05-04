@@ -64,5 +64,6 @@ public class GameOverPanel : MonoBehaviour
         Debug.Log("返回主菜单");
         // 加载名为 "MainMenu" 的场景
         SceneManager.LoadScene("MainMenu");
+        Time.timeScale = 1f; // 确保时间缩放恢复正常
     }
 }

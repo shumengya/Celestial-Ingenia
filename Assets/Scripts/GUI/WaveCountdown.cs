@@ -1,14 +1,17 @@
+
 using UnityEngine;
 using UnityEngine.UI;
 
 public class WaveCountdown : MonoBehaviour
 {
     // 每波之间的倒计时时间（秒）
-    public float countdownTime = 30f;
+    public float countdownTime = 10f;
     // 显示倒计时的文本组件
     public Text countdownText;
     // 当前波数
     public int currentWave = 1;
+
+    public EnemySpawnerPoint[] enemySpawnerPoints;
 
     private float currentTime;
 
@@ -48,8 +51,14 @@ public class WaveCountdown : MonoBehaviour
 
         // 增加波数
         currentWave++;
+        countdownTime += 3f; // 每波增加 3 秒的倒计时
 
         // 这里可以添加新一波敌人生成等逻辑
         Debug.Log("第 " + currentWave + " 波开始！");
+        // 遍历所有敌人生成点，生成敌人
+        foreach (var enemySpawnerPoint in enemySpawnerPoints)
+        {
+            enemySpawnerPoint.SpawnEnemy(currentWave - 1); // 传递当前波数作为额外敌人数量
+        }
     }
 }    

@@ -5,25 +5,24 @@ using UnityEngine;
 public class ExitPanelController : MonoBehaviour
 {
     public GameObject exitPanel;
+     public CanvasGroup canvasGroup; 
     public void Start()
     {
         exitPanel.SetActive(false);
     }
 
-    public void Update()
+     public void ShowPanel()
     {
-        if(Input.GetKeyDown(KeyCode.Escape))
-        {
-            exitPanel.SetActive(!exitPanel.activeSelf);
-        }
-        if(exitPanel.activeSelf)
-        {
-            Time.timeScale = 0f;
-        }
-        else
-        {
-            Time.timeScale =1f;
-
-        }
+        canvasGroup.alpha = 1;
+        canvasGroup.interactable = true;
+        canvasGroup.blocksRaycasts = true;
     }
+
+    public void HidePanel()
+    {
+        canvasGroup.alpha = 0;
+        canvasGroup.interactable = false;
+        canvasGroup.blocksRaycasts = false;
+    }
+
 }

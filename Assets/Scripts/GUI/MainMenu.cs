@@ -23,6 +23,7 @@ public class MainMenu : MonoBehaviour
         gameSettingBtn.onClick.AddListener(SettingGame);
         exitGamebtn.onClick.AddListener(ExitGame);
         gameSettingPanel.HidePanel();
+        Time.timeScale =1f;
     }
 
     // 开始游戏的方法

@@ -203,7 +203,7 @@ MonoBehaviour:
   cost_stone: 5
   cost_iron: 0
   cost_copper: 20
-  isOnlyBePlacedOnGround: 0
+  isOnlyBePlacedOnGround: 1
   isOnlyBePlacedAdjacent: 0
   canBeInteracted: 1
   isSelected: 0

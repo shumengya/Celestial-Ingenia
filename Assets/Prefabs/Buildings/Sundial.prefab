@@ -174,11 +174,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   smyName: "\u65E5\u6677"
   smyType: "\u5EFA\u7B51"
-  smyDescription: "\u57FA\u7840\u5EFA\u7B51"
-  cost_wood: 0
-  cost_stone: 0
-  cost_iron: 0
-  cost_copper: 0
+  smyDescription: "\u65E5\u6677\u662F\u5468\u4EE3\u8BB0\u8F7D\u4E8E\u300A\u5468\u793C\u300B\u7684\u4E2D\u56FD\u53E4\u4EE3\u8BA1\u65F6\u5DE5\u5177\uFF0C\u901A\u8FC7\u6677\u9488\u968F\u592A\u9633\u89C6\u8FD0\u52A8\u5728\u6677\u9762\u5F62\u6210\u7684\u6295\u5F71\u53D8\u5316\u5212\u5206\u65F6\u8FB0\uFF0C\u5229\u7528\u592A\u9633\u9AD8\u5EA6\u89D2\u4E0E\u65B9\u4F4D\u7684\u5468\u671F\u6027\u89C4\u5F8B\u5B9E\u73B0\u8BA1\u65F6\u3002"
+  cost_wood: 40
+  cost_stone: 30
+  cost_iron: 50
+  cost_copper: 20
   isOnlyBePlacedOnGround: 0
   isOnlyBePlacedAdjacent: 0
   canBeInteracted: 1

@@ -16,21 +16,20 @@ public class EnemySpawnerPoint : MonoBehaviour
         lastSpawnTime = Time.time;
     }
 
-    private void Update()
-    {
-        // 检查是否达到生成间隔时间
-        if (Time.time - lastSpawnTime >= spawnInterval)
-        {
-            // 调用生成敌人的方法
-            SpawnEnemy();
-            // 更新上次生成时间
-            lastSpawnTime = Time.time;
-        }
-    }
+   
 
-    private void SpawnEnemy()
+    public void SpawnEnemy(int additionalEnemies = 0)
     {
-        // 在当前游戏对象（敌人生成点）的位置和旋转下实例化敌人预制体
-        Instantiate(enemyPrefab, transform.position, transform.rotation,EnemysParent);
+        // 随机生成 2 - 4 个敌人
+        int totalEnemies = Random.Range(0, 2) + additionalEnemies;
+        if (totalEnemies >= 5)
+        {
+            totalEnemies = 5; // 限制最多生成 5 个敌人
+        }
+
+        for (int i = 0; i < totalEnemies; i++)
+        {
+            Instantiate(enemyPrefab, transform.position, transform.rotation, EnemysParent);
+        }
     }
 }
