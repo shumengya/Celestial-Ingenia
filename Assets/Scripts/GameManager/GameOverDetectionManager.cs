@@ -36,19 +36,14 @@ public class GameOverDetectionManager : MonoBehaviour
 
     bool IsPlayerBaseExists()
     {
-        // 遍历Bullets父对象下的所有子对象
         for (int i = 0; i < buildingParent.childCount; i++)
         {
-            // 获取当前子对象
             Transform child = buildingParent.GetChild(i);
-            // 检查子对象的名称是否与PlayerBase名称匹配
             if (child.name == playerBaseName || child.name == playerBaseName2)
             {
-                // 如果匹配，说明PlayerBase对象存在，返回true
                 return true;
             }
         }
-        // 如果遍历完所有子对象都没有找到匹配的名称，说明PlayerBase对象不存在，返回false
         return false;
     }
 
@@ -61,15 +56,6 @@ public class GameOverDetectionManager : MonoBehaviour
         {
             Debug.Log("调用弹窗");
             gameOverPanelScript.ShowGameOverPopup();
-
-            PlayerConfig.Instance.woodNum = 0;
-            PlayerConfig.Instance.stoneNum = 0;
-            PlayerConfig.Instance.ironNum = 0;
-            PlayerConfig.Instance.copperNum = 0;
-            PlayerConfig.Instance.playerName = "树萌芽";
         }
-
-        // 暂停游戏
-        Time.timeScale = 0f;
     }
 }

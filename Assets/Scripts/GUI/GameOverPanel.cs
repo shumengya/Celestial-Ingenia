@@ -6,44 +6,35 @@ public class GameOverPanel : MonoBehaviour
 {
     public GameObject gameOverPanel; // 游戏结束弹窗Panel
     public Button BackToMainSceneBtn;
-    public Button PlayAgainBtn; // 建议将变量名改为 QuitGameBtn 更直观
+    public Button QuitGameBtn; 
+    public CanvasGroup canvasGroup;
 
     void Start()
     {
         // 游戏开始时隐藏弹窗
-        gameOverPanel.SetActive(false);
+        HidePanel();
 
         // 绑定按钮点击事件
         if (BackToMainSceneBtn != null)
         {
             BackToMainSceneBtn.onClick.AddListener(LoadMainMenuScene);
         }
-        else
-        {
-            Debug.LogError("BackToMainSceneBtn 未赋值！");
-        }
 
-        if (PlayAgainBtn != null)
+        if (QuitGameBtn != null)
         {
             // 修改按钮监听事件为退出游戏
-            PlayAgainBtn.onClick.AddListener(QuitGame);
+            QuitGameBtn.onClick.AddListener(QuitGame);
             // 建议修改按钮文字（如果需改UI文本，可在此添加）
-            // PlayAgainBtn.GetComponentInChildren<Text>().text = "退出游戏";
-        }
-        else
-        {
-            Debug.LogError("PlayAgainBtn 未赋值！");
+            // QuitGameBtn.GetComponentInChildren<Text>().text = "退出游戏";
         }
     }
 
     public void ShowGameOverPopup()
     {
         // 显示游戏结束弹窗
-        gameOverPanel.SetActive(true);
+        ShowPanel();
     }
 
-    // 删除原来的 RestartGame 方法
-    // private void RestartGame() { ... }
 
     // 新增退出游戏方法
     private void QuitGame()
@@ -65,5 +56,21 @@ public class GameOverPanel : MonoBehaviour
         // 加载名为 "MainMenu" 的场景
         SceneManager.LoadScene("MainMenu");
         Time.timeScale = 1f; // 确保时间缩放恢复正常
+    }
+
+    public void ShowPanel()
+    {
+        Time.timeScale = 0;
+        canvasGroup.alpha = 1;
+        canvasGroup.interactable = true;
+        canvasGroup.blocksRaycasts = true;
+    }
+
+    public void HidePanel()
+    {
+        Time.timeScale = 1;
+        canvasGroup.alpha = 0;
+        canvasGroup.interactable = false;
+        canvasGroup.blocksRaycasts = false;
     }
 }

@@ -2141,7 +2141,6 @@ GameObject:
   m_Component:
   - component: {fileID: 707147612}
   - component: {fileID: 707147613}
-  - component: {fileID: 707147614}
   m_Layer: 0
   m_Name: GameManger
   m_TagString: Untagged
@@ -2184,27 +2183,6 @@ MonoBehaviour:
   transitionPrefab: {fileID: 4433568730568629581, guid: d529d7916a3bbc048a783538fc175492, type: 3}
   gamePlayIntroPanel: {fileID: 1350223241}
   gameSettingPanel: {fileID: 1767929814}
---- !u!114 &707147614
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 707147610}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2727d6eca4f39d641acfe3f42a61c1df, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerName: 
-  woodNum: 1000
-  stoneNum: 1000
-  ironNum: 1000
-  copperNum: 1000
-  woodText: {fileID: 0}
-  stoneText: {fileID: 0}
-  ironText: {fileID: 0}
-  copperText: {fileID: 0}
 --- !u!1 &734615390
 GameObject:
   m_ObjectHideFlags: 0

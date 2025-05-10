@@ -51,7 +51,7 @@ public class WaveCountdown : MonoBehaviour
 
         // 增加波数
         currentWave++;
-        countdownTime += 3f; // 每波增加 3 秒的倒计时
+        countdownTime += 1f; 
 
         // 这里可以添加新一波敌人生成等逻辑
         Debug.Log("第 " + currentWave + " 波开始！");

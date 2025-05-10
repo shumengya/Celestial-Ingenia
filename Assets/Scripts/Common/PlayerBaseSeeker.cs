@@ -7,8 +7,7 @@ public class PlayerBaseSeeker : MonoBehaviour
 {
     // PlayerBase寻路相关参数
     public bool seekPlayerBaseWhenIdle = true; // 是否在空闲时寻找PlayerBase
-    public string playerBaseName = "PlayerBase"; // PlayerBase的名称
-    public string playerBaseName2 = "PlayerBase(Clone)"; // PlayerBase的克隆名称
+    public System.Collections.Generic.List<string> playerBaseNames = new System.Collections.Generic.List<string> { "PlayerBase", "PlayerBase(Clone)" }; // PlayerBase的名称列表
     public float playerBaseSearchInterval = 2f; // 搜索PlayerBase的时间间隔
 
     // 引用其他组件
@@ -72,13 +71,14 @@ public class PlayerBaseSeeker : MonoBehaviour
     // 查找场景中的PlayerBase
     private void FindPlayerBase()
     {
-        // 使用目标名称查找
-        GameObject playerBaseObj = GameObject.Find(playerBaseName);
-        
-        // 如果没找到，尝试使用第二个名称
-        if (playerBaseObj == null)
+        GameObject playerBaseObj = null;
+        foreach (string name in playerBaseNames)
         {
-            playerBaseObj = GameObject.Find(playerBaseName2);
+            playerBaseObj = GameObject.Find(name);
+            if (playerBaseObj != null)
+            {
+                break; // 找到一个就停止搜索
+            }
         }
         
         // 更新目标引用
