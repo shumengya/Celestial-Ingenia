@@ -7,11 +7,13 @@ public class PlayerConfig : MonoBehaviour
     // 单例实例
     public static PlayerConfig Instance;
 
+//-----------游戏目前基本设置----------------------
     public string playerName = "树萌芽";
-    public int woodNum = 1000;
-    public int stoneNum = 1000;
-    public int ironNum = 1000;
-    public int copperNum = 1000;
+    public int woodNum = 0;
+    public int stoneNum = 0;
+    public int ironNum = 0;
+    public int copperNum = 0;
+//-----------游戏目前基本设置----------------------
 
     public Text woodText;
     public Text stoneText;
@@ -26,19 +28,13 @@ public class PlayerConfig : MonoBehaviour
         // 检查单例实例是否已经存在
         if (Instance == null)
         {
-            
-            // 如果不存在，将当前实例设为单例实例
             Instance = this;
-            // 确保该对象在场景切换时不会被销毁
             DontDestroyOnLoad(gameObject);
         }
         else
         {
-            // 如果已经存在，销毁当前对象
             Destroy(gameObject);
         }
-
-        // 注册场景加载完成的事件
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
@@ -59,8 +55,12 @@ public class PlayerConfig : MonoBehaviour
 
     void Start()
     {
-
-        // 首次加载场景时获取文本组件引用
+        PlayerData loadedData = PlayerDataManager.LoadPlayerData();
+        playerName = loadedData.playerName;
+        woodNum = loadedData.woodNum;
+        stoneNum = loadedData.stoneNum;
+        ironNum = loadedData.ironNum;
+        copperNum = loadedData.copperNum;
         FindTextComponents();
     }
 

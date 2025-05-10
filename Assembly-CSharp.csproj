@@ -80,6 +80,7 @@
     <Compile Include="Assets\Scripts\Bullets\Bullet.cs" />
     <Compile Include="Assets\Scripts\Common\AttackModes\NormalAttackMode.cs" />
     <Compile Include="Assets\Scripts\Common\AttackModes\ParabolicAttackMode.cs" />
+    <Compile Include="Assets\GlobelScripts\PlayerDataManager.cs" />
     <Compile Include="Assets\Scripts\GameManager\EnemySpawnerPoint.cs" />
     <Compile Include="Assets\Scripts\Common\UnitMovementPro.cs" />
     <Compile Include="Assets\Scripts\Buildings\StoneQuary.cs" />
@@ -111,7 +112,6 @@
     <Compile Include="Assets\Scripts\GUI\WaveCountdown.cs" />
     <Compile Include="Assets\Scripts\Buildings\CopperSmeltingFactory.cs" />
     <Compile Include="Assets\Scripts\GUI\GameOverPanel.cs" />
-    <Compile Include="Assets\GlobelScripts\JsonConfigManager.cs" />
     <Compile Include="Assets\Scripts\Bullets\Arrow.cs" />
     <Compile Include="Assets\Scripts\Units\UnitBase.cs" />
     <Compile Include="Assets\Scripts\Bullets\FireBall.cs" />
@@ -125,7 +125,6 @@
     <Compile Include="Assets\Scripts\Buildings\TimberMill.cs" />
     <Compile Include="Assets\Scripts\Bullets\FireBullet.cs" />
     <Compile Include="Assets\Scripts\GUI\GameSettingPanel.cs" />
-    <Compile Include="Assets\Scripts\GUI\GameSettings.cs" />
     <Compile Include="Assets\Scripts\Common\RemoteAttack.cs" />
     <Compile Include="Assets\Scripts\SceneTransition.cs" />
     <Compile Include="Assets\Scripts\Common\AttackModes\AttackModeBase.cs" />
