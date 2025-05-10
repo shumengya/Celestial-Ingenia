@@ -81,6 +81,7 @@
     <Compile Include="Assets\Scripts\Common\AttackModes\NormalAttackMode.cs" />
     <Compile Include="Assets\Scripts\Common\AttackModes\ParabolicAttackMode.cs" />
     <Compile Include="Assets\GlobelScripts\PlayerDataManager.cs" />
+    <Compile Include="Assets\GamePausePanel.cs" />
     <Compile Include="Assets\Scripts\GameManager\EnemySpawnerPoint.cs" />
     <Compile Include="Assets\Scripts\Common\UnitMovementPro.cs" />
     <Compile Include="Assets\Scripts\Buildings\StoneQuary.cs" />
