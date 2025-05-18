@@ -14,7 +14,8 @@ public class MainMenu : MonoBehaviour
     public SceneTransition transitionPrefab; // 在 Inspector 中绑定预制体
     public GamePlayIntroPanel gamePlayIntroPanel;
     public GameSettingPanel gameSettingPanel;
-    
+    public GameUpdatePanel gameUpdatePanel;
+
     void Start()
     {
         startGameBtn.onClick.AddListener(StartGame);
@@ -55,7 +56,7 @@ public class MainMenu : MonoBehaviour
 
     void UpdateGame()
     {
-        Debug.Log("游戏更新！");
+        gameUpdatePanel.ShowPanel();
     }
 
     void SettingGame()

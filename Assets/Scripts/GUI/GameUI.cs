@@ -7,6 +7,17 @@ public class GameUI : MonoBehaviour
     public Button TrainUnitsBtn;
     public BuildingSelectionPanel buildingSelectionPanel; // 引用建造面板
 
+
+    //-----------游戏目前基本设置----------------------
+
+    public Text woodText;
+    public Text stoneText;
+    public Text ironText;
+    public Text copperText;
+
+    private float timer = 0f;
+    private const float updateInterval = 0.5f;
+
     private bool isBuildingPanelOpen = false;
 
     void Start()
@@ -17,7 +28,21 @@ public class GameUI : MonoBehaviour
 
     void Update()
     {
-        // 可根据需求添加其他更新逻辑
+        // 累加计时器
+        timer += Time.deltaTime;
+
+        // 当计时器达到更新间隔时
+        if (timer >= updateInterval)
+        {
+            // 更新文本显示
+            if (woodText != null) woodText.text = "木材: " + PlayerConfig.Instance.woodNum.ToString();
+            if (stoneText != null) stoneText.text = "石头: " + PlayerConfig.Instance.stoneNum.ToString();
+            if (ironText != null) ironText.text = "铁矿: " + PlayerConfig.Instance.ironNum.ToString();
+            if (copperText != null) copperText.text = "铜矿: " + PlayerConfig.Instance.copperNum.ToString();
+
+            // 重置计时器
+            timer = 0f;
+        }
     }
 
     public void OnBuildStructuresBtnClick()
@@ -37,6 +62,5 @@ public class GameUI : MonoBehaviour
 
     public void OnTrainUnitsBtnClick()
     {
-        // 可添加训练单位按钮点击后的逻辑
     }
 }

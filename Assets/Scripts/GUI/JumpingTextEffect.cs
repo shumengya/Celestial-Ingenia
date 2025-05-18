@@ -9,7 +9,6 @@ public class JumpingTextEffect : MonoBehaviour
         "你好，世界!",
         "灵创，你好!",
         "传奇的人生始于平凡!"
-        // 你可以在这里添加更多的文本
     };
 
     public float jumpSpeed = 2f;

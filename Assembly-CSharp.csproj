@@ -81,7 +81,6 @@
     <Compile Include="Assets\Scripts\Common\AttackModes\NormalAttackMode.cs" />
     <Compile Include="Assets\Scripts\Common\AttackModes\ParabolicAttackMode.cs" />
     <Compile Include="Assets\GlobelScripts\PlayerDataManager.cs" />
-    <Compile Include="Assets\GamePausePanel.cs" />
     <Compile Include="Assets\Scripts\GameManager\EnemySpawnerPoint.cs" />
     <Compile Include="Assets\Scripts\Common\UnitMovementPro.cs" />
     <Compile Include="Assets\Scripts\Buildings\StoneQuary.cs" />
@@ -95,6 +94,7 @@
     <Compile Include="Assets\Scripts\Units\JiaJiaBug.cs" />
     <Compile Include="Assets\Scripts\Bullets\BulletBase.cs" />
     <Compile Include="Assets\Scripts\Bullets\ParabolicBullet.cs" />
+    <Compile Include="Assets\Scripts\GUI\DebugUIPanel.cs" />
     <Compile Include="Assets\Scripts\Units\Bug.cs" />
     <Compile Include="Assets\Scripts\Common\AttackModes\KatyushaAttackMode.cs" />
     <Compile Include="Assets\Scripts\Common\AttackRange.cs" />
@@ -109,7 +109,6 @@
     <Compile Include="Assets\Scripts\Bullets\LongArrow.cs" />
     <Compile Include="Assets\Scripts\Bullets\ArrowProjectile.cs" />
     <Compile Include="Assets\Scripts\Buildings\PlayerBase.cs" />
-    <Compile Include="Assets\Scripts\GUI\Bullet_Num_Text.cs" />
     <Compile Include="Assets\Scripts\GUI\WaveCountdown.cs" />
     <Compile Include="Assets\Scripts\Buildings\CopperSmeltingFactory.cs" />
     <Compile Include="Assets\Scripts\GUI\GameOverPanel.cs" />
@@ -121,16 +120,16 @@
     <Compile Include="Assets\Scripts\Traps\BombTrap.cs" />
     <Compile Include="Assets\Scripts\Bullets\FireLighting.cs" />
     <Compile Include="Assets\Scripts\Buildings\IronFactory.cs" />
-    <Compile Include="Assets\Scripts\GUI\Enemy_Num_Text.cs" />
     <Compile Include="Assets\Scripts\Buildings\BuildingBase.cs" />
     <Compile Include="Assets\Scripts\Buildings\TimberMill.cs" />
+    <Compile Include="Assets\Scripts\GUI\GamePausePanel.cs" />
     <Compile Include="Assets\Scripts\Bullets\FireBullet.cs" />
     <Compile Include="Assets\Scripts\GUI\GameSettingPanel.cs" />
     <Compile Include="Assets\Scripts\Common\RemoteAttack.cs" />
     <Compile Include="Assets\Scripts\SceneTransition.cs" />
     <Compile Include="Assets\Scripts\Common\AttackModes\AttackModeBase.cs" />
-    <Compile Include="Assets\Scripts\GUI\FPS_Show_Text.cs" />
     <Compile Include="Assets\Scripts\GUI\BuildingIntroPanel.cs" />
+    <Compile Include="Assets\GameUpdatePanel.cs" />
     <Compile Include="Assets\Scripts\Common\UnitMovementProMax.cs" />
     <Compile Include="Assets\Scripts\Bullets\MortarProjectile.cs" />
     <Compile Include="Assets\Scripts\GUI\MainMenu.cs" />
